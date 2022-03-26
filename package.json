@@ -6,7 +6,8 @@
   "author": "xinpingwang <xinping.wang@hotmail.com>",
   "scripts": {
     "start": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "deploy": "./scripts/deploy.sh"
   },
   "devDependencies": {
     "vuepress": "^1.9.7"
