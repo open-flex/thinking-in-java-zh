@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14.4 优先级 | Java 编程思想</title>
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css" as="style"><link rel="preload" href="/thinking-in-java-zh/assets/js/app.fa9256b7.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/2.908605f2.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/73.725fabfd.js" as="script"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/10.bf0f8be8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/100.8d6b6f0a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/101.42353165.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/102.b35fd164.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/103.34c9ec8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/104.63e41eda.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/105.a8196ba3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/106.3c787cca.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/107.5fd47e23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/108.81d2c2cd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/109.5345df07.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/11.decefde0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/110.9a402e3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/111.80737508.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/112.ff092004.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/113.d88e257d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/114.de29474b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/115.9c8d96e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/116.a9fe9af6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/117.0788e070.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/118.fefdab4e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/119.400faa62.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/12.a09f7f64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/120.d0ad5c24.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/121.b7379e1b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/122.352bd6de.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/123.7291c3a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/124.431ed770.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/125.306c4c7c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/126.9b3ff272.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/127.5d35566d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/128.c7458e50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/129.abf0b62b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/13.74ebe0f1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/130.ca484630.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/131.3b65be65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/132.8cc44765.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/133.39cab05a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/134.e1bc010e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/135.848b8e8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/136.e38c13cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/137.e6be7ef1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/138.c921af48.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/139.605a3ad8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/14.9a71923b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/140.7047d727.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/141.eee98409.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/142.b1b6affe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/143.8e53cafe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/144.e78d4c16.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/145.a6924d98.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/146.6afa9e38.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/147.81a0fa1f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/148.9b9deb8c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/149.27e9a5ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/15.c40fedbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/150.d5cb64f7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/151.58f4c6e0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/152.877f491f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/153.2a0f7bc8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/154.0600529e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/155.60aac4f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/156.28542a9d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/157.71f374f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/158.f97abefc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/159.678b2841.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/16.e021272d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/160.50d096d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/161.65ef5e27.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/162.9945598d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/163.fbdc28a7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/164.b9de90b9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/165.f04b9c4d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/166.492b521e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/167.44fc78f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/168.9ead6145.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/169.ecb10302.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/17.6a5a39db.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/170.c5cf73cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/171.1e4044b2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/172.bdf06080.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/173.b9993d87.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/174.7e9fc4ea.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/175.a1371c92.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/176.06a2686c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/177.3fd0af17.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/178.e20d739c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/179.0c4bab32.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/18.2a0fe016.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/180.09aa6003.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/181.f723e5b0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/182.5121b3e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/183.ed3590f5.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/184.715b33ae.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/185.2fc87a63.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/186.1092562b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/187.2a099e97.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/188.5ba09f11.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/19.d85e5c9e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/20.0c5db47c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/21.e0626c88.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/22.71c5879a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/23.7b68c569.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/24.e4a060c9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/25.b3969598.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/26.5944fa66.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/27.b54d648d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/28.b3bd9b90.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/29.85fb52b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/3.7e7b25d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/30.e68d5f52.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/31.8a9dda64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/32.e86d5c44.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/33.3bc564dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/34.c9e1ae64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/35.b994b5bd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/36.8ccf0963.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/37.ecf3eb69.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/38.ab79219e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/39.04161d2f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/40.ea7690ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/41.1343bb93.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/42.3f7fe11a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/43.efcf4c2a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/44.d9ec22df.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/45.151cd823.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/46.2e7d0d19.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/47.2132be00.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/48.8f934c34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/49.debd52f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/50.32165d5a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/51.d8ba02fd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/52.ed339d2d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/53.8e4ba4c8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/54.60bf4f03.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/55.152bdcd2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/56.b7f52a23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/57.9be7e60b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/58.2ee15f50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/59.b8c3cade.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/60.2658363d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/61.691159a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/62.9d9c6c65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/63.07a1ba1a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/64.750c0918.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/65.1e1fa59d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/66.64b896e2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/67.0d9cdf7e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/68.40bd0a61.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/69.8233b339.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/7.37fa1201.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/70.25de6d15.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/71.f2848d8f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/72.e156c27a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/74.3341aaba.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/75.c1f15dbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/76.e61dbcfe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/77.a3bae194.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/78.658cd2a6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/79.3f4258dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/8.cb3738e7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/80.28670e73.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/81.2acef4dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/82.cc58e6b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/83.b9d7c5fe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/84.d20935f6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/85.2647d331.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/86.387d330d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/87.4a744b41.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/88.04a81a34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/89.7e4d6e77.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/9.a197fc43.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/90.d390efe2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/91.985ecc95.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/92.9c6399c6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/93.5c771e45.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/94.b6bfece6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/95.7ffcbc3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/96.c8dee444.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/97.a6814ee4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/98.ca141a6e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/99.7bd02f80.js">
+    <link rel="stylesheet" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNFKK7VGLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JNFKK7VGLS');
+    </script>
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/thinking-in-java-zh/" class="home-link router-link-active"><!----> <span class="site-name">Java 编程思想</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/thinking-in-java-zh/0.1.html" class="sidebar-link">写在前面的话</a></li><li><a href="/thinking-in-java-zh/0.2.html" class="sidebar-link">引言</a></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/1" class="sidebar-heading clickable"><span>第1章 对象入门</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/1.1.html" class="sidebar-link">1.1 抽象的进步</a></li><li><a href="/thinking-in-java-zh/1.2.html" class="sidebar-link">1.2 对象的接口</a></li><li><a href="/thinking-in-java-zh/1.3.html" class="sidebar-link">1.3 实现方案的隐藏</a></li><li><a href="/thinking-in-java-zh/1.4.html" class="sidebar-link">1.4 方案的重复使用</a></li><li><a href="/thinking-in-java-zh/1.5.html" class="sidebar-link">1.5 继承：重新使用接口</a></li><li><a href="/thinking-in-java-zh/1.6.html" class="sidebar-link">1.6 多态对象的互换使用</a></li><li><a href="/thinking-in-java-zh/1.7.html" class="sidebar-link">1.7 对象的创建和存在时间</a></li><li><a href="/thinking-in-java-zh/1.8.html" class="sidebar-link">1.8 异常控制：解决错误</a></li><li><a href="/thinking-in-java-zh/1.9.html" class="sidebar-link">1.9 多线程</a></li><li><a href="/thinking-in-java-zh/1.10.html" class="sidebar-link">1.10 永久性</a></li><li><a href="/thinking-in-java-zh/1.11.html" class="sidebar-link">1.11 Java和因特网</a></li><li><a href="/thinking-in-java-zh/1.12.html" class="sidebar-link">1.12 分析和设计</a></li><li><a href="/thinking-in-java-zh/1.13.html" class="sidebar-link">1.13 Java还是C++</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/2" class="sidebar-heading clickable"><span>第2章 一切都是对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/2.1.html" class="sidebar-link">2.1 用引用操纵对象</a></li><li><a href="/thinking-in-java-zh/2.2.html" class="sidebar-link">2.2 所有对象都必须创建</a></li><li><a href="/thinking-in-java-zh/2.3.html" class="sidebar-link">2.3 绝对不要清除对象</a></li><li><a href="/thinking-in-java-zh/2.4.html" class="sidebar-link">2.4 新建数据类型：类</a></li><li><a href="/thinking-in-java-zh/2.5.html" class="sidebar-link">2.5 方法、参数和返回值</a></li><li><a href="/thinking-in-java-zh/2.6.html" class="sidebar-link">2.6 构建Java程序</a></li><li><a href="/thinking-in-java-zh/2.7.html" class="sidebar-link">2.7 我们的第一个Java程序</a></li><li><a href="/thinking-in-java-zh/2.8.html" class="sidebar-link">2.8 注释和嵌入文档</a></li><li><a href="/thinking-in-java-zh/2.9.html" class="sidebar-link">2.9 编码样式</a></li><li><a href="/thinking-in-java-zh/2.10.html" class="sidebar-link">2.10 总结</a></li><li><a href="/thinking-in-java-zh/2.11.html" class="sidebar-link">2.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/3" class="sidebar-heading clickable"><span>第3章 控制程序流程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/3.1.html" class="sidebar-link">3.1 使用Java运算符</a></li><li><a href="/thinking-in-java-zh/3.2.html" class="sidebar-link">3.2 执行控制</a></li><li><a href="/thinking-in-java-zh/3.3.html" class="sidebar-link">3.3 总结</a></li><li><a href="/thinking-in-java-zh/3.4.html" class="sidebar-link">3.4 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/4" class="sidebar-heading clickable"><span>第4章 初始化和清除</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/4.1.html" class="sidebar-link">4.1 用构造器自动初始化</a></li><li><a href="/thinking-in-java-zh/4.2.html" class="sidebar-link">4.2 方法重载</a></li><li><a href="/thinking-in-java-zh/4.3.html" class="sidebar-link">4.3 清除：收尾和垃圾收集</a></li><li><a href="/thinking-in-java-zh/4.4.html" class="sidebar-link">4.4 成员初始化</a></li><li><a href="/thinking-in-java-zh/4.5.html" class="sidebar-link">4.5 数组初始化</a></li><li><a href="/thinking-in-java-zh/4.6.html" class="sidebar-link">4.6 总结</a></li><li><a href="/thinking-in-java-zh/4.7.html" class="sidebar-link">4.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/5" class="sidebar-heading clickable"><span>第5章 隐藏实现过程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/5.1.html" class="sidebar-link">5.1 包：库单元</a></li><li><a href="/thinking-in-java-zh/5.2.html" class="sidebar-link">5.2 Java访问指示符</a></li><li><a href="/thinking-in-java-zh/5.3.html" class="sidebar-link">5.3 接口与实现</a></li><li><a href="/thinking-in-java-zh/5.4.html" class="sidebar-link">5.4 类访问</a></li><li><a href="/thinking-in-java-zh/5.5.html" class="sidebar-link">5.5 总结</a></li><li><a href="/thinking-in-java-zh/5.6.html" class="sidebar-link">5.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/6" class="sidebar-heading clickable"><span>第6章 类复用</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/6.1.html" class="sidebar-link">6.1 組合的语法</a></li><li><a href="/thinking-in-java-zh/6.2.html" class="sidebar-link">6.2 继承的语法</a></li><li><a href="/thinking-in-java-zh/6.3.html" class="sidebar-link">6.3 组合与继承的结合</a></li><li><a href="/thinking-in-java-zh/6.4.html" class="sidebar-link">6.4 到底选择组合还是继承</a></li><li><a href="/thinking-in-java-zh/6.5.html" class="sidebar-link">6.5 protected</a></li><li><a href="/thinking-in-java-zh/6.6.html" class="sidebar-link">6.6 累积开发</a></li><li><a href="/thinking-in-java-zh/6.7.html" class="sidebar-link">6.7 向上转换</a></li><li><a href="/thinking-in-java-zh/6.8.html" class="sidebar-link">6.8 final关键字</a></li><li><a href="/thinking-in-java-zh/6.9.html" class="sidebar-link">6.9 初始化和类装载</a></li><li><a href="/thinking-in-java-zh/6.10.html" class="sidebar-link">6.10 总结</a></li><li><a href="/thinking-in-java-zh/6.11.html" class="sidebar-link">6.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/7" class="sidebar-heading clickable"><span>第7章 多态性</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/7.1.html" class="sidebar-link">7.1 向上转换</a></li><li><a href="/thinking-in-java-zh/7.2.html" class="sidebar-link">7.2 深入理解</a></li><li><a href="/thinking-in-java-zh/7.3.html" class="sidebar-link">7.3 覆盖与重载</a></li><li><a href="/thinking-in-java-zh/7.4.html" class="sidebar-link">7.4 抽象类和方法</a></li><li><a href="/thinking-in-java-zh/7.5.html" class="sidebar-link">7.5 接口</a></li><li><a href="/thinking-in-java-zh/7.6.html" class="sidebar-link">7.6 内部类</a></li><li><a href="/thinking-in-java-zh/7.7.html" class="sidebar-link">7.7 构造器和多态性</a></li><li><a href="/thinking-in-java-zh/7.8.html" class="sidebar-link">7.8 通过继承进行设计</a></li><li><a href="/thinking-in-java-zh/7.9.html" class="sidebar-link">7.9 总结</a></li><li><a href="/thinking-in-java-zh/7.10.html" class="sidebar-link">7.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/8" class="sidebar-heading clickable"><span>第8章 对象的容纳</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/8.1.html" class="sidebar-link">8.1 数组</a></li><li><a href="/thinking-in-java-zh/8.2.html" class="sidebar-link">8.2 集合</a></li><li><a href="/thinking-in-java-zh/8.3.html" class="sidebar-link">8.3 枚举器（迭代器）</a></li><li><a href="/thinking-in-java-zh/8.4.html" class="sidebar-link">8.4 集合的类型</a></li><li><a href="/thinking-in-java-zh/8.5.html" class="sidebar-link">8.5 排序</a></li><li><a href="/thinking-in-java-zh/8.6.html" class="sidebar-link">8.6 通用集合库</a></li><li><a href="/thinking-in-java-zh/8.7.html" class="sidebar-link">8.7 新集合</a></li><li><a href="/thinking-in-java-zh/8.8.html" class="sidebar-link">8.8 总结</a></li><li><a href="/thinking-in-java-zh/8.9.html" class="sidebar-link">8.9 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/9" class="sidebar-heading clickable"><span>第9章 异常差错控制</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/9.1.html" class="sidebar-link">9.1 基本异常</a></li><li><a href="/thinking-in-java-zh/9.2.html" class="sidebar-link">9.2 异常的捕获</a></li><li><a href="/thinking-in-java-zh/9.3.html" class="sidebar-link">9.3 标准Java异常</a></li><li><a href="/thinking-in-java-zh/9.4.html" class="sidebar-link">9.4 创建自己的异常</a></li><li><a href="/thinking-in-java-zh/9.5.html" class="sidebar-link">9.5 异常的限制</a></li><li><a href="/thinking-in-java-zh/9.6.html" class="sidebar-link">9.6 用finally清除</a></li><li><a href="/thinking-in-java-zh/9.7.html" class="sidebar-link">9.7 构造器</a></li><li><a href="/thinking-in-java-zh/9.8.html" class="sidebar-link">9.8 异常匹配</a></li><li><a href="/thinking-in-java-zh/9.9.html" class="sidebar-link">9.9 总结</a></li><li><a href="/thinking-in-java-zh/9.10.html" class="sidebar-link">9.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/10" class="sidebar-heading clickable"><span>第10章 Java IO系统</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/10.1.html" class="sidebar-link">10.1 输入和输出</a></li><li><a href="/thinking-in-java-zh/10.2.html" class="sidebar-link">10.2 增添属性和有用的接口</a></li><li><a href="/thinking-in-java-zh/10.3.html" class="sidebar-link">10.3 本身的缺陷：RandomAccessFile</a></li><li><a href="/thinking-in-java-zh/10.4.html" class="sidebar-link">10.4 File类</a></li><li><a href="/thinking-in-java-zh/10.5.html" class="sidebar-link">10.5 IO流的典型应用</a></li><li><a href="/thinking-in-java-zh/10.6.html" class="sidebar-link">10.6 StreamTokenizer</a></li><li><a href="/thinking-in-java-zh/10.7.html" class="sidebar-link">10.7 Java 1.1的IO流</a></li><li><a href="/thinking-in-java-zh/10.8.html" class="sidebar-link">10.8 压缩</a></li><li><a href="/thinking-in-java-zh/10.9.html" class="sidebar-link">10.9 对象序列化</a></li><li><a href="/thinking-in-java-zh/10.10.html" class="sidebar-link">10.10 总结</a></li><li><a href="/thinking-in-java-zh/10.11.html" class="sidebar-link">10.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/11" class="sidebar-heading clickable"><span>第11章 运行期类型识别</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/11.1.html" class="sidebar-link">11.1 对RTTI的需要</a></li><li><a href="/thinking-in-java-zh/11.2.html" class="sidebar-link">11.2 RTTI语法</a></li><li><a href="/thinking-in-java-zh/11.3.html" class="sidebar-link">11.3 反射：运行期类信息</a></li><li><a href="/thinking-in-java-zh/11.4.html" class="sidebar-link">11.4 总结</a></li><li><a href="/thinking-in-java-zh/11.5.html" class="sidebar-link">11.5 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/12" class="sidebar-heading clickable"><span>第12章 传递和返回对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/12.1.html" class="sidebar-link">12.1 传递引用</a></li><li><a href="/thinking-in-java-zh/12.2.html" class="sidebar-link">12.2 制作本地副本</a></li><li><a href="/thinking-in-java-zh/12.3.html" class="sidebar-link">12.3 克隆的控制</a></li><li><a href="/thinking-in-java-zh/12.4.html" class="sidebar-link">12.4 只读类</a></li><li><a href="/thinking-in-java-zh/12.5.html" class="sidebar-link">12.5 总结</a></li><li><a href="/thinking-in-java-zh/12.6.html" class="sidebar-link">12.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/13" class="sidebar-heading clickable"><span>第13章 创建窗口和程序片</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/13.1.html" class="sidebar-link">13.1 为何要用AWT？</a></li><li><a href="/thinking-in-java-zh/13.2.html" class="sidebar-link">13.2 基本程序片</a></li><li><a href="/thinking-in-java-zh/13.3.html" class="sidebar-link">13.3 制作按钮</a></li><li><a href="/thinking-in-java-zh/13.4.html" class="sidebar-link">13.4 捕获事件</a></li><li><a href="/thinking-in-java-zh/13.5.html" class="sidebar-link">13.5 文本字段</a></li><li><a href="/thinking-in-java-zh/13.6.html" class="sidebar-link">13.6 文本区域</a></li><li><a href="/thinking-in-java-zh/13.7.html" class="sidebar-link">13.7 标签</a></li><li><a href="/thinking-in-java-zh/13.8.html" class="sidebar-link">13.8 复选框</a></li><li><a href="/thinking-in-java-zh/13.9.html" class="sidebar-link">13.9 单选钮</a></li><li><a href="/thinking-in-java-zh/13.10.html" class="sidebar-link">13.10 下拉列表</a></li><li><a href="/thinking-in-java-zh/13.11.html" class="sidebar-link">13.11 列表框</a></li><li><a href="/thinking-in-java-zh/13.12.html" class="sidebar-link">13.12 布局的控制</a></li><li><a href="/thinking-in-java-zh/13.13.html" class="sidebar-link">13.13 action的替代品</a></li><li><a href="/thinking-in-java-zh/13.14.html" class="sidebar-link">13.14 程序片的局限</a></li><li><a href="/thinking-in-java-zh/13.15.html" class="sidebar-link">13.15 视窗化应用</a></li><li><a href="/thinking-in-java-zh/13.16.html" class="sidebar-link">13.16 新型AWT</a></li><li><a href="/thinking-in-java-zh/13.17.html" class="sidebar-link">13.17 Java 1.1用户接口API</a></li><li><a href="/thinking-in-java-zh/13.18.html" class="sidebar-link">13.18 可视编程和Beans</a></li><li><a href="/thinking-in-java-zh/13.19.html" class="sidebar-link">13.19 Swing入门（注释⑦）</a></li><li><a href="/thinking-in-java-zh/13.20.html" class="sidebar-link">13.20 总结</a></li><li><a href="/thinking-in-java-zh/13.21.html" class="sidebar-link">13.21 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/14" class="sidebar-heading clickable open"><span>第14章 多线程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/14.1.html" class="sidebar-link">14.1 反应灵敏的用户界面</a></li><li><a href="/thinking-in-java-zh/14.2.html" class="sidebar-link">14.2 共享有限的资源</a></li><li><a href="/thinking-in-java-zh/14.3.html" class="sidebar-link">14.3 堵塞</a></li><li><a href="/thinking-in-java-zh/14.4.html" aria-current="page" class="active sidebar-link">14.4 优先级</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/14.4.html#_14-4-1-线程组" class="sidebar-link">14.4.1 线程组</a></li></ul></li><li><a href="/thinking-in-java-zh/14.5.html" class="sidebar-link">14.5 回顾runnable</a></li><li><a href="/thinking-in-java-zh/14.6.html" class="sidebar-link">14.6 总结</a></li><li><a href="/thinking-in-java-zh/14.7.html" class="sidebar-link">14.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/15" class="sidebar-heading clickable"><span>第15章 网络编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/15.1.html" class="sidebar-link">15.1 机器的标识</a></li><li><a href="/thinking-in-java-zh/15.2.html" class="sidebar-link">15.2 套接字</a></li><li><a href="/thinking-in-java-zh/15.3.html" class="sidebar-link">15.3 服务多个客户</a></li><li><a href="/thinking-in-java-zh/15.4.html" class="sidebar-link">15.4 数据报</a></li><li><a href="/thinking-in-java-zh/15.5.html" class="sidebar-link">15.5 一个Web应用</a></li><li><a href="/thinking-in-java-zh/15.6.html" class="sidebar-link">15.6 Java与CGI的沟通</a></li><li><a href="/thinking-in-java-zh/15.7.html" class="sidebar-link">15.7 用JDBC连接数据库</a></li><li><a href="/thinking-in-java-zh/15.8.html" class="sidebar-link">15.8 远程方法</a></li><li><a href="/thinking-in-java-zh/15.9.html" class="sidebar-link">15.9 总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/16" class="sidebar-heading clickable"><span>第16章 设计模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/16.1.html" class="sidebar-link">16.1 模式的概念</a></li><li><a href="/thinking-in-java-zh/16.2.html" class="sidebar-link">16.2 观察器模式</a></li><li><a href="/thinking-in-java-zh/16.3.html" class="sidebar-link">16.3 模拟垃圾回收站</a></li><li><a href="/thinking-in-java-zh/16.4.html" class="sidebar-link">16.4 改进设计</a></li><li><a href="/thinking-in-java-zh/16.5.html" class="sidebar-link">16.5 抽象的应用</a></li><li><a href="/thinking-in-java-zh/16.6.html" class="sidebar-link">16.6 多重分发</a></li><li><a href="/thinking-in-java-zh/16.7.html" class="sidebar-link">16.7 访问器模式</a></li><li><a href="/thinking-in-java-zh/16.8.html" class="sidebar-link">16.8 RTTI真的有害吗</a></li><li><a href="/thinking-in-java-zh/16.9.html" class="sidebar-link">16.9 总结</a></li><li><a href="/thinking-in-java-zh/16.10.html" class="sidebar-link">16.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/17" class="sidebar-heading clickable"><span>第17章 项目</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/17.1.html" class="sidebar-link">17.1 文字处理</a></li><li><a href="/thinking-in-java-zh/17.2.html" class="sidebar-link">17.2 方法查找工具</a></li><li><a href="/thinking-in-java-zh/17.3.html" class="sidebar-link">17.3 复杂性理论</a></li><li><a href="/thinking-in-java-zh/17.4.html" class="sidebar-link">17.4 总结</a></li><li><a href="/thinking-in-java-zh/17.5.html" class="sidebar-link">17.5 练习</a></li></ul></section></li><li><a href="/thinking-in-java-zh/a.html" class="sidebar-link">附录A 使用非JAVA代码</a></li><li><a href="/thinking-in-java-zh/b.html" class="sidebar-link">附录B 对比C++和Java</a></li><li><a href="/thinking-in-java-zh/c.html" class="sidebar-link">附录C Java编程规则</a></li><li><a href="/thinking-in-java-zh/d.html" class="sidebar-link">附录D 性能</a></li><li><a href="/thinking-in-java-zh/e.html" class="sidebar-link">附录E 关于垃圾收集的一些话</a></li><li><a href="/thinking-in-java-zh/f.html" class="sidebar-link">附录F 推荐读物</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_14-4-优先级"><a href="#_14-4-优先级" class="header-anchor">#</a> 14.4 优先级</h1> <p>线程的优先级（Priority）告诉调试程序该线程的重要程度有多大。如果有大量线程都被堵塞，都在等候运行，调试程序会首先运行具有最高优先级的那个线程。然而，这并不表示优先级较低的线程不会运行（换言之，不会因为存在优先级而导致死锁）。若线程的优先级较低，只不过表示它被准许运行的机会小一些而已。</p> <p>可用<code>getPriority()</code>方法读取一个线程的优先级，并用<code>setPriority()</code>改变它。在下面这个程序片中，大家会发现计数器的计数速度慢了下来，因为它们关联的线程分配了较低的优先级：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Counter5.java
+// Adjusting the priorities of threads
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+
+class Ticker2 extends Thread {
+  private Button
+    b = new Button(&quot;Toggle&quot;),
+    incPriority = new Button(&quot;up&quot;),
+    decPriority = new Button(&quot;down&quot;);
+  private TextField
+    t = new TextField(10),
+    pr = new TextField(3); // Display priority
+  private int count = 0;
+  private boolean runFlag = true;
+  public Ticker2(Container c) {
+    b.addActionListener(new ToggleL());
+    incPriority.addActionListener(new UpL());
+    decPriority.addActionListener(new DownL());
+    Panel p = new Panel();
+    p.add(t);
+    p.add(pr);
+    p.add(b);
+    p.add(incPriority);
+    p.add(decPriority);
+    c.add(p);
+  }
+  class ToggleL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      runFlag = !runFlag;
+    }
+  }
+  class UpL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int newPriority = getPriority() + 1;
+      if(newPriority &gt; Thread.MAX_PRIORITY)
+        newPriority = Thread.MAX_PRIORITY;
+      setPriority(newPriority);
+    }
+  }
+  class DownL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int newPriority = getPriority() - 1;
+      if(newPriority &lt; Thread.MIN_PRIORITY)
+        newPriority = Thread.MIN_PRIORITY;
+      setPriority(newPriority);
+    }
+  }
+  public void run() {
+    while (true) {
+      if(runFlag) {
+        t.setText(Integer.toString(count++));
+        pr.setText(
+          Integer.toString(getPriority()));
+      }
+      yield();
+    }
+  }
+}
+
+public class Counter5 extends Applet {
+  private Button
+    start = new Button(&quot;Start&quot;),
+    upMax = new Button(&quot;Inc Max Priority&quot;),
+    downMax = new Button(&quot;Dec Max Priority&quot;);
+  private boolean started = false;
+  private static final int SIZE = 10;
+  private Ticker2[] s = new Ticker2[SIZE];
+  private TextField mp = new TextField(3);
+  public void init() {
+    for(int i = 0; i &lt; s.length; i++)
+      s[i] = new Ticker2(this);
+    add(new Label(&quot;MAX_PRIORITY = &quot;
+      + Thread.MAX_PRIORITY));
+    add(new Label(&quot;MIN_PRIORITY = &quot;
+      + Thread.MIN_PRIORITY));
+    add(new Label(&quot;Group Max Priority = &quot;));
+    add(mp);
+    add(start);
+    add(upMax); add(downMax);
+    start.addActionListener(new StartL());
+    upMax.addActionListener(new UpMaxL());
+    downMax.addActionListener(new DownMaxL());
+    showMaxPriority();
+    // Recursively display parent thread groups:
+    ThreadGroup parent =
+      s[0].getThreadGroup().getParent();
+    while(parent != null) {
+      add(new Label(
+        &quot;Parent threadgroup max priority = &quot;
+        + parent.getMaxPriority()));
+      parent = parent.getParent();
+    }
+  }
+  public void showMaxPriority() {
+    mp.setText(Integer.toString(
+      s[0].getThreadGroup().getMaxPriority()));
+  }
+  class StartL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      if(!started) {
+        started = true;
+        for(int i = 0; i &lt; s.length; i++)
+          s[i].start();
+      }
+    }
+  }
+  class UpMaxL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int maxp =
+        s[0].getThreadGroup().getMaxPriority();
+      if(++maxp &gt; Thread.MAX_PRIORITY)
+        maxp = Thread.MAX_PRIORITY;
+      s[0].getThreadGroup().setMaxPriority(maxp);
+      showMaxPriority();
+    }
+  }
+  class DownMaxL implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      int maxp =
+        s[0].getThreadGroup().getMaxPriority();
+      if(--maxp &lt; Thread.MIN_PRIORITY)
+        maxp = Thread.MIN_PRIORITY;
+      s[0].getThreadGroup().setMaxPriority(maxp);
+      showMaxPriority();
+    }
+  }
+  public static void main(String[] args) {
+    Counter5 applet = new Counter5();
+    Frame aFrame = new Frame(&quot;Counter5&quot;);
+    aFrame.addWindowListener(
+      new WindowAdapter() {
+        public void windowClosing(WindowEvent e) {
+          System.exit(0);
+        }
+      });
+    aFrame.add(applet, BorderLayout.CENTER);
+    aFrame.setSize(300, 600);
+    applet.init();
+    applet.start();
+    aFrame.setVisible(true);
+  }
+} ///:~
+</code></pre></div><p><code>Ticker</code>采用本章前面构造好的形式，但有一个额外的<code>TextField</code>（文本字段），用于显示线程的优先级；以及两个额外的按钮，用于人为提高及降低优先级。</p> <p>也要注意<code>yield()</code>的用法，它将控制权自动返回给调试程序（机制）。若不进行这样的处理，多线程机制仍会工作，但我们会发现它的运行速度慢了下来（试试删去对<code>yield()</code>的调用）。亦可调用<code>sleep()</code>，但假若那样做，计数频率就会改由<code>sleep()</code>的持续时间控制，而不是优先级。</p> <p><code>Counter5</code>中的<code>init()</code>创建了由10个<code>Ticker2</code>构成的一个数组；它们的按钮以及输入字段（文本字段）由<code>Ticker2</code>构造器置入窗体。<code>Counter5</code>增加了新的按钮，用于启动一切，以及用于提高和降低线程组的最大优先级。除此以外，还有一些标签用于显示一个线程可以采用的最大及最小优先级；以及一个特殊的文本字段，用于显示线程组的最大优先级（在下一节里，我们将全面讨论线程组的问题）。最后，父线程组的优先级也作为标签显示出来。</p> <p>按下<code>up</code>（上）或<code>down</code>（下）按钮的时候，会先取得<code>Ticker2</code>当前的优先级，然后相应地提高或者降低。</p> <p>运行该程序时，我们可注意到几件事情。首先，线程组的默认优先级是5。即使在启动线程之前（或者在创建线程之前，这要求对代码进行适当的修改）将最大优先级降到5以下，每个线程都会有一个5的默认优先级。</p> <p>最简单的测试是获取一个计数器，将它的优先级降低至1，此时应观察到它的计数频率显著放慢。现在试着再次提高优先级，可以升高回线程组的优先级，但不能再高了。现在将线程组的优先级降低两次。线程的优先级不会改变，但假若试图提高或者降低它，就会发现这个优先级自动变成线程组的优先级。此外，新线程仍然具有一个默认优先级，即使它比组的优先级还要高（换句话说，不要指望利用组优先级来防止新线程拥有比现有的更高的优先级）。</p> <p>最后，试着提高组的最大优先级。可以发现，这样做是没有效果的。我们只能减少线程组的最大优先级，而不能增大它。</p> <h2 id="_14-4-1-线程组"><a href="#_14-4-1-线程组" class="header-anchor">#</a> 14.4.1 线程组</h2> <p>所有线程都隶属于一个线程组。那可以是一个默认线程组，亦可是一个创建线程时明确指定的组。在创建之初，线程被限制到一个组里，而且不能改变到一个不同的组。每个应用都至少有一个线程从属于系统线程组。若创建多个线程而不指定一个组，它们就会自动归属于系统线程组。</p> <p>线程组也必须从属于其他线程组。必须在构造器里指定新线程组从属于哪个线程组。若在创建一个线程组的时候没有指定它的归属，则同样会自动成为系统线程组的一名属下。因此，一个应用程序中的所有线程组最终都会将系统线程组作为自己的“父”。</p> <p>之所以要提出“线程组”的概念，很难从字面上找到原因。这多少为我们讨论的主题带来了一些混乱。一般地说，我们认为是由于“安全”或者“保密”方面的理由才使用线程组的。根据Arnold和Gosling的说法：“线程组中的线程可以修改组内的其他线程，包括那些位于分层结构最深处的。一个线程不能修改位于自己所在组或者下属组之外的任何线程”（注释①）。然而，我们很难判断“修改”在这儿的具体含义是什么。下面这个例子展示了位于一个“叶子组”内的线程能修改它所在线程组树的所有线程的优先级，同时还能为这个“树”内的所有线程都调用一个方法。</p> <div class="language- extra-class"><pre class="language-text"><code>①：《The Java Programming Language》第179页。该书由Arnold和Jams Gosling编著，Addison-Wesley于1996年出版
+//: TestAccess.java
+// How threads can access other threads
+// in a parent thread group
+
+public class TestAccess {
+  public static void main(String[] args) {
+    ThreadGroup
+      x = new ThreadGroup(&quot;x&quot;),
+      y = new ThreadGroup(x, &quot;y&quot;),
+      z = new ThreadGroup(y, &quot;z&quot;);
+    Thread
+      one = new TestThread1(x, &quot;one&quot;),
+      two = new TestThread2(z, &quot;two&quot;);
+  }
+}
+
+class TestThread1 extends Thread {
+  private int i;
+  TestThread1(ThreadGroup g, String name) {
+    super(g, name);
+  }
+  void f() {
+    i++; // modify this thread
+    System.out.println(getName() + &quot; f()&quot;);
+  }
+}
+
+class TestThread2 extends TestThread1 {
+  TestThread2(ThreadGroup g, String name) {
+    super(g, name);
+    start();
+  }
+  public void run() {
+    ThreadGroup g =
+      getThreadGroup().getParent().getParent();
+    g.list();
+    Thread[] gAll = new Thread[g.activeCount()];
+    g.enumerate(gAll);
+    for(int i = 0; i &lt; gAll.length; i++) {
+      gAll[i].setPriority(Thread.MIN_PRIORITY);
+      ((TestThread1)gAll[i]).f();
+    }
+    g.list();
+  }
+} ///:~
+
+</code></pre></div><p>在<code>main()</code>中，我们创建了几个<code>ThreadGroup</code>（线程组），每个都位于不同的“叶”上：<code>x</code>没有参数，只有它的名字（一个<code>String</code>），所以会自动进入<code>system</code>（系统）线程组；<code>y</code>位于<code>x</code>下方，而<code>z</code>位于<code>y</code>下方。注意初始化是按照文字顺序进行的，所以代码合法。</p> <p>有两个线程创建之后进入了不同的线程组。其中，<code>TestThread1</code>没有一个<code>run()</code>方法，但有一个<code>f()</code>，用于通知线程以及打印出一些东西，以便我们知道它已被调用。而<code>TestThread2</code>属于<code>TestThread1</code>的一个子类，它的<code>run()</code>非常详尽，要做许多事情。首先，它获得当前线程所在的线程组，然后利用<code>getParent()</code>在继承树中向上移动两级（这样做是有道理的，因为我想把<code>TestThread2</code>在分级结构中向下移动两级）。随后，我们调用方法<code>activeCount()</code>，查询这个线程组以及所有子线程组内有多少个线程，从而创建由指向<code>Thread</code>的引用构成的一个数组。<code>enumerate()</code>方法将指向所有这些线程的引用置入数组<code>gAll</code>里。然后在整个数组里遍历，为每个线程都调用<code>f()</code>方法，同时修改优先级。这样一来，位于一个“叶子”线程组里的线程就修改了位于父线程组的线程。</p> <p>调试方法<code>list()</code>打印出与一个线程组有关的所有信息，把它们作为标准输出。在我们对线程组的行为进行调查的时候，这样做是相当有好处的。下面是程序的输出：</p> <div class="language- extra-class"><pre class="language-text"><code>java.lang.ThreadGroup[name=x,maxpri=10]
+    Thread[one,5,x]
+    java.lang.ThreadGroup[name=y,maxpri=10]
+        java.lang.ThreadGroup[name=z,maxpri=10]
+            Thread[two,5,z]
+one f()
+two f()
+java.lang.ThreadGroup[name=x,maxpri=10]
+    Thread[one,1,x]
+    java.lang.ThreadGroup[name=y,maxpri=10]
+        java.lang.ThreadGroup[name=z,maxpri=10]
+            Thread[two,1,z]
+</code></pre></div><p><code>list()</code>不仅打印出<code>ThreadGroup</code>或者<code>Thread</code>的类名，也打印出了线程组的名字以及它的最高优先级。对于线程，则打印出它们的名字，并接上线程优先级以及所属的线程组。注意<code>list()</code>会对线程和线程组进行缩排处理，指出它们是未缩排的线程组的“子”。</p> <p>大家可看到<code>f()</code>是由<code>TestThread2</code>的<code>run()</code>方法调用的，所以很明显，组内的所有线程都是相当脆弱的。然而，我们只能访问那些从自己的<code>system</code>线程组树分支出来的线程，而且或许这就是所谓“安全”的意思。我们不能访问其他任何人的系统线程树。</p> <p>(1) 线程组的控制</p> <p>抛开安全问题不谈，线程组最有用的一个地方就是控制：只需用单个命令即可完成对整个线程组的操作。下面这个例子演示了这一点，并对线程组内优先级的限制进行了说明。括号内的注释数字便于大家比较输出结果：</p> <div class="language- extra-class"><pre class="language-text"><code>//: ThreadGroup1.java
+// How thread groups control priorities
+// of the threads inside them.
+
+public class ThreadGroup1 {
+  public static void main(String[] args) {
+    // Get the system thread &amp; print its Info:
+    ThreadGroup sys =
+      Thread.currentThread().getThreadGroup();
+    sys.list(); // (1)
+    // Reduce the system thread group priority:
+    sys.setMaxPriority(Thread.MAX_PRIORITY - 1);
+    // Increase the main thread priority:
+    Thread curr = Thread.currentThread();
+    curr.setPriority(curr.getPriority() + 1);
+    sys.list(); // (2)
+    // Attempt to set a new group to the max:
+    ThreadGroup g1 = new ThreadGroup(&quot;g1&quot;);
+    g1.setMaxPriority(Thread.MAX_PRIORITY);
+    // Attempt to set a new thread to the max:
+    Thread t = new Thread(g1, &quot;A&quot;);
+    t.setPriority(Thread.MAX_PRIORITY);
+    g1.list(); // (3)
+    // Reduce g1's max priority, then attempt
+    // to increase it:
+    g1.setMaxPriority(Thread.MAX_PRIORITY - 2);
+    g1.setMaxPriority(Thread.MAX_PRIORITY);
+    g1.list(); // (4)
+    // Attempt to set a new thread to the max:
+    t = new Thread(g1, &quot;B&quot;);
+    t.setPriority(Thread.MAX_PRIORITY);
+    g1.list(); // (5)
+    // Lower the max priority below the default
+    // thread priority:
+    g1.setMaxPriority(Thread.MIN_PRIORITY + 2);
+    // Look at a new thread's priority before
+    // and after changing it:
+    t = new Thread(g1, &quot;C&quot;);
+    g1.list(); // (6)
+    t.setPriority(t.getPriority() -1);
+    g1.list(); // (7)
+    // Make g2 a child Threadgroup of g1 and
+    // try to increase its priority:
+    ThreadGroup g2 = new ThreadGroup(g1, &quot;g2&quot;);
+    g2.list(); // (8)
+    g2.setMaxPriority(Thread.MAX_PRIORITY);
+    g2.list(); // (9)
+    // Add a bunch of new threads to g2:
+    for (int i = 0; i &lt; 5; i++)
+      new Thread(g2, Integer.toString(i));
+    // Show information about all threadgroups
+    // and threads:
+    sys.list(); // (10)
+    System.out.println(&quot;Starting all threads:&quot;);
+    Thread[] all = new Thread[sys.activeCount()];
+    sys.enumerate(all);
+    for(int i = 0; i &lt; all.length; i++)
+      if(!all[i].isAlive())
+        all[i].start();
+    // Suspends &amp; Stops all threads in
+    // this group and its subgroups:
+    System.out.println(&quot;All threads started&quot;);
+    sys.suspend(); // Deprecated in Java 1.2
+    // Never gets here...
+    System.out.println(&quot;All threads suspended&quot;);
+    sys.stop(); // Deprecated in Java 1.2
+    System.out.println(&quot;All threads stopped&quot;);
+  }
+} ///:~
+</code></pre></div><p>下面的输出结果已进行了适当的编辑，以便用一页能够装下（<code>java.lang.</code>已被删去），而且添加了适当的数字，与前面程序列表中括号里的数字对应：</p> <div class="language- extra-class"><pre class="language-text"><code>(1) ThreadGroup[name=system,maxpri=10]
+      Thread[main,5,system]
+(2) ThreadGroup[name=system,maxpri=9]
+      Thread[main,6,system]
+(3) ThreadGroup[name=g1,maxpri=9]
+      Thread[A,9,g1]
+(4) ThreadGroup[name=g1,maxpri=8]
+      Thread[A,9,g1]
+(5) ThreadGroup[name=g1,maxpri=8]
+      Thread[A,9,g1]
+      Thread[B,8,g1]
+(6) ThreadGroup[name=g1,maxpri=3]
+      Thread[A,9,g1]
+      Thread[B,8,g1]
+      Thread[C,6,g1]
+(7) ThreadGroup[name=g1,maxpri=3]
+      Thread[A,9,g1]
+      Thread[B,8,g1]
+      Thread[C,3,g1]
+(8) ThreadGroup[name=g2,maxpri=3]
+(9) ThreadGroup[name=g2,maxpri=3]
+(10)ThreadGroup[name=system,maxpri=9]
+      Thread[main,6,system]
+      ThreadGroup[name=g1,maxpri=3]
+        Thread[A,9,g1]
+        Thread[B,8,g1]
+        Thread[C,3,g1]
+        ThreadGroup[name=g2,maxpri=3]
+          Thread[0,6,g2]
+          Thread[1,6,g2]
+          Thread[2,6,g2]
+          Thread[3,6,g2]
+          Thread[4,6,g2]
+Starting all threads:
+All threads started
+</code></pre></div><p>所有程序都至少有一个线程在运行，而且<code>main()</code>采取的第一项行动便是调用<code>Thread</code>的一个<code>static</code>（静态）方法，名为<code>currentThread()</code>。从这个线程开始，线程组将被创建，而且会为结果调用<code>list()</code>。输出如下：</p> <div class="language- extra-class"><pre class="language-text"><code>(1) ThreadGroup[name=system,maxpri=10]
+      Thread[main,5,system]
+</code></pre></div><p>我们可以看到，主线程组的名字是<code>system</code>，而主线程的名字是<code>main</code>，而且它从属于<code>system</code>线程组。</p> <p>第二个练习显示出<code>system</code>组的最高优先级可以减少，而且<code>main</code>线程可以增大自己的优先级：</p> <div class="language- extra-class"><pre class="language-text"><code>(2) ThreadGroup[name=system,maxpri=9]
+      Thread[main,6,system]
+</code></pre></div><p>第三个练习创建一个新的线程组，名为<code>g1</code>；它自动从属于<code>system</code>线程组，因为并没有明确指定它的归属关系。我们在<code>g1</code>内部放置了一个新线程，名为<code>A</code>。随后，我们试着将这个组的最大优先级设到最高的级别，并将<code>A</code>的优先级也设到最高一级。结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>(3) ThreadGroup[name=g1,maxpri=9]
+      Thread[A,9,g1]
+</code></pre></div><p>可以看出，不可能将线程组的最大优先级设为高于它的父线程组。</p> <p>第四个练习将<code>g1</code>的最大优先级降低两级，然后试着把它升至<code>Thread.MAX_PRIORITY</code>。结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>(4) ThreadGroup[name=g1,maxpri=8]
+      Thread[A,9,g1]
+</code></pre></div><p>同样可以看出，提高最大优先级的企图是失败的。我们只能降低一个线程组的最大优先级，而不能提高它。此外，注意线程A的优先级并未改变，而且它现在高于线程组的最大优先级。也就是说，线程组最大优先级的变化并不能对现有线程造成影响。</p> <p>第五个练习试着将一个新线程设为最大优先级。如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>(5) ThreadGroup[name=g1,maxpri=8]
+      Thread[A,9,g1]
+      Thread[B,8,g1]
+</code></pre></div><p>因此，新线程不能变到比最大线程组优先级还要高的一级。</p> <p>这个程序的默认线程优先级是6；若新建一个线程，那就是它的默认优先级，而且不会发生变化，除非对优先级进行了特别的处理。练习六将把线程组的最大优先级降至默认线程优先级以下，看看在这种情况下新建一个线程会发生什么事情：</p> <div class="language- extra-class"><pre class="language-text"><code>(6) ThreadGroup[name=g1,maxpri=3]
+      Thread[A,9,g1]
+      Thread[B,8,g1]
+      Thread[C,6,g1]
+</code></pre></div><p>尽管线程组现在的最大优先级是3，但仍然用默认优先级6来创建新线程。所以，线程组的最大优先级不会影响默认优先级（事实上，似乎没有办法可以设置新线程的默认优先级）。</p> <p>改变了优先级后，接下来试试将其降低一级，结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>(7) ThreadGroup[name=g1,maxpri=3]
+      Thread[A,9,g1]
+      Thread[B,8,g1]
+      Thread[C,3,g1]
+</code></pre></div><p>因此，只有在试图改变优先级的时候，才会强迫遵守线程组最大优先级的限制。</p> <p>我们在(8)和(9)中进行了类似的试验。在这里，我们创建了一个新的线程组，名为<code>g2</code>，将其作为<code>g1</code>的一个子组，并改变了它的最大优先级。大家可以看到，<code>g2</code>的优先级无论如何都不可能高于<code>g1</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>(8) ThreadGroup[name=g2,maxpri=3]
+(9) ThreadGroup[name=g2,maxpri=3]
+</code></pre></div><p>也要注意在<code>g2</code>创建的时候，它会被自动设为<code>g1</code>的线程组最大优先级。</p> <p>经过所有这些实验以后，整个线程组和线程系统都会被打印出来，如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>(10)ThreadGroup[name=system,maxpri=9]
+      Thread[main,6,system]
+      ThreadGroup[name=g1,maxpri=3]
+        Thread[A,9,g1]
+        Thread[B,8,g1]
+        Thread[C,3,g1]
+        ThreadGroup[name=g2,maxpri=3]
+          Thread[0,6,g2]
+          Thread[1,6,g2]
+          Thread[2,6,g2]
+          Thread[3,6,g2]
+          Thread[4,6,g2]
+</code></pre></div><p>所以由线程组的规则所限，一个子组的最大优先级在任何时候都只能低于或等于它的父组的最大优先级。</p> <p>本程序的最后一个部分演示了用于整组线程的方法。程序首先遍历整个线程树，并启动每一个尚未启动的线程。例如，<code>system</code>组随后会被挂起（暂停），最后被中止（尽管用<code>suspend()</code>和<code>stop()</code>对整个线程组进行操作看起来似乎很有趣，但应注意这些方法在Java 1.2里都是被“反对”的）。但在挂起<code>system</code>组的同时，也挂起了<code>main</code>线程，而且整个程序都会关闭。所以永远不会达到让线程中止的那一步。实际上，假如真的中止了<code>main</code>线程，它会“抛”出一个<code>ThreadDeath</code>异常，所以我们通常不这样做。由于<code>ThreadGroup</code>是从<code>Object</code>继承的，其中包含了<code>wait()</code>方法，所以也能调用<code>wait(秒数×1000)</code>，令程序暂停运行任意秒数的时间。当然，事前必须在一个同步块里取得对象锁。</p> <p><code>ThreadGroup</code>类也提供了<code>suspend()</code>和<code>resume()</code>方法，所以能中止和启动整个线程组和它的所有线程，也能中止和启动它的子组，所有这些只需一个命令即可（再次提醒，<code>suspend()</code>和<code>resume()</code>都是Java 1.2所“反对”的）。</p> <p>从表面看，线程组似乎有些让人摸不着头脑，但请注意我们很少需要直接使用它们。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/thinking-in-java-zh/14.3.html" class="prev">
+        14.3 堵塞
+      </a></span> <span class="next"><a href="/thinking-in-java-zh/14.5.html">
+        14.5 回顾runnable
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/thinking-in-java-zh/assets/js/app.fa9256b7.js" defer></script><script src="/thinking-in-java-zh/assets/js/2.908605f2.js" defer></script><script src="/thinking-in-java-zh/assets/js/73.725fabfd.js" defer></script>
+  </body>
+</html>

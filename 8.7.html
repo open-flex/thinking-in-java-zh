@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8.7 新集合 | Java 编程思想</title>
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css" as="style"><link rel="preload" href="/thinking-in-java-zh/assets/js/app.fa9256b7.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/2.908605f2.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/167.44fc78f4.js" as="script"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/10.bf0f8be8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/100.8d6b6f0a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/101.42353165.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/102.b35fd164.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/103.34c9ec8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/104.63e41eda.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/105.a8196ba3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/106.3c787cca.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/107.5fd47e23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/108.81d2c2cd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/109.5345df07.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/11.decefde0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/110.9a402e3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/111.80737508.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/112.ff092004.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/113.d88e257d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/114.de29474b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/115.9c8d96e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/116.a9fe9af6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/117.0788e070.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/118.fefdab4e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/119.400faa62.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/12.a09f7f64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/120.d0ad5c24.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/121.b7379e1b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/122.352bd6de.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/123.7291c3a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/124.431ed770.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/125.306c4c7c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/126.9b3ff272.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/127.5d35566d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/128.c7458e50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/129.abf0b62b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/13.74ebe0f1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/130.ca484630.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/131.3b65be65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/132.8cc44765.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/133.39cab05a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/134.e1bc010e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/135.848b8e8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/136.e38c13cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/137.e6be7ef1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/138.c921af48.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/139.605a3ad8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/14.9a71923b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/140.7047d727.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/141.eee98409.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/142.b1b6affe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/143.8e53cafe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/144.e78d4c16.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/145.a6924d98.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/146.6afa9e38.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/147.81a0fa1f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/148.9b9deb8c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/149.27e9a5ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/15.c40fedbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/150.d5cb64f7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/151.58f4c6e0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/152.877f491f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/153.2a0f7bc8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/154.0600529e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/155.60aac4f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/156.28542a9d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/157.71f374f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/158.f97abefc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/159.678b2841.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/16.e021272d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/160.50d096d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/161.65ef5e27.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/162.9945598d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/163.fbdc28a7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/164.b9de90b9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/165.f04b9c4d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/166.492b521e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/168.9ead6145.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/169.ecb10302.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/17.6a5a39db.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/170.c5cf73cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/171.1e4044b2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/172.bdf06080.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/173.b9993d87.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/174.7e9fc4ea.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/175.a1371c92.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/176.06a2686c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/177.3fd0af17.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/178.e20d739c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/179.0c4bab32.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/18.2a0fe016.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/180.09aa6003.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/181.f723e5b0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/182.5121b3e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/183.ed3590f5.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/184.715b33ae.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/185.2fc87a63.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/186.1092562b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/187.2a099e97.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/188.5ba09f11.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/19.d85e5c9e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/20.0c5db47c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/21.e0626c88.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/22.71c5879a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/23.7b68c569.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/24.e4a060c9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/25.b3969598.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/26.5944fa66.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/27.b54d648d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/28.b3bd9b90.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/29.85fb52b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/3.7e7b25d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/30.e68d5f52.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/31.8a9dda64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/32.e86d5c44.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/33.3bc564dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/34.c9e1ae64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/35.b994b5bd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/36.8ccf0963.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/37.ecf3eb69.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/38.ab79219e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/39.04161d2f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/40.ea7690ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/41.1343bb93.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/42.3f7fe11a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/43.efcf4c2a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/44.d9ec22df.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/45.151cd823.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/46.2e7d0d19.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/47.2132be00.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/48.8f934c34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/49.debd52f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/50.32165d5a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/51.d8ba02fd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/52.ed339d2d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/53.8e4ba4c8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/54.60bf4f03.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/55.152bdcd2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/56.b7f52a23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/57.9be7e60b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/58.2ee15f50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/59.b8c3cade.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/60.2658363d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/61.691159a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/62.9d9c6c65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/63.07a1ba1a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/64.750c0918.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/65.1e1fa59d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/66.64b896e2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/67.0d9cdf7e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/68.40bd0a61.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/69.8233b339.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/7.37fa1201.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/70.25de6d15.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/71.f2848d8f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/72.e156c27a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/73.725fabfd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/74.3341aaba.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/75.c1f15dbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/76.e61dbcfe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/77.a3bae194.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/78.658cd2a6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/79.3f4258dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/8.cb3738e7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/80.28670e73.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/81.2acef4dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/82.cc58e6b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/83.b9d7c5fe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/84.d20935f6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/85.2647d331.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/86.387d330d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/87.4a744b41.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/88.04a81a34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/89.7e4d6e77.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/9.a197fc43.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/90.d390efe2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/91.985ecc95.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/92.9c6399c6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/93.5c771e45.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/94.b6bfece6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/95.7ffcbc3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/96.c8dee444.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/97.a6814ee4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/98.ca141a6e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/99.7bd02f80.js">
+    <link rel="stylesheet" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNFKK7VGLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JNFKK7VGLS');
+    </script>
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/thinking-in-java-zh/" class="home-link router-link-active"><!----> <span class="site-name">Java 编程思想</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/thinking-in-java-zh/0.1.html" class="sidebar-link">写在前面的话</a></li><li><a href="/thinking-in-java-zh/0.2.html" class="sidebar-link">引言</a></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/1" class="sidebar-heading clickable"><span>第1章 对象入门</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/1.1.html" class="sidebar-link">1.1 抽象的进步</a></li><li><a href="/thinking-in-java-zh/1.2.html" class="sidebar-link">1.2 对象的接口</a></li><li><a href="/thinking-in-java-zh/1.3.html" class="sidebar-link">1.3 实现方案的隐藏</a></li><li><a href="/thinking-in-java-zh/1.4.html" class="sidebar-link">1.4 方案的重复使用</a></li><li><a href="/thinking-in-java-zh/1.5.html" class="sidebar-link">1.5 继承：重新使用接口</a></li><li><a href="/thinking-in-java-zh/1.6.html" class="sidebar-link">1.6 多态对象的互换使用</a></li><li><a href="/thinking-in-java-zh/1.7.html" class="sidebar-link">1.7 对象的创建和存在时间</a></li><li><a href="/thinking-in-java-zh/1.8.html" class="sidebar-link">1.8 异常控制：解决错误</a></li><li><a href="/thinking-in-java-zh/1.9.html" class="sidebar-link">1.9 多线程</a></li><li><a href="/thinking-in-java-zh/1.10.html" class="sidebar-link">1.10 永久性</a></li><li><a href="/thinking-in-java-zh/1.11.html" class="sidebar-link">1.11 Java和因特网</a></li><li><a href="/thinking-in-java-zh/1.12.html" class="sidebar-link">1.12 分析和设计</a></li><li><a href="/thinking-in-java-zh/1.13.html" class="sidebar-link">1.13 Java还是C++</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/2" class="sidebar-heading clickable"><span>第2章 一切都是对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/2.1.html" class="sidebar-link">2.1 用引用操纵对象</a></li><li><a href="/thinking-in-java-zh/2.2.html" class="sidebar-link">2.2 所有对象都必须创建</a></li><li><a href="/thinking-in-java-zh/2.3.html" class="sidebar-link">2.3 绝对不要清除对象</a></li><li><a href="/thinking-in-java-zh/2.4.html" class="sidebar-link">2.4 新建数据类型：类</a></li><li><a href="/thinking-in-java-zh/2.5.html" class="sidebar-link">2.5 方法、参数和返回值</a></li><li><a href="/thinking-in-java-zh/2.6.html" class="sidebar-link">2.6 构建Java程序</a></li><li><a href="/thinking-in-java-zh/2.7.html" class="sidebar-link">2.7 我们的第一个Java程序</a></li><li><a href="/thinking-in-java-zh/2.8.html" class="sidebar-link">2.8 注释和嵌入文档</a></li><li><a href="/thinking-in-java-zh/2.9.html" class="sidebar-link">2.9 编码样式</a></li><li><a href="/thinking-in-java-zh/2.10.html" class="sidebar-link">2.10 总结</a></li><li><a href="/thinking-in-java-zh/2.11.html" class="sidebar-link">2.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/3" class="sidebar-heading clickable"><span>第3章 控制程序流程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/3.1.html" class="sidebar-link">3.1 使用Java运算符</a></li><li><a href="/thinking-in-java-zh/3.2.html" class="sidebar-link">3.2 执行控制</a></li><li><a href="/thinking-in-java-zh/3.3.html" class="sidebar-link">3.3 总结</a></li><li><a href="/thinking-in-java-zh/3.4.html" class="sidebar-link">3.4 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/4" class="sidebar-heading clickable"><span>第4章 初始化和清除</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/4.1.html" class="sidebar-link">4.1 用构造器自动初始化</a></li><li><a href="/thinking-in-java-zh/4.2.html" class="sidebar-link">4.2 方法重载</a></li><li><a href="/thinking-in-java-zh/4.3.html" class="sidebar-link">4.3 清除：收尾和垃圾收集</a></li><li><a href="/thinking-in-java-zh/4.4.html" class="sidebar-link">4.4 成员初始化</a></li><li><a href="/thinking-in-java-zh/4.5.html" class="sidebar-link">4.5 数组初始化</a></li><li><a href="/thinking-in-java-zh/4.6.html" class="sidebar-link">4.6 总结</a></li><li><a href="/thinking-in-java-zh/4.7.html" class="sidebar-link">4.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/5" class="sidebar-heading clickable"><span>第5章 隐藏实现过程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/5.1.html" class="sidebar-link">5.1 包：库单元</a></li><li><a href="/thinking-in-java-zh/5.2.html" class="sidebar-link">5.2 Java访问指示符</a></li><li><a href="/thinking-in-java-zh/5.3.html" class="sidebar-link">5.3 接口与实现</a></li><li><a href="/thinking-in-java-zh/5.4.html" class="sidebar-link">5.4 类访问</a></li><li><a href="/thinking-in-java-zh/5.5.html" class="sidebar-link">5.5 总结</a></li><li><a href="/thinking-in-java-zh/5.6.html" class="sidebar-link">5.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/6" class="sidebar-heading clickable"><span>第6章 类复用</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/6.1.html" class="sidebar-link">6.1 組合的语法</a></li><li><a href="/thinking-in-java-zh/6.2.html" class="sidebar-link">6.2 继承的语法</a></li><li><a href="/thinking-in-java-zh/6.3.html" class="sidebar-link">6.3 组合与继承的结合</a></li><li><a href="/thinking-in-java-zh/6.4.html" class="sidebar-link">6.4 到底选择组合还是继承</a></li><li><a href="/thinking-in-java-zh/6.5.html" class="sidebar-link">6.5 protected</a></li><li><a href="/thinking-in-java-zh/6.6.html" class="sidebar-link">6.6 累积开发</a></li><li><a href="/thinking-in-java-zh/6.7.html" class="sidebar-link">6.7 向上转换</a></li><li><a href="/thinking-in-java-zh/6.8.html" class="sidebar-link">6.8 final关键字</a></li><li><a href="/thinking-in-java-zh/6.9.html" class="sidebar-link">6.9 初始化和类装载</a></li><li><a href="/thinking-in-java-zh/6.10.html" class="sidebar-link">6.10 总结</a></li><li><a href="/thinking-in-java-zh/6.11.html" class="sidebar-link">6.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/7" class="sidebar-heading clickable"><span>第7章 多态性</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/7.1.html" class="sidebar-link">7.1 向上转换</a></li><li><a href="/thinking-in-java-zh/7.2.html" class="sidebar-link">7.2 深入理解</a></li><li><a href="/thinking-in-java-zh/7.3.html" class="sidebar-link">7.3 覆盖与重载</a></li><li><a href="/thinking-in-java-zh/7.4.html" class="sidebar-link">7.4 抽象类和方法</a></li><li><a href="/thinking-in-java-zh/7.5.html" class="sidebar-link">7.5 接口</a></li><li><a href="/thinking-in-java-zh/7.6.html" class="sidebar-link">7.6 内部类</a></li><li><a href="/thinking-in-java-zh/7.7.html" class="sidebar-link">7.7 构造器和多态性</a></li><li><a href="/thinking-in-java-zh/7.8.html" class="sidebar-link">7.8 通过继承进行设计</a></li><li><a href="/thinking-in-java-zh/7.9.html" class="sidebar-link">7.9 总结</a></li><li><a href="/thinking-in-java-zh/7.10.html" class="sidebar-link">7.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/8" class="sidebar-heading clickable open"><span>第8章 对象的容纳</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/8.1.html" class="sidebar-link">8.1 数组</a></li><li><a href="/thinking-in-java-zh/8.2.html" class="sidebar-link">8.2 集合</a></li><li><a href="/thinking-in-java-zh/8.3.html" class="sidebar-link">8.3 枚举器（迭代器）</a></li><li><a href="/thinking-in-java-zh/8.4.html" class="sidebar-link">8.4 集合的类型</a></li><li><a href="/thinking-in-java-zh/8.5.html" class="sidebar-link">8.5 排序</a></li><li><a href="/thinking-in-java-zh/8.6.html" class="sidebar-link">8.6 通用集合库</a></li><li><a href="/thinking-in-java-zh/8.7.html" aria-current="page" class="active sidebar-link">8.7 新集合</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-1-使用collections" class="sidebar-link">8.7.1 使用Collections</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-2-使用lists" class="sidebar-link">8.7.2 使用Lists</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-3-使用sets" class="sidebar-link">8.7.3 使用Sets</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-4-使用maps" class="sidebar-link">8.7.4 使用Maps</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-5-决定实现方案" class="sidebar-link">8.7.5 决定实现方案</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-6-未支持的操作" class="sidebar-link">8.7.6 未支持的操作</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-7-排序和搜索" class="sidebar-link">8.7.7 排序和搜索</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/8.7.html#_8-7-8-实用工具" class="sidebar-link">8.7.8 实用工具</a></li></ul></li><li><a href="/thinking-in-java-zh/8.8.html" class="sidebar-link">8.8 总结</a></li><li><a href="/thinking-in-java-zh/8.9.html" class="sidebar-link">8.9 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/9" class="sidebar-heading clickable"><span>第9章 异常差错控制</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/9.1.html" class="sidebar-link">9.1 基本异常</a></li><li><a href="/thinking-in-java-zh/9.2.html" class="sidebar-link">9.2 异常的捕获</a></li><li><a href="/thinking-in-java-zh/9.3.html" class="sidebar-link">9.3 标准Java异常</a></li><li><a href="/thinking-in-java-zh/9.4.html" class="sidebar-link">9.4 创建自己的异常</a></li><li><a href="/thinking-in-java-zh/9.5.html" class="sidebar-link">9.5 异常的限制</a></li><li><a href="/thinking-in-java-zh/9.6.html" class="sidebar-link">9.6 用finally清除</a></li><li><a href="/thinking-in-java-zh/9.7.html" class="sidebar-link">9.7 构造器</a></li><li><a href="/thinking-in-java-zh/9.8.html" class="sidebar-link">9.8 异常匹配</a></li><li><a href="/thinking-in-java-zh/9.9.html" class="sidebar-link">9.9 总结</a></li><li><a href="/thinking-in-java-zh/9.10.html" class="sidebar-link">9.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/10" class="sidebar-heading clickable"><span>第10章 Java IO系统</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/10.1.html" class="sidebar-link">10.1 输入和输出</a></li><li><a href="/thinking-in-java-zh/10.2.html" class="sidebar-link">10.2 增添属性和有用的接口</a></li><li><a href="/thinking-in-java-zh/10.3.html" class="sidebar-link">10.3 本身的缺陷：RandomAccessFile</a></li><li><a href="/thinking-in-java-zh/10.4.html" class="sidebar-link">10.4 File类</a></li><li><a href="/thinking-in-java-zh/10.5.html" class="sidebar-link">10.5 IO流的典型应用</a></li><li><a href="/thinking-in-java-zh/10.6.html" class="sidebar-link">10.6 StreamTokenizer</a></li><li><a href="/thinking-in-java-zh/10.7.html" class="sidebar-link">10.7 Java 1.1的IO流</a></li><li><a href="/thinking-in-java-zh/10.8.html" class="sidebar-link">10.8 压缩</a></li><li><a href="/thinking-in-java-zh/10.9.html" class="sidebar-link">10.9 对象序列化</a></li><li><a href="/thinking-in-java-zh/10.10.html" class="sidebar-link">10.10 总结</a></li><li><a href="/thinking-in-java-zh/10.11.html" class="sidebar-link">10.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/11" class="sidebar-heading clickable"><span>第11章 运行期类型识别</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/11.1.html" class="sidebar-link">11.1 对RTTI的需要</a></li><li><a href="/thinking-in-java-zh/11.2.html" class="sidebar-link">11.2 RTTI语法</a></li><li><a href="/thinking-in-java-zh/11.3.html" class="sidebar-link">11.3 反射：运行期类信息</a></li><li><a href="/thinking-in-java-zh/11.4.html" class="sidebar-link">11.4 总结</a></li><li><a href="/thinking-in-java-zh/11.5.html" class="sidebar-link">11.5 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/12" class="sidebar-heading clickable"><span>第12章 传递和返回对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/12.1.html" class="sidebar-link">12.1 传递引用</a></li><li><a href="/thinking-in-java-zh/12.2.html" class="sidebar-link">12.2 制作本地副本</a></li><li><a href="/thinking-in-java-zh/12.3.html" class="sidebar-link">12.3 克隆的控制</a></li><li><a href="/thinking-in-java-zh/12.4.html" class="sidebar-link">12.4 只读类</a></li><li><a href="/thinking-in-java-zh/12.5.html" class="sidebar-link">12.5 总结</a></li><li><a href="/thinking-in-java-zh/12.6.html" class="sidebar-link">12.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/13" class="sidebar-heading clickable"><span>第13章 创建窗口和程序片</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/13.1.html" class="sidebar-link">13.1 为何要用AWT？</a></li><li><a href="/thinking-in-java-zh/13.2.html" class="sidebar-link">13.2 基本程序片</a></li><li><a href="/thinking-in-java-zh/13.3.html" class="sidebar-link">13.3 制作按钮</a></li><li><a href="/thinking-in-java-zh/13.4.html" class="sidebar-link">13.4 捕获事件</a></li><li><a href="/thinking-in-java-zh/13.5.html" class="sidebar-link">13.5 文本字段</a></li><li><a href="/thinking-in-java-zh/13.6.html" class="sidebar-link">13.6 文本区域</a></li><li><a href="/thinking-in-java-zh/13.7.html" class="sidebar-link">13.7 标签</a></li><li><a href="/thinking-in-java-zh/13.8.html" class="sidebar-link">13.8 复选框</a></li><li><a href="/thinking-in-java-zh/13.9.html" class="sidebar-link">13.9 单选钮</a></li><li><a href="/thinking-in-java-zh/13.10.html" class="sidebar-link">13.10 下拉列表</a></li><li><a href="/thinking-in-java-zh/13.11.html" class="sidebar-link">13.11 列表框</a></li><li><a href="/thinking-in-java-zh/13.12.html" class="sidebar-link">13.12 布局的控制</a></li><li><a href="/thinking-in-java-zh/13.13.html" class="sidebar-link">13.13 action的替代品</a></li><li><a href="/thinking-in-java-zh/13.14.html" class="sidebar-link">13.14 程序片的局限</a></li><li><a href="/thinking-in-java-zh/13.15.html" class="sidebar-link">13.15 视窗化应用</a></li><li><a href="/thinking-in-java-zh/13.16.html" class="sidebar-link">13.16 新型AWT</a></li><li><a href="/thinking-in-java-zh/13.17.html" class="sidebar-link">13.17 Java 1.1用户接口API</a></li><li><a href="/thinking-in-java-zh/13.18.html" class="sidebar-link">13.18 可视编程和Beans</a></li><li><a href="/thinking-in-java-zh/13.19.html" class="sidebar-link">13.19 Swing入门（注释⑦）</a></li><li><a href="/thinking-in-java-zh/13.20.html" class="sidebar-link">13.20 总结</a></li><li><a href="/thinking-in-java-zh/13.21.html" class="sidebar-link">13.21 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/14" class="sidebar-heading clickable"><span>第14章 多线程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/14.1.html" class="sidebar-link">14.1 反应灵敏的用户界面</a></li><li><a href="/thinking-in-java-zh/14.2.html" class="sidebar-link">14.2 共享有限的资源</a></li><li><a href="/thinking-in-java-zh/14.3.html" class="sidebar-link">14.3 堵塞</a></li><li><a href="/thinking-in-java-zh/14.4.html" class="sidebar-link">14.4 优先级</a></li><li><a href="/thinking-in-java-zh/14.5.html" class="sidebar-link">14.5 回顾runnable</a></li><li><a href="/thinking-in-java-zh/14.6.html" class="sidebar-link">14.6 总结</a></li><li><a href="/thinking-in-java-zh/14.7.html" class="sidebar-link">14.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/15" class="sidebar-heading clickable"><span>第15章 网络编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/15.1.html" class="sidebar-link">15.1 机器的标识</a></li><li><a href="/thinking-in-java-zh/15.2.html" class="sidebar-link">15.2 套接字</a></li><li><a href="/thinking-in-java-zh/15.3.html" class="sidebar-link">15.3 服务多个客户</a></li><li><a href="/thinking-in-java-zh/15.4.html" class="sidebar-link">15.4 数据报</a></li><li><a href="/thinking-in-java-zh/15.5.html" class="sidebar-link">15.5 一个Web应用</a></li><li><a href="/thinking-in-java-zh/15.6.html" class="sidebar-link">15.6 Java与CGI的沟通</a></li><li><a href="/thinking-in-java-zh/15.7.html" class="sidebar-link">15.7 用JDBC连接数据库</a></li><li><a href="/thinking-in-java-zh/15.8.html" class="sidebar-link">15.8 远程方法</a></li><li><a href="/thinking-in-java-zh/15.9.html" class="sidebar-link">15.9 总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/16" class="sidebar-heading clickable"><span>第16章 设计模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/16.1.html" class="sidebar-link">16.1 模式的概念</a></li><li><a href="/thinking-in-java-zh/16.2.html" class="sidebar-link">16.2 观察器模式</a></li><li><a href="/thinking-in-java-zh/16.3.html" class="sidebar-link">16.3 模拟垃圾回收站</a></li><li><a href="/thinking-in-java-zh/16.4.html" class="sidebar-link">16.4 改进设计</a></li><li><a href="/thinking-in-java-zh/16.5.html" class="sidebar-link">16.5 抽象的应用</a></li><li><a href="/thinking-in-java-zh/16.6.html" class="sidebar-link">16.6 多重分发</a></li><li><a href="/thinking-in-java-zh/16.7.html" class="sidebar-link">16.7 访问器模式</a></li><li><a href="/thinking-in-java-zh/16.8.html" class="sidebar-link">16.8 RTTI真的有害吗</a></li><li><a href="/thinking-in-java-zh/16.9.html" class="sidebar-link">16.9 总结</a></li><li><a href="/thinking-in-java-zh/16.10.html" class="sidebar-link">16.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/17" class="sidebar-heading clickable"><span>第17章 项目</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/17.1.html" class="sidebar-link">17.1 文字处理</a></li><li><a href="/thinking-in-java-zh/17.2.html" class="sidebar-link">17.2 方法查找工具</a></li><li><a href="/thinking-in-java-zh/17.3.html" class="sidebar-link">17.3 复杂性理论</a></li><li><a href="/thinking-in-java-zh/17.4.html" class="sidebar-link">17.4 总结</a></li><li><a href="/thinking-in-java-zh/17.5.html" class="sidebar-link">17.5 练习</a></li></ul></section></li><li><a href="/thinking-in-java-zh/a.html" class="sidebar-link">附录A 使用非JAVA代码</a></li><li><a href="/thinking-in-java-zh/b.html" class="sidebar-link">附录B 对比C++和Java</a></li><li><a href="/thinking-in-java-zh/c.html" class="sidebar-link">附录C Java编程规则</a></li><li><a href="/thinking-in-java-zh/d.html" class="sidebar-link">附录D 性能</a></li><li><a href="/thinking-in-java-zh/e.html" class="sidebar-link">附录E 关于垃圾收集的一些话</a></li><li><a href="/thinking-in-java-zh/f.html" class="sidebar-link">附录F 推荐读物</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_8-7-新集合"><a href="#_8-7-新集合" class="header-anchor">#</a> 8.7 新集合</h1> <p>对我来说，集合类属于最强大的一种工具，特别适合在原创编程中使用。大家可能已感觉到我对Java 1.1提供的集合多少有点儿失望。因此，看到Java 1.2对集合重新引起了正确的注意后，确实令人非常愉快。这个版本的集合也得到了完全的重新设计（由Sun公司的Joshua Bloch）。我认为新设计的集合是Java 1.2中两项最主要的特性之一（另一项是Swing库，将在第13章叙述），因为它们极大方便了我们的编程，也使Java变成一种更成熟的编程系统。</p> <p>有些设计使得元素间的结合变得更紧密，也更容易让人理解。例如，许多名字都变得更短、更明确了，而且更易使用；类型同样如此。有些名字进行了修改，更接近于通俗：我感觉特别好的一个是用“迭代器”（<code>Inerator</code>）代替了“枚举”（<code>Enumeration</code>）。</p> <p>此次重新设计也加强了集合库的功能。现在新增的行为包括链接列表、队列以及撤消组队（即“双终点队列”）。</p> <p>集合库的设计是相当困难的（会遇到大量库设计问题）。在C++中，STL用多个不同的类来覆盖基础。这种做法比起STL以前是个很大的进步，那时根本没做这方面的考虑。但仍然没有很好地转换到Java里面。结果就是一大堆特别容易混淆的类。在另一个极端，我曾发现一个集合库由单个类构成：<code>collection</code>，它同时作为<code>Vector</code>和<code>Hashtable</code>使用。新集合库的设计者则希望达到一种新的平衡：实现人们希望从一个成熟集合库上获得的完整功能，同时又要比STL和其他类似的集合库更易学习和使用。这样得到的结果在某些场合显得有些古怪。但和早期Java库的一些决策不同，这些古怪之处并非偶然出现的，而是以复杂性作为代价，在进行仔细权衡之后得到的结果。这样做也许会延长人们掌握一些库概念的时间，但很快就会发现自己很乐于使用那些新工具，而且变得越来越离不了它。</p> <p>新的集合库考虑到了“容纳自己对象”的问题，并将其分割成两个明确的概念：</p> <p>(1) 集合（<code>Collection</code>）：一组单独的元素，通常应用了某种规则。在这里，一个<code>List</code>（列表）必须按特定的顺序容纳元素，而一个<code>Set</code>（集）不可包含任何重复的元素。相反，“包”（<code>Bag</code>）的概念未在新的集合库中实现，因为“列表”已提供了类似的功能。</p> <p>(2) 映射（<code>Map</code>）：一系列“键－值”对（这已在散列表身上得到了充分的体现）。从表面看，这似乎应该成为一个“键－值”对的“集合”，但假若试图按那种方式实现它，就会发现实现过程相当笨拙。这进一步证明了应该分离成单独的概念。另一方面，可以方便地查看Map的某个部分。只需创建一个集合，然后用它表示那一部分即可。这样一来，<code>Map</code>就可以返回自己键的一个<code>Set</code>、一个包含自己值的<code>List</code>或者包含自己“键－值”对的一个<code>List</code>。和数组相似，<code>Map</code>可方便扩充到多个“维”，毋需涉及任何新概念。只需简单地在一个<code>Map</code>里包含其他<code>Map</code>（后者又可以包含更多的<code>Map</code>，以此类推）。</p> <p><code>Collection</code>和<code>Map</code>可通过多种形式实现，具体由编程要求决定。下面列出的是一个帮助大家理解的新集合示意图：</p> <p><img src="8-1.gif" alt=""></p> <p>这张图刚开始的时候可能让人有点儿摸不着头脑，但在通读了本章以后，相信大家会真正理解它实际只有三个集合组件：<code>Map</code>，<code>List</code>和<code>Set</code>。而且每个组件实际只有两、三种实现方式（注释⑥），而且通常都只有一种特别好的方式。只要看出了这一点，集合就不会再令人生畏。</p> <p>⑥：写作本章时，Java 1.2尚处于β测试阶段，所以这张示意图没有包括以后会加入的<code>TreeSet</code>。</p> <p>虚线框代表“接口”，点线框代表“抽象”类，而实线框代表普通（实际）类。点线箭头表示一个特定的类准备实现一个接口（在抽象类的情况下，则是“部分”实现一个接口）。双线箭头表示一个类可生成箭头指向的那个类的对象。例如，任何集合都可以生成一个迭代器（<code>Iterator</code>），而一个列表可以生成一个<code>ListIterator</code>（以及原始的迭代器，因为列表是从集合继承的）。</p> <p>致力于容纳对象的接口是<code>Collection</code>，<code>List</code>，<code>Set</code>和<code>Map</code>。在传统情况下，我们需要写大量代码才能同这些接口打交道。而且为了指定自己想使用的准确类型，必须在创建之初进行设置。所以可能创建下面这样的一个<code>List</code>：</p> <div class="language- extra-class"><pre class="language-text"><code>List x = new LinkedList();
+</code></pre></div><p>当然，也可以决定将x作为一个<code>LinkedList</code>使用（而不是一个普通的<code>List</code>），并用<code>x</code>负载准确的类型信息。使用接口的好处就是一旦决定改变自己的实现细节，要做的全部事情就是在创建的时候改变它，就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>List x = new ArrayList();
+</code></pre></div><p>其余代码可以保持原封不动。</p> <p>在类的分级结构中，可看到大量以<code>Abstract</code>（抽象）开头的类，这刚开始可能会使人感觉迷惑。它们实际上是一些工具，用于“部分”实现一个特定的接口。举个例子来说，假如想生成自己的Set，就不是从<code>Set</code>接口开始，然后自行实现所有方法。相反，我们可以从<code>AbstractSet</code>继承，只需极少的工作即可得到自己的新类。尽管如此，新集合库仍然包含了足够的功能，可满足我们的几乎所有需求。所以考虑到我们的目的，可忽略所有以<code>Abstract</code>开头的类。</p> <p>因此，在观看这张示意图时，真正需要关心的只有位于最顶部的“接口”以及普通（实际）类——均用实线方框包围。通常需要生成实际类的一个对象，将其向上转换为对应的接口。以后即可在代码的任何地方使用那个接口。下面是一个简单的例子，它用<code>String</code>对象填充一个集合，然后打印出集合内的每一个元素：</p> <div class="language- extra-class"><pre class="language-text"><code>//: SimpleCollection.java
+// A simple example using the new Collections
+package c08.newcollections;
+import java.util.*;
+
+public class SimpleCollection {
+  public static void main(String[] args) {
+    Collection c = new ArrayList();
+    for(int i = 0; i &lt; 10; i++)
+      c.add(Integer.toString(i));
+    Iterator it = c.iterator();
+    while(it.hasNext())
+      System.out.println(it.next());
+  }
+} ///:~
+</code></pre></div><p>新集合库的所有代码示例都置于子目录<code>newcollections</code>下，这样便可提醒自己这些工作只对于Java 1.2有效。这样一来，我们必须用下述代码来调用程序：</p> <div class="language- extra-class"><pre class="language-text"><code>java c08.newcollections.SimpleCollection
+</code></pre></div><p>采用的语法与其他程序是差不多的。</p> <p>大家可以看到新集合属于<code>java.util</code>库的一部分，所以在使用时不需要再添加任何额外的<code>import</code>语句。</p> <p><code>main()</code>的第一行创建了一个<code>ArrayList</code>对象，然后将其向上转换成为一个集合。由于这个例子只使用了<code>Collection</code>方法，所以从<code>Collection</code>继承的一个类的任何对象都可以正常工作。但<code>ArrayList</code>是一个典型的<code>Collection</code>，它代替了<code>Vector</code>的位置。
+显然，<code>add()</code>方法的作用是将一个新元素置入集合里。然而，用户文档谨慎地指出<code>add()</code>“保证这个集合包含了指定的元素”。这一点是为<code>Set</code>作铺垫的，后者只有在元素不存在的前提下才会真的加入那个元素。对于<code>ArrayList</code>以及其他任何形式的<code>List</code>，<code>add()</code>肯定意味着“直接加入”。</p> <p>利用<code>iterator()</code>方法，所有集合都能生成一个“迭代器”（<code>Iterator</code>）。迭代器其实就象一个“枚举”（<code>Enumeration</code>），是后者的一个替代物，只是：</p> <p>(1) 它采用了一个历史上默认、而且早在OOP中得到广泛采纳的名字（迭代器）。</p> <p>(2) 采用了比<code>Enumeration</code>更短的名字：<code>hasNext()</code>代替了<code>hasMoreElement()</code>，而<code>next()</code>代替了<code>nextElement()</code>。</p> <p>(3) 添加了一个名为<code>remove()</code>的新方法，可删除由<code>Iterator</code>生成的上一个元素。所以每次调用<code>next()</code>的时候，只需调用<code>remove()</code>一次。</p> <p>在<code>SimpleCollection.java</code>中，大家可看到创建了一个迭代器，并用它在集合里遍历，打印出每个元素。</p> <h2 id="_8-7-1-使用collections"><a href="#_8-7-1-使用collections" class="header-anchor">#</a> 8.7.1 使用<code>Collections</code></h2> <p>下面这张表格总结了用一个集合能做的所有事情（亦可对<code>Set</code>和<code>List</code>做同样的事情，尽管<code>List</code>还提供了一些额外的功能）。<code>Map</code>不是从<code>Collection</code>继承的，所以要单独对待。</p> <div class="language- extra-class"><pre class="language-text"><code>Boolean add(Object)
+
+*Ensures that the Collection contains the argument. Returns false if it doesn’t add the argument.
+
+Boolean addAll(Collection)
+
+*Adds all the elements in the argument. Returns true if any elements were added.
+
+void clear( )
+
+*Removes all the elements in the Collection.
+
+Boolean contains(Object)
+
+True if the Collection contains the argument.
+
+Boolean containsAll(Collection)
+
+True if the Collection contains all the elements in the argument.
+
+Boolean isEmpty( )
+
+True if the Collection has no elements.
+
+Iterator iterator( )
+
+Returns an Iterator that you can use to move through the elements in the Collection.
+
+Boolean remove(Object)
+
+*If the argument is in the Collection, one instance of that element is removed. Returns true if a removal occurred.
+
+Boolean removeAll(Collection)
+
+*Removes all the elements that are contained in the argument. Returns true if any removals occurred.
+
+Boolean retainAll(Collection)
+
+*Retains only elements that are contained in the argument (an “intersection” from set theory). Returns true if any changes occurred.
+
+int size( )
+
+Returns the number of elements in the Collection.
+
+Object[] toArray( )
+
+Returns an array containing all the elements in the Collection.
+
+Object[] toArray(Object[] a)
+
+Returns an array containing all the elements in the Collection, whose type is that of the array a rather than plain Object (you must cast the array to the right type).
+
+
+*This is an “optional” method, which means it might not be implemented by a particular Collection. If not, that method throws an UnsupportedOperationException. Exceptions will be covered in Chapter 9.
+</code></pre></div><ul><li><code>boolean add(Object)</code> ＊保证集合内包含了参数。如果它没有添加参数，就返回<code>false</code>（假）</li> <li><code>boolean addAll(Collection)</code> ＊添加参数内的所有元素。如果没有添加元素，则返回<code>true</code>（真）</li> <li><code>void clear()</code> ＊删除集合内的所有元素</li> <li><code>boolean contains(Object)</code> 若集合包含参数，就返回“真”</li> <li><code>boolean containsAll(Collection)</code> 若集合包含了参数内的所有元素，就返回“真”</li> <li><code>boolean isEmpty()</code> 若集合内没有元素，就返回“真”</li> <li><code>Iterator iterator()</code> 返回一个迭代器，以用它遍历集合的各元素</li> <li><code>boolean remove(Object)</code> ＊如参数在集合里，就删除那个元素的一个实例。如果已进行了删除，就返回“真”</li> <li><code>boolean removeAll(Collection)</code> ＊删除参数里的所有元素。如果已进行了任何删除，就返回“真”</li> <li><code>boolean retainAll(Collection)</code> ＊只保留包含在一个参数里的元素（一个理论的“交集”）。如果已进行了任何改变，就返回“真”</li> <li><code>int size()</code> 返回集合内的元素数量</li> <li><code>Object[] toArray()</code> 返回包含了集合内所有元素的一个数组</li></ul> <p>＊这是一个“可选的”方法，有的集合可能并未实现它。若确实如此，该方法就会遇到一个<code>UnsupportedOperatiionException</code>，即一个“操作不支持”异常，详见第9章。</p> <p>下面这个例子向大家演示了所有方法。同样地，它们只对从集合继承的东西有效，一个<code>ArrayList</code>作为一种“不常用的分母”使用：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Collection1.java
+// Things you can do with all Collections
+package c08.newcollections;
+import java.util.*;
+
+public class Collection1 {
+  // Fill with 'size' elements, start
+  // counting at 'start':
+  public static Collection
+  fill(Collection c, int start, int size) {
+    for(int i = start; i &lt; start + size; i++)
+      c.add(Integer.toString(i));
+    return c;
+  }
+  // Default to a &quot;start&quot; of 0:
+  public static Collection
+  fill(Collection c, int size) {
+    return fill(c, 0, size);
+  }
+  // Default to 10 elements:
+  public static Collection fill(Collection c) {
+    return fill(c, 0, 10);
+  }
+  // Create &amp; upcast to Collection:
+  public static Collection newCollection() {
+    return fill(new ArrayList());
+    // ArrayList is used for simplicity, but it's
+    // only seen as a generic Collection
+    // everywhere else in the program.
+  }
+  // Fill a Collection with a range of values:
+  public static Collection
+  newCollection(int start, int size) {
+    return fill(new ArrayList(), start, size);
+  }
+  // Moving through a List with an iterator:
+  public static void print(Collection c) {
+    for(Iterator x = c.iterator(); x.hasNext();)
+      System.out.print(x.next() + &quot; &quot;);
+    System.out.println();
+  }    
+  public static void main(String[] args) {
+    Collection c = newCollection();
+    c.add(&quot;ten&quot;);
+    c.add(&quot;eleven&quot;);
+    print(c);
+    // Make an array from the List:
+    Object[] array = c.toArray();
+    // Make a String array from the List:
+    String[] str =
+      (String[])c.toArray(new String[1]);
+    // Find max and min elements; this means
+    // different things depending on the way
+    // the Comparable interface is implemented:
+    System.out.println(&quot;Collections.max(c) = &quot; +
+      Collections.max(c));
+    System.out.println(&quot;Collections.min(c) = &quot; +
+      Collections.min(c));
+    // Add a Collection to another Collection
+    c.addAll(newCollection());
+    print(c);
+    c.remove(&quot;3&quot;); // Removes the first one
+    print(c);
+    c.remove(&quot;3&quot;); // Removes the second one
+    print(c);
+    // Remove all components that are in the
+    // argument collection:
+    c.removeAll(newCollection());
+    print(c);
+    c.addAll(newCollection());
+    print(c);
+    // Is an element in this Collection?
+    System.out.println(
+      &quot;c.contains(\&quot;4\&quot;) = &quot; + c.contains(&quot;4&quot;));
+    // Is a Collection in this Collection?
+    System.out.println(
+      &quot;c.containsAll(newCollection()) = &quot; +
+      c.containsAll(newCollection()));
+    Collection c2 = newCollection(5, 3);
+    // Keep all the elements that are in both
+    // c and c2 (an intersection of sets):
+    c.retainAll(c2);
+    print(c);
+    // Throw away all the elements in c that
+    // also appear in c2:
+    c.removeAll(c2);
+    System.out.println(&quot;c.isEmpty() = &quot; +
+      c.isEmpty());
+    c = newCollection();
+    print(c);
+    c.clear(); // Remove all elements
+    System.out.println(&quot;after c.clear():&quot;);
+    print(c);
+  }
+} ///:~
+</code></pre></div><p>通过第一个方法，我们可用测试数据填充任何集合。在当前这种情况下，只是将<code>int</code>转换成<code>String</code>。第二个方法将在本章其余的部分经常采用。</p> <p><code>newCollection()</code>的两个版本都创建了<code>ArrayList</code>，用于包含不同的数据集，并将它们作为集合对象返回。所以很明显，除了<code>Collection</code>接口之外，不会再用到其他什么。</p> <p><code>print()</code>方法也会在本节经常用到。由于它用一个迭代器（<code>Iterator</code>）在一个集合内遍历，而任何集合都可以产生这样的一个迭代器，所以它适用于<code>List</code>和<code>Set</code>，也适用于由一个<code>Map</code>生成的<code>Collection</code>。</p> <p><code>main()</code>用简单的手段显示出了集合内的所有方法。</p> <p>在后续的小节里，我们将比较<code>List</code>，<code>Set</code>和<code>Map</code>的不同实现方案，同时指出在各种情况下哪一种方案应成为首选（带有星号的那个）。大家会发现这里并未包括一些传统的类，如<code>Vector</code>，<code>Stack</code>以及<code>Hashtable</code>等。因为不管在什么情况下，新集合内都有自己首选的类。</p> <h2 id="_8-7-2-使用lists"><a href="#_8-7-2-使用lists" class="header-anchor">#</a> 8.7.2 使用<code>Lists</code></h2> <div class="language- extra-class"><pre class="language-text"><code>List (interface)
+
+Order is the most important feature of a List; it promises to maintain elements in a particular sequence. List adds a number of methods to Collection that allow insertion and removal of elements in the middle of a List. (This is recommended only for a LinkedList.) A List will produce a ListIterator, and using this you can traverse the List in both directions, as well as insert and remove elements in the middle of the list (again, recommended only for a LinkedList).
+
+ArrayList*
+
+A List backed by an array. Use instead of Vector as a general-purpose object holder. Allows rapid random access to elements, but is slow when inserting and removing elements from the middle of a list. ListIterator should be used only for back-and-forth traversal of an ArrayList, but not for inserting and removing elements, which is expensive compared to LinkedList.
+
+LinkedList
+
+Provides optimal sequential access, with inexpensive insertions and deletions from the middle of the list. Relatively slow for random access. (Use ArrayList instead.) Also has addFirst( ), addLast( ), getFirst( ), getLast( ), removeFirst( ), and removeLast( ) (which are not defined in any interfaces or base classes) to allow it to be used as a stack, a queue, and a dequeue.
+
+</code></pre></div><ul><li><p><code>List</code>（接口） 顺序是<code>List</code>最重要的特性；它可保证元素按照规定的顺序排列。<code>List</code>为<code>Collection</code>添加了大量方法，以便我们在<code>List</code>中部插入和删除元素（只推荐对<code>LinkedList</code>这样做）。<code>List</code>也会生成一个<code>ListIterator</code>（列表迭代器），利用它可在一个列表里朝两个方向遍历，同时插入和删除位于列表中部的元素（同样地，只建议对<code>LinkedList</code>这样做）</p></li> <li><p><code>ArrayList</code>＊ 由一个数组后推得到的<code>List</code>。作为一个常规用途的对象容器使用，用于替换原先的<code>Vector</code>。允许我们快速访问元素，但在从列表中部插入和删除元素时，速度却嫌稍慢。一般只应该用<code>ListIterator</code>对一个<code>ArrayList</code>进行向前和向后遍历，不要用它删除和插入元素；与<code>LinkedList</code>相比，它的效率要低许多</p></li> <li><p><code>LinkedList</code>提供优化的顺序访问性能，同时可以高效率地在列表中部进行插入和删除操作。但在进行随机访问时，速度却相当慢，此时应换用<code>ArrayList</code>。也提供了<code>addFirst()</code>，<code>addLast()</code>，<code>getFirst()</code>，<code>getLast()</code>，<code>removeFirst()</code>以及<code>removeLast()</code>（未在任何接口或基类中定义），以便将其作为一个规格、队列以及一个双向队列使用</p></li></ul> <p>下面这个例子中的方法每个都覆盖了一组不同的行为：每个列表都能做的事情（<code>basicTest()</code>），通过一个迭代器遍历（<code>iterMotion()</code>）、用一个迭代器改变某些东西（<code>iterManipulation()</code>）、体验列表处理的效果（<code>testVisual()</code>）以及只有<code>LinkedList</code>才能做的事情等：</p> <div class="language- extra-class"><pre class="language-text"><code>//: List1.java
+// Things you can do with Lists
+package c08.newcollections;
+import java.util.*;
+
+public class List1 {
+  // Wrap Collection1.fill() for convenience:
+  public static List fill(List a) {
+    return (List)Collection1.fill(a);
+  }
+  // You can use an Iterator, just as with a
+  // Collection, but you can also use random
+  // access with get():
+  public static void print(List a) {
+    for(int i = 0; i &lt; a.size(); i++)
+      System.out.print(a.get(i) + &quot; &quot;);
+    System.out.println();
+  }
+  static boolean b;
+  static Object o;
+  static int i;
+  static Iterator it;
+  static ListIterator lit;
+  public static void basicTest(List a) {
+    a.add(1, &quot;x&quot;); // Add at location 1
+    a.add(&quot;x&quot;); // Add at end
+    // Add a collection:
+    a.addAll(fill(new ArrayList()));
+    // Add a collection starting at location 3:
+    a.addAll(3, fill(new ArrayList()));
+    b = a.contains(&quot;1&quot;); // Is it in there?
+    // Is the entire collection in there?
+    b = a.containsAll(fill(new ArrayList()));
+    // Lists allow random access, which is cheap
+    // for ArrayList, expensive for LinkedList:
+    o = a.get(1); // Get object at location 1
+    i = a.indexOf(&quot;1&quot;); // Tell index of object
+    // indexOf, starting search at location 2:
+    i = a.indexOf(&quot;1&quot;, 2);
+    b = a.isEmpty(); // Any elements inside?
+    it = a.iterator(); // Ordinary Iterator
+    lit = a.listIterator(); // ListIterator
+    lit = a.listIterator(3); // Start at loc 3
+    i = a.lastIndexOf(&quot;1&quot;); // Last match
+    i = a.lastIndexOf(&quot;1&quot;, 2); // ...after loc 2
+    a.remove(1); // Remove location 1
+    a.remove(&quot;3&quot;); // Remove this object
+    a.set(1, &quot;y&quot;); // Set location 1 to &quot;y&quot;
+    // Keep everything that's in the argument
+    // (the intersection of the two sets):
+    a.retainAll(fill(new ArrayList()));
+    // Remove elements in this range:
+    a.removeRange(0, 2);
+    // Remove everything that's in the argument:
+    a.removeAll(fill(new ArrayList()));
+    i = a.size(); // How big is it?
+    a.clear(); // Remove all elements
+  }
+  public static void iterMotion(List a) {
+    ListIterator it = a.listIterator();
+    b = it.hasNext();
+    b = it.hasPrevious();
+    o = it.next();
+    i = it.nextIndex();
+    o = it.previous();
+    i = it.previousIndex();
+  }
+  public static void iterManipulation(List a) {
+    ListIterator it = a.listIterator();
+    it.add(&quot;47&quot;);
+    // Must move to an element after add():
+    it.next();
+    // Remove the element that was just produced:
+    it.remove();
+    // Must move to an element after remove():
+    it.next();
+    // Change the element that was just produced:
+    it.set(&quot;47&quot;);
+  }
+  public static void testVisual(List a) {
+    print(a);
+    List b = new ArrayList();
+    fill(b);
+    System.out.print(&quot;b = &quot;);
+    print(b);
+    a.addAll(b);
+    a.addAll(fill(new ArrayList()));
+    print(a);
+    // Shrink the list by removing all the
+    // elements beyond the first 1/2 of the list
+    System.out.println(a.size());
+    System.out.println(a.size()/2);
+    a.removeRange(a.size()/2, a.size()/2 + 2);
+    print(a);
+    // Insert, remove, and replace elements
+    // using a ListIterator:
+    ListIterator x = a.listIterator(a.size()/2);
+    x.add(&quot;one&quot;);
+    print(a);
+    System.out.println(x.next());
+    x.remove();
+    System.out.println(x.next());
+    x.set(&quot;47&quot;);
+    print(a);
+    // Traverse the list backwards:
+    x = a.listIterator(a.size());
+    while(x.hasPrevious())
+      System.out.print(x.previous() + &quot; &quot;);
+    System.out.println();
+    System.out.println(&quot;testVisual finished&quot;);
+  }
+  // There are some things that only
+  // LinkedLists can do:
+  public static void testLinkedList() {
+    LinkedList ll = new LinkedList();
+    Collection1.fill(ll, 5);
+    print(ll);
+    // Treat it like a stack, pushing:
+    ll.addFirst(&quot;one&quot;);
+    ll.addFirst(&quot;two&quot;);
+    print(ll);
+    // Like &quot;peeking&quot; at the top of a stack:
+    System.out.println(ll.getFirst());
+    // Like popping a stack:
+    System.out.println(ll.removeFirst());
+    System.out.println(ll.removeFirst());
+    // Treat it like a queue, pulling elements
+    // off the tail end:
+    System.out.println(ll.removeLast());
+    // With the above operations, it's a dequeue!
+    print(ll);
+  }
+  public static void main(String args[]) {
+    // Make and fill a new list each time:
+    basicTest(fill(new LinkedList()));
+    basicTest(fill(new ArrayList()));
+    iterMotion(fill(new LinkedList()));
+    iterMotion(fill(new ArrayList()));
+    iterManipulation(fill(new LinkedList()));
+    iterManipulation(fill(new ArrayList()));
+    testVisual(fill(new LinkedList()));
+    testLinkedList();
+  }
+} ///:~
+</code></pre></div><p>在<code>basicTest()</code>和<code>iterMotiion()</code>中，只是简单地发出调用，以便揭示出正确的语法。而且尽管捕获了返回值，但是并未使用它。在某些情况下，之所以不捕获返回值，是由于它们没有什么特别的用处。在正式使用它们前，应仔细研究一下自己的联机文档，掌握这些方法完整、正确的用法。</p> <h2 id="_8-7-3-使用sets"><a href="#_8-7-3-使用sets" class="header-anchor">#</a> 8.7.3 使用<code>Sets</code></h2> <p><code>Set</code>拥有与<code>Collection</code>完全相同的接口，所以和两种不同的<code>List</code>不同，它没有什么额外的功能。相反，<code>Set</code>完全就是一个<code>Collection</code>，只是具有不同的行为（这是实例和多态性最理想的应用：用于表达不同的行为）。在这里，一个<code>Set</code>只允许每个对象存在一个实例（正如大家以后会看到的那样，一个对象的“值”的构成是相当复杂的）。</p> <div class="language- extra-class"><pre class="language-text"><code>Set (interface)
+
+Each element that you add to the Set must be unique; otherwise the Set doesn’t add the duplicate element. Objects added to a Set must define equals( ) to establish object uniqueness. Set has exactly the same interface as Collection. The Set interface does not guarantee it will maintain its elements in any particular order.
+
+HashSet*
+
+For Sets where fast lookup time is important. Objects must also define hashCode( ).
+
+TreeSet
+
+An ordered Set backed by a red-black tree. This way, you can extract an ordered sequence from a Set.
+</code></pre></div><ul><li><code>Set</code>（接口） 添加到<code>Set</code>的每个元素都必须是独一无二的；否则<code>Set</code>就不会添加重复的元素。添加到<code>Set</code>里的对象必须定义<code>equals()</code>，从而建立对象的唯一性。<code>Set</code>拥有与<code>Collection</code>完全相同的接口。一个<code>Set</code>不能保证自己可按任何特定的顺序维持自己的元素</li> <li><code>HashSet</code>＊ 用于除非常小的以外的所有<code>Set</code>。对象也必须定义<code>hashCode()</code></li> <li><code>ArraySet</code> 由一个数组后推得到的<code>Set</code>。面向非常小的<code>Set</code>设计，特别是那些需要频繁创建和删除的。对于小<code>Set</code>，与<code>HashSet</code>相比，<code>ArraySet</code>创建和迭代所需付出的代价都要小得多。但随着<code>Set</code>的增大，它的性能也会大打折扣。不需要<code>HashCode()</code></li> <li><code>TreeSet</code>由一个“红黑树”后推得到的顺序<code>Set</code>（注释⑦）。这样一来，我们就可以从一个<code>Set</code>里提到一个顺序集合</li></ul> <p>⑦：直至本书写作的时候，<code>TreeSet</code>仍然只是宣布，尚未正式实现。所以这里没有提供使用<code>TreeSet</code>的例子。</p> <p>下面这个例子并没有列出用一个<code>Set</code>能够做的全部事情，因为接口与<code>Collection</code>是相同的，前例已经练习过了。相反，我们要例示的重点在于使一个<code>Set</code>独一无二的行为：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Set1.java
+// Things you can do with Sets
+package c08.newcollections;
+import java.util.*;
+
+public class Set1 {
+  public static void testVisual(Set a) {
+    Collection1.fill(a);
+    Collection1.fill(a);
+    Collection1.fill(a);
+    Collection1.print(a); // No duplicates!
+    // Add another set to this one:
+    a.addAll(a);
+    a.add(&quot;one&quot;);
+    a.add(&quot;one&quot;);
+    a.add(&quot;one&quot;);
+    Collection1.print(a);
+    // Look something up:
+    System.out.println(&quot;a.contains(\&quot;one\&quot;): &quot; +
+      a.contains(&quot;one&quot;));
+  }
+  public static void main(String[] args) {
+    testVisual(new HashSet());
+    testVisual(new TreeSet());
+  }
+} ///:~
+
+</code></pre></div><p>重复的值被添加到<code>Set</code>，但在打印的时候，我们会发现<code>Set</code>只接受每个值的一个实例。</p> <p>运行这个程序时，会注意到由<code>HashSet</code>维持的顺序与<code>ArraySet</code>是不同的。这是由于它们采用了不同的方法来保存元素，以便它们以后的定位。<code>ArraySet</code>保持着它们的顺序状态，而<code>HashSet</code>使用一个散列函数，这是特别为快速检索设计的）。创建自己的类型时，一定要注意<code>Set</code>需要通过一种方式来维持一种存储顺序，就象本章早些时候展示的“groundhog”（土拔鼠）例子那样。下面是一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Set2.java
+// Putting your own type in a Set
+package c08.newcollections;
+import java.util.*;
+
+class MyType implements Comparable {
+  private int i;
+  public MyType(int n) { i = n; }
+  public boolean equals(Object o) {
+    return
+      (o instanceof MyType)
+      &amp;&amp; (i == ((MyType)o).i);
+  }
+  public int hashCode() { return i; }
+  public String toString() { return i + &quot; &quot;; }
+  public int compareTo(Object o) {
+    int i2 = ((MyType) o).i;
+    return (i2 &lt; i ? -1 : (i2 == i ? 0 : 1));
+  }
+}
+
+public class Set2 {
+  public static Set fill(Set a, int size) {
+    for(int i = 0; i &lt; size; i++)
+      a.add(new MyType(i));
+    return a;
+  }
+  public static Set fill(Set a) {
+    return fill(a, 10);
+  }
+  public static void test(Set a) {
+    fill(a);
+    fill(a); // Try to add duplicates
+    fill(a);
+    a.addAll(fill(new TreeSet()));
+    System.out.println(a);
+  }
+  public static void main(String[] args) {
+    test(new HashSet());
+    test(new TreeSet());
+  }
+} ///:~
+
+</code></pre></div><p>对<code>equals()</code>及<code>hashCode()</code>的定义遵照“groundhog”例子已经给出的形式。在两种情况下都必须定义一个<code>equals()</code>。但只有要把类置入一个<code>HashSet</code>的前提下，才有必要使用<code>hashCode()</code>——这种情况是完全有可能的，因为通常应先选择作为一个<code>Set</code>实现。</p> <h2 id="_8-7-4-使用maps"><a href="#_8-7-4-使用maps" class="header-anchor">#</a> 8.7.4 使用<code>Maps</code></h2> <div class="language- extra-class"><pre class="language-text"><code>Map (interface)
+
+Maintains key-value associations (pairs), so you can look up a value using a key.
+
+HashMap*
+
+Implementation based on a hash table. (Use this instead of Hashtable.) Provides constant-time performance for inserting and locating pairs. Performance can be adjusted via constructors that allow you to set the capacity and load factor of the hash table.
+
+TreeMap
+
+Implementation based on a red-black tree. When you view the keys or the pairs, they will be in sorted order (determined by Comparable or Comparator, discussed later). The point of a TreeMap is that you get the results in sorted order. TreeMap is the only Map with the subMap( ) method, which allows you to return a portion of the tree.
+
+</code></pre></div><ul><li><code>Map</code>（接口） 维持“键－值”对应关系（对），以便通过一个键查找相应的值</li> <li><code>HashMap</code>＊ 基于一个散列表实现（用它代替<code>Hashtable</code>）。针对“键－值”对的插入和检索，这种形式具有最稳定的性能。可通过构造器对这一性能进行调整，以便设置散列表的“能力”和“装载因子”</li> <li><code>ArrayMap</code> 由一个<code>ArrayList</code>后推得到的<code>Map</code>。对迭代的顺序提供了精确的控制。面向非常小的<code>Map</code>设计，特别是那些需要经常创建和删除的。对于非常小的<code>Map</code>，创建和迭代所付出的代价要比<code>HashMap</code>低得多。但在<code>Map</code>变大以后，性能也会相应地大幅度降低</li> <li><code>TreeMap</code> 在一个“红－黑”树的基础上实现。查看键或者“键－值”对时，它们会按固定的顺序排列（取决于<code>Comparable</code>或</li> <li><code>Comparator</code>，稍后即会讲到）。<code>TreeMap</code>最大的好处就是我们得到的是已排好序的结果。<code>TreeMap</code>是含有<code>subMap()</code>方法的唯一一种<code>Map</code>，利用它可以返回树的一部分</li></ul> <p>下例包含了两套测试数据以及一个<code>fill()</code>方法，利用该方法可以用任何两维数组（由<code>Object</code>构成）填充任何<code>Map</code>。这些工具也会在其他<code>Map</code>例子中用到。</p> <div class="language- extra-class"><pre class="language-text"><code>//: Map1.java
+// Things you can do with Maps
+package c08.newcollections;
+import java.util.*;
+
+public class Map1 {
+  public final static String[][] testData1 = {
+    { &quot;Happy&quot;, &quot;Cheerful disposition&quot; },
+    { &quot;Sleepy&quot;, &quot;Prefers dark, quiet places&quot; },
+    { &quot;Grumpy&quot;, &quot;Needs to work on attitude&quot; },
+    { &quot;Doc&quot;, &quot;Fantasizes about advanced degree&quot;},
+    { &quot;Dopey&quot;, &quot;'A' for effort&quot; },
+    { &quot;Sneezy&quot;, &quot;Struggles with allergies&quot; },
+    { &quot;Bashful&quot;, &quot;Needs self-esteem workshop&quot;},
+  };
+  public final static String[][] testData2 = {
+    { &quot;Belligerent&quot;, &quot;Disruptive influence&quot; },
+    { &quot;Lazy&quot;, &quot;Motivational problems&quot; },
+    { &quot;Comatose&quot;, &quot;Excellent behavior&quot; }
+  };
+  public static Map fill(Map m, Object[][] o) {
+    for(int i = 0; i &lt; o.length; i++)
+      m.put(o[i][0], o[i][1]);
+    return m;
+  }
+  // Producing a Set of the keys:
+  public static void printKeys(Map m) {
+    System.out.print(&quot;Size = &quot; + m.size() +&quot;, &quot;);
+    System.out.print(&quot;Keys: &quot;);
+    Collection1.print(m.keySet());
+  }
+  // Producing a Collection of the values:
+  public static void printValues(Map m) {
+    System.out.print(&quot;Values: &quot;);
+    Collection1.print(m.values());
+  }
+  // Iterating through Map.Entry objects (pairs):
+  public static void print(Map m) {
+    Collection entries = m.entries();
+    Iterator it = entries.iterator();
+    while(it.hasNext()) {
+      Map.Entry e = (Map.Entry)it.next();
+      System.out.println(&quot;Key = &quot; + e.getKey() +
+        &quot;, Value = &quot; + e.getValue());
+    }
+  }
+  public static void test(Map m) {
+    fill(m, testData1);
+    // Map has 'Set' behavior for keys:
+    fill(m, testData1);
+    printKeys(m);
+    printValues(m);
+    print(m);
+    String key = testData1[4][0];
+    String value = testData1[4][1];
+    System.out.println(&quot;m.containsKey(\&quot;&quot; + key +
+      &quot;\&quot;): &quot; + m.containsKey(key));
+    System.out.println(&quot;m.get(\&quot;&quot; + key + &quot;\&quot;): &quot;
+      + m.get(key));
+    System.out.println(&quot;m.containsValue(\&quot;&quot;
+      + value + &quot;\&quot;): &quot; +
+      m.containsValue(value));
+    Map m2 = fill(new TreeMap(), testData2);
+    m.putAll(m2);
+    printKeys(m);
+    m.remove(testData2[0][0]);
+    printKeys(m);
+    m.clear();
+    System.out.println(&quot;m.isEmpty(): &quot;
+      + m.isEmpty());
+    fill(m, testData1);
+    // Operations on the Set change the Map:
+    m.keySet().removeAll(m.keySet());
+    System.out.println(&quot;m.isEmpty(): &quot;
+      + m.isEmpty());
+  }
+  public static void main(String args[]) {
+    System.out.println(&quot;Testing HashMap&quot;);
+    test(new HashMap());
+    System.out.println(&quot;Testing TreeMap&quot;);
+    test(new TreeMap());
+  }
+} ///:~
+
+</code></pre></div><p><code>printKeys()</code>，<code>printValues()</code>以及<code>print()</code>方法并不只是有用的工具，它们也清楚地揭示了一个<code>Map</code>的<code>Collection</code>“景象”的产生过程。<code>keySet()</code>方法会产生一个<code>Set</code>，它由<code>Map</code>中的键后推得来。在这儿，它只被当作一个<code>Collection</code>对待。<code>values()</code>也得到了类似的对待，它的作用是产生一个<code>List</code>，其中包含了<code>Map</code>中的所有值（注意键必须是独一无二的，而值可以有重复）。由于这些<code>Collection</code>是由<code>Map</code>后推得到的，所以一个<code>Collection</code>中的任何改变都会在相应的<code>Map</code>中反映出来。</p> <p><code>print()</code>方法的作用是收集由<code>entries</code>产生的<code>Iterator</code>（迭代器），并用它同时打印出每个“键－值”对的键和值。程序剩余的部分提供了每种<code>Map</code>操作的简单示例，并对每种类型的<code>Map</code>进行了测试。</p> <p>当创建自己的类，将其作为<code>Map</code>中的一个键使用时，必须注意到和以前的Set相同的问题。</p> <h2 id="_8-7-5-决定实现方案"><a href="#_8-7-5-决定实现方案" class="header-anchor">#</a> 8.7.5 决定实现方案</h2> <p>从早些时候的那幅示意图可以看出，实际上只有三个集合组件：<code>Map</code>，<code>List</code>和<code>Set</code>。而且每个接口只有两种或三种实现方案。若需使用由一个特定的接口提供的功能，如何才能决定到底采取哪一种方案呢？</p> <p>为理解这个问题，必须认识到每种不同的实现方案都有自己的特点、优点和缺点。比如在那张示意图中，可以看到<code>Hashtable</code>，<code>Vector</code>和<code>Stack</code>的“特点”是它们都属于“传统”类，所以不会干扰原有的代码。但在另一方面，应尽量避免为新的（Java 1.2）代码使用它们。</p> <p>其他集合间的差异通常都可归纳为它们具体是由什么“后推”的。换言之，取决于物理意义上用于实现目标接口的数据结构是什么。例如，<code>ArrayList</code>，<code>LinkedList</code>以及<code>Vector</code>（大致等价于<code>ArrayList</code>）都实现了<code>List</code>接口，所以无论选用哪一个，我们的程序都会得到类似的结果。然而，<code>ArrayList</code>（以及<code>Vector</code>）是由一个数组后推得到的；而<code>LinkedList</code>是根据常规的双重链接列表方式实现的，因为每个单独的对象都包含了数据以及指向列表内前后元素的引用。正是由于这个原因，假如想在一个列表中部进行大量插入和删除操作，那么<code>LinkedList</code>无疑是最恰当的选择（<code>LinkedList</code>还有一些额外的功能，建立于<code>AbstractSequentialList</code>中）。若非如此，就情愿选择<code>ArrayList</code>，它的速度可能要快一些。</p> <p>作为另一个例子，<code>Set</code>既可作为一个<code>ArraySet</code>实现，亦可作为<code>HashSet</code>实现。<code>ArraySet</code>是由一个<code>ArrayList</code>后推得到的，设计成只支持少量元素，特别适合要求创建和删除大量<code>Set</code>对象的场合使用。然而，一旦需要在自己的<code>Set</code>中容纳大量元素，<code>ArraySet</code>的性能就会大打折扣。写一个需要<code>Set</code>的程序时，应默认选择<code>HashSet</code>。而且只有在某些特殊情况下（对性能的提升有迫切的需求），才应切换到<code>ArraySet</code>。</p> <p>(1) 决定使用何种<code>List</code></p> <p>为体会各种<code>List</code>实现方案间的差异，最简便的方法就是进行一次性能测验。下述代码的作用是建立一个内部基类，将其作为一个测试床使用。然后为每次测验都创建一个匿名内部类。每个这样的内部类都由一个<code>test()</code>方法调用。利用这种方法，可以方便添加和删除测试项目。</p> <div class="language- extra-class"><pre class="language-text"><code>//: ListPerformance.java
+// Demonstrates performance differences in Lists
+package c08.newcollections;
+import java.util.*;
+
+public class ListPerformance {
+  private static final int REPS = 100;
+  private abstract static class Tester {
+    String name;
+    int size; // Test quantity
+    Tester(String name, int size) {
+      this.name = name;
+      this.size = size;
+    }
+    abstract void test(List a);
+  }
+  private static Tester[] tests = {
+    new Tester(&quot;get&quot;, 300) {
+      void test(List a) {
+        for(int i = 0; i &lt; REPS; i++) {
+          for(int j = 0; j &lt; a.size(); j++)
+            a.get(j);
+        }
+      }
+    },
+    new Tester(&quot;iteration&quot;, 300) {
+      void test(List a) {
+        for(int i = 0; i &lt; REPS; i++) {
+          Iterator it = a.iterator();
+          while(it.hasNext())
+            it.next();
+        }
+      }
+    },
+    new Tester(&quot;insert&quot;, 1000) {
+      void test(List a) {
+        int half = a.size()/2;
+        String s = &quot;test&quot;;
+        ListIterator it = a.listIterator(half);
+        for(int i = 0; i &lt; size * 10; i++)
+          it.add(s);
+      }
+    },
+    new Tester(&quot;remove&quot;, 5000) {
+      void test(List a) {
+        ListIterator it = a.listIterator(3);
+        while(it.hasNext()) {
+          it.next();
+          it.remove();
+        }
+      }
+    },
+  };
+  public static void test(List a) {
+    // A trick to print out the class name:
+    System.out.println(&quot;Testing &quot; +
+      a.getClass().getName());
+    for(int i = 0; i &lt; tests.length; i++) {
+      Collection1.fill(a, tests[i].size);
+      System.out.print(tests[i].name);
+      long t1 = System.currentTimeMillis();
+      tests[i].test(a);
+      long t2 = System.currentTimeMillis();
+      System.out.println(&quot;: &quot; + (t2 - t1));
+    }
+  }
+  public static void main(String[] args) {
+    test(new ArrayList());
+    test(new LinkedList());
+  }
+} ///:~
+</code></pre></div><p>内部类<code>Tester</code>是一个抽象类，用于为特定的测试提供一个基类。它包含了一个要在测试开始时打印的字符串、一个用于计算测试次数或元素数量的<code>size</code>参数、用于初始化字段的一个构造器以及一个抽象方法<code>test()</code>。<code>test()</code>做的是最实际的测试工作。各种类型的测试都集中到一个地方：<code>tests</code>数组。我们用继承于<code>Tester</code>的不同匿名内部类来初始化该数组。为添加或删除一个测试项目，只需在数组里简单地添加或移去一个内部类定义即可，其他所有工作都是自动进行的。</p> <p>首先用元素填充传递给<code>test()</code>的<code>List</code>，然后对<code>tests</code>数组中的测试计时。由于测试用机器的不同，结果当然也会有所区别。这个程序的宗旨是揭示出不同集合类型的相对性能比较。下面是某一次运行得到的结果：</p> <table><thead><tr><th>类型</th> <th>获取</th> <th>迭代</th> <th>插入</th> <th>删除</th></tr></thead> <tbody><tr><td><code>ArrayList</code></td> <td>110</td> <td>270</td> <td>1920</td> <td>4780</td></tr> <tr><td><code>LinkedList</code></td> <td>1870</td> <td>7580</td> <td>170</td> <td>110</td></tr></tbody></table> <p>可以看出，在<code>ArrayList</code>中进行随机访问（即<code>get()</code>）以及循环迭代是最划得来的；但对于<code>LinkedList</code>却是一个不小的开销。但另一方面，在列表中部进行插入和删除操作对于<code>LinkedList</code>来说却比<code>ArrayList</code>划算得多。我们最好的做法也许是先选择一个<code>ArrayList</code>作为自己的默认起点。以后若发现由于大量的插入和删除造成了性能的降低，再考虑换成<code>LinkedList</code>不迟。</p> <p>(2) 决定使用何种<code>Set</code></p> <p>可在<code>ArraySet</code>以及<code>HashSet</code>间作出选择，具体取决于<code>Set</code>的大小（如果需要从一个<code>Set</code>中获得一个顺序列表，请用<code>TreeSet</code>；注释⑧）。下面这个测试程序将有助于大家作出这方面的抉择：</p> <div class="language- extra-class"><pre class="language-text"><code>//: SetPerformance.java
+package c08.newcollections;
+import java.util.*;
+
+public class SetPerformance {
+  private static final int REPS = 200;
+  private abstract static class Tester {
+    String name;
+    Tester(String name) { this.name = name; }
+    abstract void test(Set s, int size);
+  }
+  private static Tester[] tests = {
+    new Tester(&quot;add&quot;) {
+      void test(Set s, int size) {
+        for(int i = 0; i &lt; REPS; i++) {
+          s.clear();
+          Collection1.fill(s, size);
+        }
+      }
+    },
+    new Tester(&quot;contains&quot;) {
+      void test(Set s, int size) {
+        for(int i = 0; i &lt; REPS; i++)
+          for(int j = 0; j &lt; size; j++)
+            s.contains(Integer.toString(j));
+      }
+    },
+    new Tester(&quot;iteration&quot;) {
+      void test(Set s, int size) {
+        for(int i = 0; i &lt; REPS * 10; i++) {
+          Iterator it = s.iterator();
+          while(it.hasNext())
+            it.next();
+        }
+      }
+    },
+  };
+  public static void test(Set s, int size) {
+    // A trick to print out the class name:
+    System.out.println(&quot;Testing &quot; +
+      s.getClass().getName() + &quot; size &quot; + size);
+    Collection1.fill(s, size);
+    for(int i = 0; i &lt; tests.length; i++) {
+      System.out.print(tests[i].name);
+      long t1 = System.currentTimeMillis();
+      tests[i].test(s, size);
+      long t2 = System.currentTimeMillis();
+      System.out.println(&quot;: &quot; +
+        ((double)(t2 - t1)/(double)size));
+    }
+  }
+  public static void main(String[] args) {
+    // Small:
+    test(new TreeSet(), 10);
+    test(new HashSet(), 10);
+    // Medium:
+    test(new TreeSet(), 100);
+    test(new HashSet(), 100);
+    // Large:
+    test(new HashSet(), 1000);
+    test(new TreeSet(), 1000);
+  }
+} ///:~
+</code></pre></div><p>⑧：<code>TreeSet</code>在本书写作时尚未成为一个正式的特性，但在这个例子中可以很轻松地为其添加一个测试。</p> <p>最后对<code>ArraySet</code>的测试只有500个元素，而不是1000个，因为它太慢了。</p> <table><thead><tr><th>类型</th> <th>测试大小</th> <th>添加</th> <th>包含</th> <th>迭代</th></tr></thead> <tbody><tr><td>TreeSet</td> <td>10</td> <td>22.0</td> <td>11.0</td> <td>16.0</td></tr> <tr><td></td> <td>100</td> <td>22.5</td> <td>13.2</td> <td>12.1</td></tr> <tr><td></td> <td>1000</td> <td>31.1</td> <td>18.7</td> <td>11.8</td></tr> <tr><td>HashSet</td> <td>10</td> <td>5.0</td> <td>6.0</td> <td>27.0</td></tr> <tr><td></td> <td>100</td> <td>6.6</td> <td>6.6</td> <td>10.9</td></tr> <tr><td></td> <td>1000</td> <td>7.4</td> <td>6.6</td> <td>9.5</td></tr></tbody></table> <p>进行<code>add()</code>以及<code>contains()</code>操作时，<code>HashSet</code>显然要比<code>ArraySet</code>出色得多，而且性能明显与元素的多寡关系不大。一般编写程序的时候，几乎永远用不着使用<code>ArraySet</code>。</p> <p>(3) 决定使用何种<code>Map</code></p> <p>选择不同的<code>Map</code>实现方案时，注意<code>Map</code>的大小对于性能的影响是最大的，下面这个测试程序清楚地阐示了这一点：</p> <div class="language- extra-class"><pre class="language-text"><code>//: MapPerformance.java
+// Demonstrates performance differences in Maps
+package c08.newcollections;
+import java.util.*;
+
+public class MapPerformance {
+  private static final int REPS = 200;
+  public static Map fill(Map m, int size) {
+    for(int i = 0; i &lt; size; i++) {
+      String x = Integer.toString(i);
+      m.put(x, x);
+    }
+    return m;
+  }
+  private abstract static class Tester {
+    String name;
+    Tester(String name) { this.name = name; }
+    abstract void test(Map m, int size);
+  }
+  private static Tester[] tests = {
+    new Tester(&quot;put&quot;) {
+      void test(Map m, int size) {
+        for(int i = 0; i &lt; REPS; i++) {
+          m.clear();
+          fill(m, size);
+        }
+      }
+    },
+    new Tester(&quot;get&quot;) {
+      void test(Map m, int size) {
+        for(int i = 0; i &lt; REPS; i++)
+          for(int j = 0; j &lt; size; j++)
+            m.get(Integer.toString(j));
+      }
+    },
+    new Tester(&quot;iteration&quot;) {
+      void test(Map m, int size) {
+        for(int i = 0; i &lt; REPS * 10; i++) {
+          Iterator it = m.entries().iterator();
+          while(it.hasNext())
+            it.next();
+        }
+      }
+    },
+  };
+  public static void test(Map m, int size) {
+    // A trick to print out the class name:
+    System.out.println(&quot;Testing &quot; +
+      m.getClass().getName() + &quot; size &quot; + size);
+    fill(m, size);
+    for(int i = 0; i &lt; tests.length; i++) {
+      System.out.print(tests[i].name);
+      long t1 = System.currentTimeMillis();
+      tests[i].test(m, size);
+      long t2 = System.currentTimeMillis();
+      System.out.println(&quot;: &quot; +
+        ((double)(t2 - t1)/(double)size));
+    }
+  }
+  public static void main(String[] args) {
+    // Small:
+    test(new Hashtable(), 10);
+    test(new HashMap(), 10);
+    test(new TreeMap(), 10);
+    // Medium:
+    test(new Hashtable(), 100);
+    test(new HashMap(), 100);
+    test(new TreeMap(), 100);
+    // Large:
+    test(new HashMap(), 1000);
+    test(new Hashtable(), 1000);
+    test(new TreeMap(), 1000);
+  }
+} ///:~
+</code></pre></div><p>由于<code>Map</code>的大小是最严重的问题，所以程序的计时测试按<code>Map</code>的大小（或容量）来分割时间，以便得到令人信服的测试结果。下面列出一系列结果（在你的机器上可能不同）：</p> <table><thead><tr><th>类型</th> <th>测试大小</th> <th>置入</th> <th>取出</th> <th>迭代</th></tr></thead> <tbody><tr><td>Hashtable</td> <td>10</td> <td>11.0</td> <td>5.0</td> <td>44.0</td></tr> <tr><td></td> <td>100</td> <td>7.7</td> <td>7.7</td> <td>16.5</td></tr> <tr><td></td> <td>1000</td> <td>8.0</td> <td>8.0</td> <td>14.4</td></tr> <tr><td>TreeMap</td> <td>10</td> <td>16.0</td> <td>11.0</td> <td>22.0</td></tr> <tr><td></td> <td>100</td> <td>25.8</td> <td>15.4</td> <td>13.2</td></tr> <tr><td></td> <td>1000</td> <td>33.8</td> <td>20.9</td> <td>13.6</td></tr> <tr><td>HashMap</td> <td>10</td> <td>11.0</td> <td>6.0</td> <td>33.0</td></tr> <tr><td></td> <td>100</td> <td>8.2</td> <td>7.7</td> <td>13.7</td></tr> <tr><td></td> <td>1000</td> <td>8.0</td> <td>7.8</td> <td>11.9</td></tr></tbody></table> <p>即使大小为10，<code>ArrayMap</code>的性能也要比<code>HashMap</code>差——除迭代循环时以外。而在使用<code>Map</code>时，迭代的作用通常并不重要（<code>get()</code>通常是我们时间花得最多的地方）。<code>TreeMap</code>提供了出色的<code>put()</code>以及迭代时间，但<code>get()</code>的性能并不佳。但是，我们为什么仍然需要使用<code>TreeMap</code>呢？这样一来，我们可以不把它作为<code>Map</code>使用，而作为创建顺序列表的一种途径。树的本质在于它总是顺序排列的，不必特别进行排序（它的排序方式马上就要讲到）。一旦填充了一个<code>TreeMap</code>，就可以调用<code>keySet()</code>来获得键的一个<code>Set</code>“景象”。然后用<code>toArray()</code>产生包含了那些键的一个数组。随后，可用<code>static</code>方法<code>Array.binarySearch()</code>快速查找排好序的数组中的内容。当然，也许只有在<code>HashMap</code>的行为不可接受的时候，才需要采用这种做法。因为<code>HashMap</code>的设计宗旨就是进行快速的检索操作。最后，当我们使用<code>Map</code>时，首要的选择应该是<code>HashMap</code>。只有在极少数情况下才需要考虑其他方法。</p> <p>此外，在上面那张表里，有另一个性能问题没有反映出来。下述程序用于测试不同类型<code>Map</code>的创建速度：</p> <div class="language- extra-class"><pre class="language-text"><code>//: MapCreation.java
+// Demonstrates time differences in Map creation
+package c08.newcollections;
+import java.util.*;
+
+public class MapCreation {
+  public static void main(String[] args) {
+    final long REPS = 100000;
+    long t1 = System.currentTimeMillis();
+    System.out.print(&quot;Hashtable&quot;);
+    for(long i = 0; i &lt; REPS; i++)
+      new Hashtable();
+    long t2 = System.currentTimeMillis();
+    System.out.println(&quot;: &quot; + (t2 - t1));
+    t1 = System.currentTimeMillis();
+    System.out.print(&quot;TreeMap&quot;);
+    for(long i = 0; i &lt; REPS; i++)
+      new TreeMap();
+    t2 = System.currentTimeMillis();
+    System.out.println(&quot;: &quot; + (t2 - t1));
+    t1 = System.currentTimeMillis();
+    System.out.print(&quot;HashMap&quot;);
+    for(long i = 0; i &lt; REPS; i++)
+      new HashMap();
+    t2 = System.currentTimeMillis();
+    System.out.println(&quot;: &quot; + (t2 - t1));
+  }
+} ///:~
+
+</code></pre></div><p>在写这个程序期间，<code>TreeMap</code>的创建速度比其他两种类型明显快得多（但你应亲自尝试一下，因为据说新版本可能会改善<code>ArrayMap</code>的性能）。考虑到这方面的原因，同时由于前述<code>TreeMap</code>出色的<code>put()</code>性能，所以如果需要创建大量<code>Map</code>，而且只有在以后才需要涉及大量检索操作，那么最佳的策略就是：创建和填充<code>TreeMap</code>；以后检索量增大的时候，再将重要的<code>TreeMap</code>转换成<code>HashMap</code>——使用<code>HashMap(Map)</code>构造器。同样地，只有在事实证明确实存在性能瓶颈后，才应关心这些方面的问题——先用起来，再根据需要加快速度。</p> <h2 id="_8-7-6-未支持的操作"><a href="#_8-7-6-未支持的操作" class="header-anchor">#</a> 8.7.6 未支持的操作</h2> <p>利用<code>static</code>（静态）数组<code>Arrays.toList()</code>，也许能将一个数组转换成<code>List</code>，如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Unsupported.java
+// Sometimes methods defined in the Collection
+// interfaces don't work!
+package c08.newcollections;
+import java.util.*;
+
+public class Unsupported {
+  private static String[] s = {
+    &quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;,
+    &quot;six&quot;, &quot;seven&quot;, &quot;eight&quot;, &quot;nine&quot;, &quot;ten&quot;,
+  };
+  static List a = Arrays.toList(s);
+  static List a2 = Arrays.toList(
+    new String[] { s[3], s[4], s[5] });
+  public static void main(String[] args) {
+    Collection1.print(a); // Iteration
+    System.out.println(
+      &quot;a.contains(&quot; + s[0] + &quot;) = &quot; +
+      a.contains(s[0]));
+    System.out.println(
+      &quot;a.containsAll(a2) = &quot; +
+      a.containsAll(a2));
+    System.out.println(&quot;a.isEmpty() = &quot; +
+      a.isEmpty());
+    System.out.println(
+      &quot;a.indexOf(&quot; + s[5] + &quot;) = &quot; +
+      a.indexOf(s[5]));
+    // Traverse backwards:
+    ListIterator lit = a.listIterator(a.size());
+    while(lit.hasPrevious())
+      System.out.print(lit.previous());
+    System.out.println();
+    // Set the elements to different values:
+    for(int i = 0; i &lt; a.size(); i++)
+      a.set(i, &quot;47&quot;);
+    Collection1.print(a);
+    // Compiles, but won't run:
+    lit.add(&quot;X&quot;); // Unsupported operation
+    a.clear(); // Unsupported
+    a.add(&quot;eleven&quot;); // Unsupported
+    a.addAll(a2); // Unsupported
+    a.retainAll(a2); // Unsupported
+    a.remove(s[0]); // Unsupported
+    a.removeAll(a2); // Unsupported
+  }
+} ///:~
+
+</code></pre></div><p>从中可以看出，实际只实现了<code>Collection</code>和<code>List</code>接口的一部分。剩余的方法导致了不受欢迎的一种情况，名为<code>UnsupportedOperationException</code>。在下一章里，我们会讲述异常的详细情况，但在这里有必要进行一下简单说明。这里的关键在于“集合接口”，以及新集合库内的另一些接口，它们都包含了“可选的”方法。在实现那些接口的集合类中，或者提供、或者没有提供对那些方法的支持。若调用一个未获支持的方法，就会导致一个<code>UnsupportedOperationException</code>（操作未支持异常），这表明出现了一个编程错误。</p> <p>大家或许会觉得奇怪，不是说“接口”和基类最大的“卖点”就是它们许诺这些方法能产生一些有意义的行为吗？上述异常破坏了那个许诺——它调用的一部分方法不仅不能产生有意义的行为，而且还会中止程序的运行。在这些情况下，类型的所谓安全保证似乎显得一钱不值！但是，情况并没有想象的那么坏。通过<code>Collection</code>，<code>List</code>，<code>Set</code>或者<code>Map</code>，编译器仍然限制我们只能调用那个接口中的方法，所以它和Smalltalk还是存在一些区别的（在Smalltalk中，可为任何对象调用任何方法，而且只有在运行程序时才知道这些调用是否可行）。除此以外，以<code>Collection</code>作为参数的大多数方法只能从那个集合中读取数据——<code>Collection</code>的所有<code>read</code>方法都不是可选的。</p> <p>这样一来，系统就可避免在设计期间出现接口的冲突。而在集合库的其他设计模式中，最终经常都会得到数量过多的接口，用它们描述基本方案的每一种变化形式，所以学习和掌握显得非常困难。有些时候，甚至难于捕捉接口中的所有特殊情况，因为人们可能设计出任何新接口。但Java的“不支持的操作”方法却达到了新集合库的一个重要设计目标：易于学习和使用。但是，为了使这一方法真正有效，却需满足下述条件：</p> <p>(1) <code>UnsupportedOperationException</code>必须属于一种“非常”事件。也就是说，对于大多数类来说，所有操作都应是可行的。只有在一些特殊情况下，一、两个操作才可能未获支持。新集合库满足了这一条件，因为绝大多数时候用到的类——<code>ArrayList</code>，<code>LinkedList</code>，<code>HashList</code>和<code>HashMap</code>，以及其他集合方案——都提供了对所有操作的支持。但是，如果想新建一个集合，同时不想为集合接口中的所有方法都提供有意义的定义，同时令其仍与现有库配合，这种设计方法也确实提供了一个“后门”可以利用。</p> <p>(2) 若一个操作未获支持，那么<code>UnsupportedOperationException</code>（未支持的操作异常）极有可能在实现期间出现，则不是在产品已交付给客户以后才会出现。它毕竟指出的是一个编程错误——不正确地使用了一个类。这一点不能十分确定，通过也可以看出这种方案的“试验”特征——只有经过多次试验，才能找出最理想的工作方式。</p> <p>在上面的例子中，<code>Arrays.toList()</code>产生了一个<code>List</code>（列表），该列表是由一个固定长度的数组后推出来的。因此唯一能够支持的就是那些不改变数组长度的操作。在另一方面，若请求一个新接口表达不同种类的行为（可能叫作<code>FixedSizeList</code>——固定长度列表），就有遭遇更大的复杂程度的危险。这样一来，以后试图使用库的时候，很快就会发现自己不知从何处下手。</p> <p>对那些采用<code>Collection</code>，<code>List</code>，<code>Set</code>或者<code>Map</code>作为参数的方法，它们的文档应当指出哪些可选的方法是必须实现的。举个例子来说，排序要求实现<code>set()</code>和<code>Iterator.set()</code>方法，但不包括<code>add()</code>和<code>remove()</code>。</p> <h2 id="_8-7-7-排序和搜索"><a href="#_8-7-7-排序和搜索" class="header-anchor">#</a> 8.7.7 排序和搜索</h2> <p>Java 1.2添加了自己的一套实用工具，可用来对数组或列表进行排列和搜索。这些工具都属于两个新类的“静态”方法。这两个类分别是用于排序和搜索数组的<code>Arrays</code>，以及用于排序和搜索列表的<code>Collections</code>。</p> <p>(1) 数组</p> <p><code>Arrays</code>类为所有基本数据类型的数组提供了一个重载的<code>sort()</code>和<code>binarySearch()</code>，它们亦可用于<code>String</code>和<code>Object</code>。下面这个例子显示出如何排序和搜索一个字节数组（其他所有基本数据类型都是类似的）以及一个<code>String</code>数组：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Array1.java
+// Testing the sorting &amp; searching in Arrays
+package c08.newcollections;
+import java.util.*;
+
+public class Array1 {
+  static Random r = new Random();
+  static String ssource =
+    &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot; +
+    &quot;abcdefghijklmnopqrstuvwxyz&quot;;
+  static char[] src = ssource.toCharArray();
+  // Create a random String
+  public static String randString(int length) {
+    char[] buf = new char[length];
+    int rnd;
+    for(int i = 0; i &lt; length; i++) {
+      rnd = Math.abs(r.nextInt()) % src.length;
+      buf[i] = src[rnd];
+    }
+    return new String(buf);
+  }
+  // Create a random array of Strings:
+  public static
+  String[] randStrings(int length, int size) {
+    String[] s = new String[size];
+    for(int i = 0; i &lt; size; i++)
+      s[i] = randString(length);
+    return s;
+  }
+  public static void print(byte[] b) {
+    for(int i = 0; i &lt; b.length; i++)
+      System.out.print(b[i] + &quot; &quot;);
+    System.out.println();
+  }
+  public static void print(String[] s) {
+    for(int i = 0; i &lt; s.length; i++)
+      System.out.print(s[i] + &quot; &quot;);
+    System.out.println();
+  }
+  public static void main(String[] args) {
+    byte[] b = new byte[15];
+    r.nextBytes(b); // Fill with random bytes
+    print(b);
+    Arrays.sort(b);
+    print(b);
+    int loc = Arrays.binarySearch(b, b[10]);
+    System.out.println(&quot;Location of &quot; + b[10] +
+      &quot; = &quot; + loc);
+    // Test String sort &amp; search:
+    String[] s = randStrings(4, 10);
+    print(s);
+    Arrays.sort(s);
+    print(s);
+    loc = Arrays.binarySearch(s, s[4]);
+    System.out.println(&quot;Location of &quot; + s[4] +
+      &quot; = &quot; + loc);
+  }
+} ///:~
+</code></pre></div><p>类的第一部分包含了用于产生随机字符串对象的实用工具，可供选择的随机字母保存在一个字符数组中。<code>randString()</code>返回一个任意长度的字符串；而<code>readStrings()</code>创建随机字符串的一个数组，同时给定每个字符串的长度以及希望的数组大小。两个<code>print()</code>方法简化了对示范数组的显示。在<code>main()</code>中，<code>Random.nextBytes()</code>用随机选择的字节填充数组参数（没有对应的<code>Random</code>方法用于创建其他基本数据类型的数组）。获得一个数组后，便可发现为了执行<code>sort()</code>或者<code>binarySearch()</code>，只需发出一次方法调用即可。与<code>binarySearch()</code>有关的还有一个重要的警告：若在执行一次<code>binarySearch()</code>之前不调用<code>sort()</code>，便会发生不可预测的行为，其中甚至包括无限循环。</p> <p>对<code>String</code>的排序以及搜索是相似的，但在运行程序的时候，我们会注意到一个有趣的现象：排序遵守的是字典顺序，亦即大写字母在字符集中位于小写字母的前面。因此，所有大写字母都位于列表的最前面，后面再跟上小写字母——Z居然位于a的前面。似乎连电话簿也是这样排序的。</p> <p>(2) 可比较与比较器</p> <p>但假若我们不满足这一排序方式，又该如何处理呢？例如本书后面的索引，如果必须对以<code>A</code>或<code>a</code>开头的词条分别到两处地方查看，那么肯定会使读者颇不耐烦。</p> <p>若想对一个<code>Object</code>数组进行排序，那么必须解决一个问题。根据什么来判定两个<code>Object</code>的顺序呢？不幸的是，最初的Java设计者并不认为这是一个重要的问题，否则就已经在根类<code>Object</code>里定义它了。这样造成的一个后果便是：必须从外部进行<code>Object</code>的排序，而且新的集合库提供了实现这一操作的标准方式（最理想的是在<code>Object</code>里定义它）。</p> <p>针对<code>Object</code>数组（以及<code>String</code>，它当然属于<code>Object</code>的一种），可使用一个<code>sort()</code>，并令其接纳另一个参数：实现了<code>Comparator</code>接口（即“比较器”接口，新集合库的一部分）的一个对象，并用它的单个<code>compare()</code>方法进行比较。这个方法将两个准备比较的对象作为自己的参数使用——若第一个参数小于第二个，返回一个负整数；若相等，返回零；若第一个参数大于第二个，则返回正整数。基于这一规则，上述例子的<code>String</code>部分便可重新写过，令其进行真正按字母顺序的排序：</p> <div class="language- extra-class"><pre class="language-text"><code>//: AlphaComp.java
+// Using Comparator to perform an alphabetic sort
+package c08.newcollections;
+import java.util.*;
+
+public class AlphaComp implements Comparator {
+  public int compare(Object o1, Object o2) {
+    // Assume it's used only for Strings...
+    String s1 = ((String)o1).toLowerCase();
+    String s2 = ((String)o2).toLowerCase();
+    return s1.compareTo(s2);
+  }
+  public static void main(String[] args) {
+    String[] s = Array1.randStrings(4, 10);
+    Array1.print(s);
+    AlphaComp ac = new AlphaComp();
+    Arrays.sort(s, ac);
+    Array1.print(s);
+    // Must use the Comparator to search, also:
+    int loc = Arrays.binarySearch(s, s[3], ac);
+    System.out.println(&quot;Location of &quot; + s[3] +
+     &quot; = &quot; + loc);
+  }
+} ///:~
+</code></pre></div><p>通过转换为<code>String</code>，<code>compare()</code>方法会进行“暗示”性的测试，保证自己操作的只能是<code>String</code>对象——运行期系统会捕获任何差错。将两个字符串都强迫换成小写形式后，<code>String.compareTo()</code>方法会产生预期的结果。</p> <p>若用自己的<code>Comparator</code>来进行一次<code>sort()</code>，那么在使用<code>binarySearch()</code>时必须使用那个相同的<code>Comparator</code>。</p> <p><code>Arrays</code>类提供了另一个<code>sort()</code>方法，它会采用单个参数：一个<code>Object</code>数组，但没有<code>Comparator</code>。这个<code>sort()</code>方法也必须用同样的方式来比较两个<code>Object</code>。通过实现<code>Comparable</code>接口，它采用了赋予一个类的“自然比较方法”。这个接口含有单独一个方法——<code>compareTo()</code>，能分别根据它小于、等于或者大于参数而返回负数、零或者正数，从而实现对象的比较。下面这个例子简单地阐示了这一点：</p> <div class="language- extra-class"><pre class="language-text"><code>//: CompClass.java
+// A class that implements Comparable
+package c08.newcollections;
+import java.util.*;
+
+public class CompClass implements Comparable {
+  private int i;
+  public CompClass(int ii) { i = ii; }
+  public int compareTo(Object o) {
+    // Implicitly tests for correct type:
+    int argi = ((CompClass)o).i;
+    if(i == argi) return 0;
+    if(i &lt; argi) return -1;
+    return 1;
+  }
+  public static void print(Object[] a) {
+    for(int i = 0; i &lt; a.length; i++)
+      System.out.print(a[i] + &quot; &quot;);
+    System.out.println();
+  }
+  public String toString() { return i + &quot;&quot;; }
+  public static void main(String[] args) {
+    CompClass[] a = new CompClass[20];
+    for(int i = 0; i &lt; a.length; i++)
+      a[i] = new CompClass(
+        (int)(Math.random() *100));
+    print(a);
+    Arrays.sort(a);
+    print(a);
+    int loc = Arrays.binarySearch(a, a[3]);
+    System.out.println(&quot;Location of &quot; + a[3] +
+     &quot; = &quot; + loc);
+  }
+} ///:~
+</code></pre></div><p>当然，我们的<code>compareTo()</code>方法亦可根据实际情况增大复杂程度。</p> <p>(3) 列表</p> <p>可用与数组相同的形式排序和搜索一个列表（<code>List</code>）。用于排序和搜索列表的静态方法包含在类<code>Collections</code>中，但它们拥有与<code>Arrays</code>中差不多的签名：<code>sort(List)</code>用于对一个实现了<code>Comparable</code>的对象列表进行排序；<code>binarySearch(List,Object)</code>用于查找列表中的某个对象；<code>sort(List,Comparator)</code>利用一个“比较器”对一个列表进行排序；</p> <p>而<code>binarySearch</code>(<code>List</code>,<code>Object</code>,<code>Comparator</code>)则用于查找那个列表中的一个对象（注释⑨）。下面这个例子利用了预先定义好的<code>CompClass</code>和<code>AlphaComp</code>来示范<code>Collections</code>中的各种排序工具：</p> <div class="language- extra-class"><pre class="language-text"><code>//: ListSort.java
+// Sorting and searching Lists with 'Collections'
+package c08.newcollections;
+import java.util.*;
+
+public class ListSort {
+  public static void main(String[] args) {
+    final int SZ = 20;
+    // Using &quot;natural comparison method&quot;:
+    List a = new ArrayList();
+    for(int i = 0; i &lt; SZ; i++)
+      a.add(new CompClass(
+        (int)(Math.random() *100)));
+    Collection1.print(a);
+    Collections.sort(a);
+    Collection1.print(a);
+    Object find = a.get(SZ/2);
+    int loc = Collections.binarySearch(a, find);
+    System.out.println(&quot;Location of &quot; + find +
+     &quot; = &quot; + loc);
+    // Using a Comparator:
+    List b = new ArrayList();
+    for(int i = 0; i &lt; SZ; i++)
+      b.add(Array1.randString(4));
+    Collection1.print(b);
+    AlphaComp ac = new AlphaComp();
+    Collections.sort(b, ac);
+    Collection1.print(b);
+    find = b.get(SZ/2);
+    // Must use the Comparator to search, also:
+    loc = Collections.binarySearch(b, find, ac);
+    System.out.println(&quot;Location of &quot; + find +
+     &quot; = &quot; + loc);
+  }
+} ///:~
+</code></pre></div><p>⑨：在本书写作时，已宣布了一个新的<code>Collections.stableSort()</code>，可用它进行合并式排序，但还没有它的测试版问世。</p> <p>这些方法的用法与在<code>Arrays</code>中的用法是完全一致的，只是用一个列表代替了数组。</p> <p><code>TreeMap</code>也必须根据<code>Comparable</code>或者<code>Comparator</code>对自己的对象进行排序。</p> <h2 id="_8-7-8-实用工具"><a href="#_8-7-8-实用工具" class="header-anchor">#</a> 8.7.8 实用工具</h2> <p><code>Collections</code>类中含有其他大量有用的实用工具：</p> <div class="language- extra-class"><pre class="language-text"><code>enumeration(Collection)
+
+Produces an old-style Enumeration for the argument.
+
+max(Collection)
+
+min(Collection)
+
+Produces the maximum or minimum element in the argument using the natural comparison method of the objects in the Collection.
+
+max(Collection, Comparator)
+
+min(Collection, Comparator)
+
+Produces the maximum or minimum element in the Collection using the Comparator.
+
+nCopies(int n, Object o)
+
+Returns an immutable List of size n whose handles all point to o.
+
+subList(List, int min, int max)
+
+Returns a new List backed by the specified argument List that is a window into that argument with indexes starting at min and stopping just before max.
+</code></pre></div><ul><li><p><code>enumeration(Collection)</code> 为参数产生原始风格的<code>Enumeration</code>（枚举）</p></li> <li><p><code>max(Collection)</code>，<code>min(Collection)</code> 在参数中用集合内对象的自然比较方法产生最大或最小元素</p></li> <li><p><code>max(Collection,Comparator)</code>，<code>min(Collection,Comparator)</code> 在集合内用比较器产生最大或最小元素</p></li> <li><p><code>nCopies(int n, Object o)</code> 返回长度为<code>n</code>的一个不可变列表，它的所有引用均指向<code>o</code></p></li> <li><p><code>subList(List,int min,int max)</code>返回由指定参数列表后推得到的一个新列表。可将这个列表想象成一个“窗口”，它自索引为<code>min</code>的地方开始，正好结束于<code>max</code>的前面</p></li></ul> <p>注意<code>min()</code>和<code>max()</code>都是随同<code>Collection</code>对象工作的，而非随同<code>List</code>，所以不必担心<code>Collection</code>是否需要排序（就象早先指出的那样，在执行一次<code>binarySearch()</code>——即二进制搜索——之前，必须对一个<code>List</code>或者一个数组执行<code>sort()</code>）。</p> <p>(1) 使<code>Collection</code>或<code>Map</code>不可修改</p> <p>通常，创建<code>Collection</code>或<code>Map</code>的一个“只读”版本显得更有利一些。<code>Collections</code>类允许我们达到这个目标，方法是将原始容器传递进入一个方法，并令其传回一个只读版本。这个方法共有四种变化形式，分别用于<code>Collection</code>（如果不想把集合当作一种更特殊的类型对待）、<code>List</code>、<code>Set</code>以及<code>Map</code>。下面这个例子演示了为它们分别构建只读版本的正确方法：</p> <div class="language- extra-class"><pre class="language-text"><code>//: ReadOnly.java
+// Using the Collections.unmodifiable methods
+package c08.newcollections;
+import java.util.*;
+
+public class ReadOnly {
+  public static void main(String[] args) {
+    Collection c = new ArrayList();
+    Collection1.fill(c); // Insert useful data
+    c = Collections.unmodifiableCollection(c);
+    Collection1.print(c); // Reading is OK
+    //! c.add(&quot;one&quot;); // Can't change it
+
+    List a = new ArrayList();
+    Collection1.fill(a);
+    a = Collections.unmodifiableList(a);
+    ListIterator lit = a.listIterator();
+    System.out.println(lit.next()); // Reading OK
+    //! lit.add(&quot;one&quot;); // Can't change it
+
+    Set s = new HashSet();
+    Collection1.fill(s);
+    s = Collections.unmodifiableSet(s);
+    Collection1.print(s); // Reading OK
+    //! s.add(&quot;one&quot;); // Can't change it
+
+    Map m = new HashMap();
+    Map1.fill(m, Map1.testData1);
+    m = Collections.unmodifiableMap(m);
+    Map1.print(m); // Reading OK
+    //! m.put(&quot;Ralph&quot;, &quot;Howdy!&quot;);
+  }
+} ///:~
+</code></pre></div><p>对于每种情况，在将其正式变为只读以前，都必须用有有效的数据填充容器。一旦载入成功，最佳的做法就是用“不可修改”调用产生的引用替换现有的引用。这样做可有效避免将其变成不可修改后不慎改变其中的内容。在另一方面，该工具也允许我们在一个类中将能够修改的容器保持为<code>private</code>状态，并可从一个方法调用中返回指向那个容器的一个只读引用。这样一来，虽然我们可在类里修改它，但其他任何人都只能读。</p> <p>为特定类型调用“不可修改”的方法不会造成编译期间的检查，但一旦发生任何变化，对修改特定容器的方法的调用便会产生一个<code>UnsupportedOperationException</code>异常。</p> <p>(2) <code>Collection</code>或<code>Map</code>的同步</p> <p><code>synchronized</code>关键字是“多线程”机制一个非常重要的部分。我们到第14章才会对这一机制作深入的探讨。在这儿，大家只需注意到<code>Collections</code>类提供了对整个容器进行自动同步的一种途径。它的语法与“不可修改”的方法是类似的：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Synchronization.java
+// Using the Collections.synchronized methods
+package c08.newcollections;
+import java.util.*;
+
+public class Synchronization {
+  public static void main(String[] args) {
+    Collection c =
+      Collections.synchronizedCollection(
+        new ArrayList());
+    List list = Collections.synchronizedList(
+      new ArrayList());
+    Set s = Collections.synchronizedSet(
+      new HashSet());
+    Map m = Collections.synchronizedMap(
+      new HashMap());
+  }
+} ///:~
+</code></pre></div><p>在这种情况下，我们通过适当的“同步”方法直接传递新容器；这样做可避免不慎暴露出未同步的版本。</p> <p>新集合也提供了能防止多个进程同时修改一个容器内容的机制。若在一个容器里迭代，同时另一些进程介入，并在那个容器中插入、删除或修改一个对象，便会面临发生冲突的危险。我们可能已传递了那个对象，可能它位位于我们前面，可能容器的大小在我们调用<code>size()</code>后已发生了收缩——我们面临各种各样可能的危险。针对这个问题，新的集合库集成了一套解决的机制，能查出除我们的进程自己需要负责的之外的、对容器的其他任何修改。若探测到有其他方面也准备修改容器，便会立即产生一个<code>ConcurrentModificationException</code>（并发修改异常）。我们将这一机制称为“立即失败”——它并不用更复杂的算法在“以后”侦测问题，而是“立即”产生异常。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/thinking-in-java-zh/8.6.html" class="prev">
+        8.6 通用集合库
+      </a></span> <span class="next"><a href="/thinking-in-java-zh/8.8.html">
+        8.8 总结
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/thinking-in-java-zh/assets/js/app.fa9256b7.js" defer></script><script src="/thinking-in-java-zh/assets/js/2.908605f2.js" defer></script><script src="/thinking-in-java-zh/assets/js/167.44fc78f4.js" defer></script>
+  </body>
+</html>

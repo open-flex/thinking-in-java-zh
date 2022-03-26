@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.1 使用Java运算符 | Java 编程思想</title>
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css" as="style"><link rel="preload" href="/thinking-in-java-zh/assets/js/app.fa9256b7.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/2.908605f2.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/118.fefdab4e.js" as="script"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/10.bf0f8be8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/100.8d6b6f0a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/101.42353165.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/102.b35fd164.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/103.34c9ec8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/104.63e41eda.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/105.a8196ba3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/106.3c787cca.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/107.5fd47e23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/108.81d2c2cd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/109.5345df07.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/11.decefde0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/110.9a402e3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/111.80737508.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/112.ff092004.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/113.d88e257d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/114.de29474b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/115.9c8d96e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/116.a9fe9af6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/117.0788e070.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/119.400faa62.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/12.a09f7f64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/120.d0ad5c24.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/121.b7379e1b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/122.352bd6de.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/123.7291c3a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/124.431ed770.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/125.306c4c7c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/126.9b3ff272.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/127.5d35566d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/128.c7458e50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/129.abf0b62b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/13.74ebe0f1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/130.ca484630.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/131.3b65be65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/132.8cc44765.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/133.39cab05a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/134.e1bc010e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/135.848b8e8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/136.e38c13cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/137.e6be7ef1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/138.c921af48.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/139.605a3ad8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/14.9a71923b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/140.7047d727.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/141.eee98409.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/142.b1b6affe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/143.8e53cafe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/144.e78d4c16.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/145.a6924d98.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/146.6afa9e38.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/147.81a0fa1f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/148.9b9deb8c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/149.27e9a5ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/15.c40fedbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/150.d5cb64f7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/151.58f4c6e0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/152.877f491f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/153.2a0f7bc8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/154.0600529e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/155.60aac4f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/156.28542a9d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/157.71f374f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/158.f97abefc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/159.678b2841.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/16.e021272d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/160.50d096d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/161.65ef5e27.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/162.9945598d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/163.fbdc28a7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/164.b9de90b9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/165.f04b9c4d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/166.492b521e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/167.44fc78f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/168.9ead6145.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/169.ecb10302.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/17.6a5a39db.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/170.c5cf73cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/171.1e4044b2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/172.bdf06080.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/173.b9993d87.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/174.7e9fc4ea.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/175.a1371c92.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/176.06a2686c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/177.3fd0af17.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/178.e20d739c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/179.0c4bab32.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/18.2a0fe016.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/180.09aa6003.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/181.f723e5b0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/182.5121b3e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/183.ed3590f5.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/184.715b33ae.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/185.2fc87a63.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/186.1092562b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/187.2a099e97.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/188.5ba09f11.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/19.d85e5c9e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/20.0c5db47c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/21.e0626c88.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/22.71c5879a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/23.7b68c569.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/24.e4a060c9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/25.b3969598.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/26.5944fa66.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/27.b54d648d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/28.b3bd9b90.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/29.85fb52b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/3.7e7b25d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/30.e68d5f52.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/31.8a9dda64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/32.e86d5c44.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/33.3bc564dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/34.c9e1ae64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/35.b994b5bd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/36.8ccf0963.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/37.ecf3eb69.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/38.ab79219e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/39.04161d2f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/40.ea7690ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/41.1343bb93.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/42.3f7fe11a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/43.efcf4c2a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/44.d9ec22df.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/45.151cd823.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/46.2e7d0d19.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/47.2132be00.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/48.8f934c34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/49.debd52f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/50.32165d5a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/51.d8ba02fd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/52.ed339d2d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/53.8e4ba4c8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/54.60bf4f03.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/55.152bdcd2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/56.b7f52a23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/57.9be7e60b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/58.2ee15f50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/59.b8c3cade.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/60.2658363d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/61.691159a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/62.9d9c6c65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/63.07a1ba1a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/64.750c0918.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/65.1e1fa59d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/66.64b896e2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/67.0d9cdf7e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/68.40bd0a61.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/69.8233b339.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/7.37fa1201.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/70.25de6d15.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/71.f2848d8f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/72.e156c27a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/73.725fabfd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/74.3341aaba.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/75.c1f15dbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/76.e61dbcfe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/77.a3bae194.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/78.658cd2a6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/79.3f4258dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/8.cb3738e7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/80.28670e73.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/81.2acef4dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/82.cc58e6b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/83.b9d7c5fe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/84.d20935f6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/85.2647d331.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/86.387d330d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/87.4a744b41.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/88.04a81a34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/89.7e4d6e77.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/9.a197fc43.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/90.d390efe2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/91.985ecc95.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/92.9c6399c6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/93.5c771e45.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/94.b6bfece6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/95.7ffcbc3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/96.c8dee444.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/97.a6814ee4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/98.ca141a6e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/99.7bd02f80.js">
+    <link rel="stylesheet" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNFKK7VGLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JNFKK7VGLS');
+    </script>
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/thinking-in-java-zh/" class="home-link router-link-active"><!----> <span class="site-name">Java 编程思想</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/thinking-in-java-zh/0.1.html" class="sidebar-link">写在前面的话</a></li><li><a href="/thinking-in-java-zh/0.2.html" class="sidebar-link">引言</a></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/1" class="sidebar-heading clickable"><span>第1章 对象入门</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/1.1.html" class="sidebar-link">1.1 抽象的进步</a></li><li><a href="/thinking-in-java-zh/1.2.html" class="sidebar-link">1.2 对象的接口</a></li><li><a href="/thinking-in-java-zh/1.3.html" class="sidebar-link">1.3 实现方案的隐藏</a></li><li><a href="/thinking-in-java-zh/1.4.html" class="sidebar-link">1.4 方案的重复使用</a></li><li><a href="/thinking-in-java-zh/1.5.html" class="sidebar-link">1.5 继承：重新使用接口</a></li><li><a href="/thinking-in-java-zh/1.6.html" class="sidebar-link">1.6 多态对象的互换使用</a></li><li><a href="/thinking-in-java-zh/1.7.html" class="sidebar-link">1.7 对象的创建和存在时间</a></li><li><a href="/thinking-in-java-zh/1.8.html" class="sidebar-link">1.8 异常控制：解决错误</a></li><li><a href="/thinking-in-java-zh/1.9.html" class="sidebar-link">1.9 多线程</a></li><li><a href="/thinking-in-java-zh/1.10.html" class="sidebar-link">1.10 永久性</a></li><li><a href="/thinking-in-java-zh/1.11.html" class="sidebar-link">1.11 Java和因特网</a></li><li><a href="/thinking-in-java-zh/1.12.html" class="sidebar-link">1.12 分析和设计</a></li><li><a href="/thinking-in-java-zh/1.13.html" class="sidebar-link">1.13 Java还是C++</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/2" class="sidebar-heading clickable"><span>第2章 一切都是对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/2.1.html" class="sidebar-link">2.1 用引用操纵对象</a></li><li><a href="/thinking-in-java-zh/2.2.html" class="sidebar-link">2.2 所有对象都必须创建</a></li><li><a href="/thinking-in-java-zh/2.3.html" class="sidebar-link">2.3 绝对不要清除对象</a></li><li><a href="/thinking-in-java-zh/2.4.html" class="sidebar-link">2.4 新建数据类型：类</a></li><li><a href="/thinking-in-java-zh/2.5.html" class="sidebar-link">2.5 方法、参数和返回值</a></li><li><a href="/thinking-in-java-zh/2.6.html" class="sidebar-link">2.6 构建Java程序</a></li><li><a href="/thinking-in-java-zh/2.7.html" class="sidebar-link">2.7 我们的第一个Java程序</a></li><li><a href="/thinking-in-java-zh/2.8.html" class="sidebar-link">2.8 注释和嵌入文档</a></li><li><a href="/thinking-in-java-zh/2.9.html" class="sidebar-link">2.9 编码样式</a></li><li><a href="/thinking-in-java-zh/2.10.html" class="sidebar-link">2.10 总结</a></li><li><a href="/thinking-in-java-zh/2.11.html" class="sidebar-link">2.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/3" class="sidebar-heading clickable open"><span>第3章 控制程序流程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/3.1.html" aria-current="page" class="active sidebar-link">3.1 使用Java运算符</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-1-优先级" class="sidebar-link">3.1.1 优先级</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-2-赋值" class="sidebar-link">3.1.2 赋值</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-4-自动递增和递减" class="sidebar-link">3.1.4 自动递增和递减</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-5-关系运算符" class="sidebar-link">3.1.5 关系运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-6-逻辑运算符" class="sidebar-link">3.1.6 逻辑运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-7-按位运算符" class="sidebar-link">3.1.7 按位运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-8-移位运算符" class="sidebar-link">3.1.8 移位运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-9-三元if-else运算符" class="sidebar-link">3.1.9 三元if-else运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-10-逗号运算符" class="sidebar-link">3.1.10 逗号运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-11-字符串运算符" class="sidebar-link">3.1.11 字符串运算符+</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-12-运算符常规操作规则" class="sidebar-link">3.1.12 运算符常规操作规则</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-13-转换运算符" class="sidebar-link">3.1.13 转换运算符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-14-java没有sizeof" class="sidebar-link">3.1.14 Java没有sizeof</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-15-复习计算顺序" class="sidebar-link">3.1.15 复习计算顺序</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/3.1.html#_3-1-16-运算符总结" class="sidebar-link">3.1.16 运算符总结</a></li></ul></li><li><a href="/thinking-in-java-zh/3.2.html" class="sidebar-link">3.2 执行控制</a></li><li><a href="/thinking-in-java-zh/3.3.html" class="sidebar-link">3.3 总结</a></li><li><a href="/thinking-in-java-zh/3.4.html" class="sidebar-link">3.4 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/4" class="sidebar-heading clickable"><span>第4章 初始化和清除</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/4.1.html" class="sidebar-link">4.1 用构造器自动初始化</a></li><li><a href="/thinking-in-java-zh/4.2.html" class="sidebar-link">4.2 方法重载</a></li><li><a href="/thinking-in-java-zh/4.3.html" class="sidebar-link">4.3 清除：收尾和垃圾收集</a></li><li><a href="/thinking-in-java-zh/4.4.html" class="sidebar-link">4.4 成员初始化</a></li><li><a href="/thinking-in-java-zh/4.5.html" class="sidebar-link">4.5 数组初始化</a></li><li><a href="/thinking-in-java-zh/4.6.html" class="sidebar-link">4.6 总结</a></li><li><a href="/thinking-in-java-zh/4.7.html" class="sidebar-link">4.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/5" class="sidebar-heading clickable"><span>第5章 隐藏实现过程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/5.1.html" class="sidebar-link">5.1 包：库单元</a></li><li><a href="/thinking-in-java-zh/5.2.html" class="sidebar-link">5.2 Java访问指示符</a></li><li><a href="/thinking-in-java-zh/5.3.html" class="sidebar-link">5.3 接口与实现</a></li><li><a href="/thinking-in-java-zh/5.4.html" class="sidebar-link">5.4 类访问</a></li><li><a href="/thinking-in-java-zh/5.5.html" class="sidebar-link">5.5 总结</a></li><li><a href="/thinking-in-java-zh/5.6.html" class="sidebar-link">5.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/6" class="sidebar-heading clickable"><span>第6章 类复用</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/6.1.html" class="sidebar-link">6.1 組合的语法</a></li><li><a href="/thinking-in-java-zh/6.2.html" class="sidebar-link">6.2 继承的语法</a></li><li><a href="/thinking-in-java-zh/6.3.html" class="sidebar-link">6.3 组合与继承的结合</a></li><li><a href="/thinking-in-java-zh/6.4.html" class="sidebar-link">6.4 到底选择组合还是继承</a></li><li><a href="/thinking-in-java-zh/6.5.html" class="sidebar-link">6.5 protected</a></li><li><a href="/thinking-in-java-zh/6.6.html" class="sidebar-link">6.6 累积开发</a></li><li><a href="/thinking-in-java-zh/6.7.html" class="sidebar-link">6.7 向上转换</a></li><li><a href="/thinking-in-java-zh/6.8.html" class="sidebar-link">6.8 final关键字</a></li><li><a href="/thinking-in-java-zh/6.9.html" class="sidebar-link">6.9 初始化和类装载</a></li><li><a href="/thinking-in-java-zh/6.10.html" class="sidebar-link">6.10 总结</a></li><li><a href="/thinking-in-java-zh/6.11.html" class="sidebar-link">6.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/7" class="sidebar-heading clickable"><span>第7章 多态性</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/7.1.html" class="sidebar-link">7.1 向上转换</a></li><li><a href="/thinking-in-java-zh/7.2.html" class="sidebar-link">7.2 深入理解</a></li><li><a href="/thinking-in-java-zh/7.3.html" class="sidebar-link">7.3 覆盖与重载</a></li><li><a href="/thinking-in-java-zh/7.4.html" class="sidebar-link">7.4 抽象类和方法</a></li><li><a href="/thinking-in-java-zh/7.5.html" class="sidebar-link">7.5 接口</a></li><li><a href="/thinking-in-java-zh/7.6.html" class="sidebar-link">7.6 内部类</a></li><li><a href="/thinking-in-java-zh/7.7.html" class="sidebar-link">7.7 构造器和多态性</a></li><li><a href="/thinking-in-java-zh/7.8.html" class="sidebar-link">7.8 通过继承进行设计</a></li><li><a href="/thinking-in-java-zh/7.9.html" class="sidebar-link">7.9 总结</a></li><li><a href="/thinking-in-java-zh/7.10.html" class="sidebar-link">7.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/8" class="sidebar-heading clickable"><span>第8章 对象的容纳</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/8.1.html" class="sidebar-link">8.1 数组</a></li><li><a href="/thinking-in-java-zh/8.2.html" class="sidebar-link">8.2 集合</a></li><li><a href="/thinking-in-java-zh/8.3.html" class="sidebar-link">8.3 枚举器（迭代器）</a></li><li><a href="/thinking-in-java-zh/8.4.html" class="sidebar-link">8.4 集合的类型</a></li><li><a href="/thinking-in-java-zh/8.5.html" class="sidebar-link">8.5 排序</a></li><li><a href="/thinking-in-java-zh/8.6.html" class="sidebar-link">8.6 通用集合库</a></li><li><a href="/thinking-in-java-zh/8.7.html" class="sidebar-link">8.7 新集合</a></li><li><a href="/thinking-in-java-zh/8.8.html" class="sidebar-link">8.8 总结</a></li><li><a href="/thinking-in-java-zh/8.9.html" class="sidebar-link">8.9 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/9" class="sidebar-heading clickable"><span>第9章 异常差错控制</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/9.1.html" class="sidebar-link">9.1 基本异常</a></li><li><a href="/thinking-in-java-zh/9.2.html" class="sidebar-link">9.2 异常的捕获</a></li><li><a href="/thinking-in-java-zh/9.3.html" class="sidebar-link">9.3 标准Java异常</a></li><li><a href="/thinking-in-java-zh/9.4.html" class="sidebar-link">9.4 创建自己的异常</a></li><li><a href="/thinking-in-java-zh/9.5.html" class="sidebar-link">9.5 异常的限制</a></li><li><a href="/thinking-in-java-zh/9.6.html" class="sidebar-link">9.6 用finally清除</a></li><li><a href="/thinking-in-java-zh/9.7.html" class="sidebar-link">9.7 构造器</a></li><li><a href="/thinking-in-java-zh/9.8.html" class="sidebar-link">9.8 异常匹配</a></li><li><a href="/thinking-in-java-zh/9.9.html" class="sidebar-link">9.9 总结</a></li><li><a href="/thinking-in-java-zh/9.10.html" class="sidebar-link">9.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/10" class="sidebar-heading clickable"><span>第10章 Java IO系统</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/10.1.html" class="sidebar-link">10.1 输入和输出</a></li><li><a href="/thinking-in-java-zh/10.2.html" class="sidebar-link">10.2 增添属性和有用的接口</a></li><li><a href="/thinking-in-java-zh/10.3.html" class="sidebar-link">10.3 本身的缺陷：RandomAccessFile</a></li><li><a href="/thinking-in-java-zh/10.4.html" class="sidebar-link">10.4 File类</a></li><li><a href="/thinking-in-java-zh/10.5.html" class="sidebar-link">10.5 IO流的典型应用</a></li><li><a href="/thinking-in-java-zh/10.6.html" class="sidebar-link">10.6 StreamTokenizer</a></li><li><a href="/thinking-in-java-zh/10.7.html" class="sidebar-link">10.7 Java 1.1的IO流</a></li><li><a href="/thinking-in-java-zh/10.8.html" class="sidebar-link">10.8 压缩</a></li><li><a href="/thinking-in-java-zh/10.9.html" class="sidebar-link">10.9 对象序列化</a></li><li><a href="/thinking-in-java-zh/10.10.html" class="sidebar-link">10.10 总结</a></li><li><a href="/thinking-in-java-zh/10.11.html" class="sidebar-link">10.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/11" class="sidebar-heading clickable"><span>第11章 运行期类型识别</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/11.1.html" class="sidebar-link">11.1 对RTTI的需要</a></li><li><a href="/thinking-in-java-zh/11.2.html" class="sidebar-link">11.2 RTTI语法</a></li><li><a href="/thinking-in-java-zh/11.3.html" class="sidebar-link">11.3 反射：运行期类信息</a></li><li><a href="/thinking-in-java-zh/11.4.html" class="sidebar-link">11.4 总结</a></li><li><a href="/thinking-in-java-zh/11.5.html" class="sidebar-link">11.5 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/12" class="sidebar-heading clickable"><span>第12章 传递和返回对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/12.1.html" class="sidebar-link">12.1 传递引用</a></li><li><a href="/thinking-in-java-zh/12.2.html" class="sidebar-link">12.2 制作本地副本</a></li><li><a href="/thinking-in-java-zh/12.3.html" class="sidebar-link">12.3 克隆的控制</a></li><li><a href="/thinking-in-java-zh/12.4.html" class="sidebar-link">12.4 只读类</a></li><li><a href="/thinking-in-java-zh/12.5.html" class="sidebar-link">12.5 总结</a></li><li><a href="/thinking-in-java-zh/12.6.html" class="sidebar-link">12.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/13" class="sidebar-heading clickable"><span>第13章 创建窗口和程序片</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/13.1.html" class="sidebar-link">13.1 为何要用AWT？</a></li><li><a href="/thinking-in-java-zh/13.2.html" class="sidebar-link">13.2 基本程序片</a></li><li><a href="/thinking-in-java-zh/13.3.html" class="sidebar-link">13.3 制作按钮</a></li><li><a href="/thinking-in-java-zh/13.4.html" class="sidebar-link">13.4 捕获事件</a></li><li><a href="/thinking-in-java-zh/13.5.html" class="sidebar-link">13.5 文本字段</a></li><li><a href="/thinking-in-java-zh/13.6.html" class="sidebar-link">13.6 文本区域</a></li><li><a href="/thinking-in-java-zh/13.7.html" class="sidebar-link">13.7 标签</a></li><li><a href="/thinking-in-java-zh/13.8.html" class="sidebar-link">13.8 复选框</a></li><li><a href="/thinking-in-java-zh/13.9.html" class="sidebar-link">13.9 单选钮</a></li><li><a href="/thinking-in-java-zh/13.10.html" class="sidebar-link">13.10 下拉列表</a></li><li><a href="/thinking-in-java-zh/13.11.html" class="sidebar-link">13.11 列表框</a></li><li><a href="/thinking-in-java-zh/13.12.html" class="sidebar-link">13.12 布局的控制</a></li><li><a href="/thinking-in-java-zh/13.13.html" class="sidebar-link">13.13 action的替代品</a></li><li><a href="/thinking-in-java-zh/13.14.html" class="sidebar-link">13.14 程序片的局限</a></li><li><a href="/thinking-in-java-zh/13.15.html" class="sidebar-link">13.15 视窗化应用</a></li><li><a href="/thinking-in-java-zh/13.16.html" class="sidebar-link">13.16 新型AWT</a></li><li><a href="/thinking-in-java-zh/13.17.html" class="sidebar-link">13.17 Java 1.1用户接口API</a></li><li><a href="/thinking-in-java-zh/13.18.html" class="sidebar-link">13.18 可视编程和Beans</a></li><li><a href="/thinking-in-java-zh/13.19.html" class="sidebar-link">13.19 Swing入门（注释⑦）</a></li><li><a href="/thinking-in-java-zh/13.20.html" class="sidebar-link">13.20 总结</a></li><li><a href="/thinking-in-java-zh/13.21.html" class="sidebar-link">13.21 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/14" class="sidebar-heading clickable"><span>第14章 多线程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/14.1.html" class="sidebar-link">14.1 反应灵敏的用户界面</a></li><li><a href="/thinking-in-java-zh/14.2.html" class="sidebar-link">14.2 共享有限的资源</a></li><li><a href="/thinking-in-java-zh/14.3.html" class="sidebar-link">14.3 堵塞</a></li><li><a href="/thinking-in-java-zh/14.4.html" class="sidebar-link">14.4 优先级</a></li><li><a href="/thinking-in-java-zh/14.5.html" class="sidebar-link">14.5 回顾runnable</a></li><li><a href="/thinking-in-java-zh/14.6.html" class="sidebar-link">14.6 总结</a></li><li><a href="/thinking-in-java-zh/14.7.html" class="sidebar-link">14.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/15" class="sidebar-heading clickable"><span>第15章 网络编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/15.1.html" class="sidebar-link">15.1 机器的标识</a></li><li><a href="/thinking-in-java-zh/15.2.html" class="sidebar-link">15.2 套接字</a></li><li><a href="/thinking-in-java-zh/15.3.html" class="sidebar-link">15.3 服务多个客户</a></li><li><a href="/thinking-in-java-zh/15.4.html" class="sidebar-link">15.4 数据报</a></li><li><a href="/thinking-in-java-zh/15.5.html" class="sidebar-link">15.5 一个Web应用</a></li><li><a href="/thinking-in-java-zh/15.6.html" class="sidebar-link">15.6 Java与CGI的沟通</a></li><li><a href="/thinking-in-java-zh/15.7.html" class="sidebar-link">15.7 用JDBC连接数据库</a></li><li><a href="/thinking-in-java-zh/15.8.html" class="sidebar-link">15.8 远程方法</a></li><li><a href="/thinking-in-java-zh/15.9.html" class="sidebar-link">15.9 总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/16" class="sidebar-heading clickable"><span>第16章 设计模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/16.1.html" class="sidebar-link">16.1 模式的概念</a></li><li><a href="/thinking-in-java-zh/16.2.html" class="sidebar-link">16.2 观察器模式</a></li><li><a href="/thinking-in-java-zh/16.3.html" class="sidebar-link">16.3 模拟垃圾回收站</a></li><li><a href="/thinking-in-java-zh/16.4.html" class="sidebar-link">16.4 改进设计</a></li><li><a href="/thinking-in-java-zh/16.5.html" class="sidebar-link">16.5 抽象的应用</a></li><li><a href="/thinking-in-java-zh/16.6.html" class="sidebar-link">16.6 多重分发</a></li><li><a href="/thinking-in-java-zh/16.7.html" class="sidebar-link">16.7 访问器模式</a></li><li><a href="/thinking-in-java-zh/16.8.html" class="sidebar-link">16.8 RTTI真的有害吗</a></li><li><a href="/thinking-in-java-zh/16.9.html" class="sidebar-link">16.9 总结</a></li><li><a href="/thinking-in-java-zh/16.10.html" class="sidebar-link">16.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/17" class="sidebar-heading clickable"><span>第17章 项目</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/17.1.html" class="sidebar-link">17.1 文字处理</a></li><li><a href="/thinking-in-java-zh/17.2.html" class="sidebar-link">17.2 方法查找工具</a></li><li><a href="/thinking-in-java-zh/17.3.html" class="sidebar-link">17.3 复杂性理论</a></li><li><a href="/thinking-in-java-zh/17.4.html" class="sidebar-link">17.4 总结</a></li><li><a href="/thinking-in-java-zh/17.5.html" class="sidebar-link">17.5 练习</a></li></ul></section></li><li><a href="/thinking-in-java-zh/a.html" class="sidebar-link">附录A 使用非JAVA代码</a></li><li><a href="/thinking-in-java-zh/b.html" class="sidebar-link">附录B 对比C++和Java</a></li><li><a href="/thinking-in-java-zh/c.html" class="sidebar-link">附录C Java编程规则</a></li><li><a href="/thinking-in-java-zh/d.html" class="sidebar-link">附录D 性能</a></li><li><a href="/thinking-in-java-zh/e.html" class="sidebar-link">附录E 关于垃圾收集的一些话</a></li><li><a href="/thinking-in-java-zh/f.html" class="sidebar-link">附录F 推荐读物</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_3-1-使用java运算符"><a href="#_3-1-使用java运算符" class="header-anchor">#</a> 3.1 使用Java运算符</h1> <p>运算符以一个或多个参数为基础，可生成一个新值。参数采用与原始方法调用不同的一种形式，但效果是相同的。根据以前写程序的经验，运算符的常规概念应该不难理解。</p> <p>加号（<code>+</code>）、减号和负号（<code>-</code>）、乘号（<code>*</code>）、除号（<code>/</code>）以及等号（<code>=</code>）的用法与其他所有编程语言都是类似的。</p> <p>所有运算符都能根据自己的运算对象生成一个值。除此以外，一个运算符可改变运算对象的值，这叫作“副作用”（Side Effect）。运算符最常见的用途就是修改自己的运算对象，从而产生副作用。但要注意生成的值亦可由没有副作用的运算符生成。
+几乎所有运算符都只能操作“基本类型”（Primitives）。唯一的例外是<code>=</code>、<code>==</code>和<code>!=</code>，它们能操作所有对象（也是对象易令人混淆的一个地方）。除此以外，<code>String</code>类支持<code>+</code>和<code>+=</code>。</p> <h2 id="_3-1-1-优先级"><a href="#_3-1-1-优先级" class="header-anchor">#</a> 3.1.1 优先级</h2> <p>运算符的优先级决定了存在多个运算符时一个表达式各部分的计算顺序。Java对计算顺序作出了特别的规定。其中，最简单的规则就是乘法和除法在加法和减法之前完成。程序员经常都会忘记其他优先级规则，所以应该用括号明确规定计算顺序。例如：</p> <div class="language- extra-class"><pre class="language-text"><code>A = X + Y - 2/2 + Z;
+</code></pre></div><p>为上述表达式加上括号后，就有了一个不同的含义。</p> <div class="language- extra-class"><pre class="language-text"><code>A = X + (Y - 2)/(2 + Z);
+</code></pre></div><h2 id="_3-1-2-赋值"><a href="#_3-1-2-赋值" class="header-anchor">#</a> 3.1.2 赋值</h2> <p>赋值是用等号运算符（<code>=</code>）进行的。它的意思是“取得右边的值，把它复制到左边”。右边的值可以是任何常数、变量或者表达式，只要能产生一个值就行。但左边的值必须是一个明确的、已命名的变量。也就是说，它必须有一个物理性的空间来保存右边的值。举个例子来说，可将一个常数赋给一个变量（<code>A=4;</code>），但不可将任何东西赋给一个常数（比如不能<code>4=A</code>）。</p> <p>对主数据类型的赋值是非常直接的。由于基本类型容纳了实际的值，而且并非指向一个对象的引用，所以在为其赋值的时候，可将来自一个地方的内容复制到另一个地方。例如，假设为基本类型使用<code>A=B</code>，那么<code>B</code>处的内容就复制到<code>A</code>。若接着又修改了<code>A</code>，那么<code>B</code>根本不会受这种修改的影响。作为一名程序员，这应成为自己的常识。</p> <p>但在为对象“赋值”的时候，情况却发生了变化。对一个对象进行操作时，我们真正操作的是它的引用。所以倘若“从一个对象到另一个对象”赋值，实际就是将引用从一个地方复制到另一个地方。这意味着假若为对象使用<code>C=D</code>，那么<code>C</code>和<code>D</code>最终都会指向最初只有<code>D</code>才指向的那个对象。下面这个例子将向大家阐示这一点。</p> <p>这里有一些题外话。在后面，大家在代码示例里看到的第一个语句将是<code>package 03</code>使用的<code>package</code>语句，它代表本书第3章。本书每一章的第一个代码清单都会包含象这样的一个<code>package</code>（封装、打包、包裹）语句，它的作用是为那一章剩余的代码建立章节编号。在第17章，大家会看到第3章的所有代码清单（除那些有不同封装名称的以外）都会自动置入一个名为<code>c0</code>3的子目录里；第4章的代码置入<code>c04</code>；以此类推。所有这些都是通过第17章展示的<code>CodePackage.java</code>程序实现的；“封装”的基本概念会在第5章进行详尽的解释。就目前来说，大家只需记住象<code>package 03</code>这样的形式只是用于为某一章的代码清单建立相应的子目录。</p> <p>为运行程序，必须保证在<code>classpath</code>里包含了我们安装本书源码文件的根目录（那个目录里包含了<code>c02</code>，<code>c03c</code>，<code>c04</code>等等子目录）。
+对于Java后续的版本（1.1.4和更高版本），如果您的<code>main()</code>用<code>package</code>语句封装到一个文件里，那么必须在程序名前面指定完整的包裹名称，否则不能运行程序。在这种情况下，命令行是：</p> <div class="language- extra-class"><pre class="language-text"><code>java c03.Assignment
+</code></pre></div><p>运行位于一个“包裹”里的程序时，随时都要注意这方面的问题。
+下面是例子：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Assignment.java
+// Assignment with objects is a bit tricky
+package c03;
+
+class Number {
+  int i;
+}
+
+public class Assignment {
+  public static void main(String[] args) {
+    Number n1 = new Number();
+    Number n2 = new Number();
+    n1.i = 9;
+    n2.i = 47;
+    System.out.println(&quot;1: n1.i: &quot; + n1.i +
+      &quot;, n2.i: &quot; + n2.i);
+    n1 = n2;
+    System.out.println(&quot;2: n1.i: &quot; + n1.i +
+      &quot;, n2.i: &quot; + n2.i);
+    n1.i = 27;
+    System.out.println(&quot;3: n1.i: &quot; + n1.i +
+      &quot;, n2.i: &quot; + n2.i);
+  }
+} ///:~
+</code></pre></div><p><code>Number</code>类非常简单，它的两个实例（<code>n1</code>和<code>n2</code>）是在<code>main()</code>里创建的。每个<code>Number</code>中的<code>i</code>值都赋予了一个不同的值。随后，将<code>n2</code>赋给<code>n1</code>，而且<code>n1</code>发生改变。在许多程序设计语言中，我们都希望<code>n1</code>和<code>n2</code>任何时候都相互独立。但由于我们已赋予了一个引用，所以下面才是真实的输出：</p> <div class="language- extra-class"><pre class="language-text"><code>1: n1.i: 9, n2.i: 47
+2: n1.i: 47, n2.i: 47
+3: n1.i: 27, n2.i: 27
+</code></pre></div><p>看来改变<code>n1</code>的同时也改变了<code>n2</code>！这是由于无论<code>n1</code>还是<code>n2</code>都包含了相同的引用，它指向相同的对象（最初的引用位于<code>n1</code>内部，指向容纳了值9的一个对象。在赋值过程中，那个引用实际已经丢失；它的对象会由“垃圾收集器”自动清除）。</p> <p>这种特殊的现象通常也叫作“别名”，是Java操作对象的一种基本方式。但假若不愿意在这种情况下出现别名，又该怎么操作呢？可放弃赋值，并写入下述代码：</p> <div class="language- extra-class"><pre class="language-text"><code>n1.i = n2.i;
+</code></pre></div><p>这样便可保留两个独立的对象，而不是将<code>n1</code>和<code>n2</code>绑定到相同的对象。但您很快就会意识到，这样做会使对象内部的字段处理发生混乱，并与标准的面向对象设计准则相悖。由于这并非一个简单的话题，所以留待第12章详细论述，那一章是专门讨论别名的。其时，大家也会注意到对象的赋值会产生一些令人震惊的效果。</p> <p><strong>1. 方法调用中的别名处理</strong></p> <p>将一个对象传递到方法内部时，也会产生别名现象。</p> <div class="language- extra-class"><pre class="language-text"><code>//: PassObject.java
+// Passing objects to methods can be a bit tricky
+
+class Letter {
+  char c;
+}
+
+public class PassObject {
+  static void f(Letter y) {
+    y.c = 'z';
+  }
+  public static void main(String[] args) {
+    Letter x = new Letter();
+    x.c = 'a';
+    System.out.println(&quot;1: x.c: &quot; + x.c);
+    f(x);
+    System.out.println(&quot;2: x.c: &quot; + x.c);
+  }
+} ///:~
+</code></pre></div><p>在许多程序设计语言中，<code>f()</code>方法表面上似乎要在方法的作用域内制作自己的参数<code>Letter y</code>的一个副本。但同样地，实际传递的是一个引用。所以下面这个程序行：</p> <div class="language- extra-class"><pre class="language-text"><code>y.c = 'z';
+</code></pre></div><p>实际改变的是<code>f()</code>之外的对象。输出结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>1: x.c: a
+2: x.c: z
+</code></pre></div><p>别名和它的对策是非常复杂的一个问题。尽管必须等至第12章才可获得所有答案，但从现在开始就应加以重视，以便提早发现它的缺点。</p> <p><strong>3.1.3 算术运算符</strong></p> <p>Java的基本算术运算符与其他大多数程序设计语言是相同的。其中包括加号（<code>+</code>）、减号（<code>-</code>）、除号（<code>/</code>）、乘号（<code>*</code>）以及模数（<code>%</code>，从整数除法中获得余数）。整数除法会直接砍掉小数，而不是进位。</p> <p>Java也用一种简写形式进行运算，并同时进行赋值操作。这是由等号前的一个运算符标记的，而且对于语言中的所有运算符都是固定的。例如，为了将4加到变量<code>x</code>，并将结果赋给<code>x</code>，可用：<code>x+=4</code>。</p> <p>下面这个例子展示了算术运算符的各种用法：</p> <div class="language- extra-class"><pre class="language-text"><code>//: MathOps.java
+// Demonstrates the mathematical operators
+import java.util.*;
+
+public class MathOps {
+  // Create a shorthand to save typing:
+  static void prt(String s) {
+    System.out.println(s);
+  }
+  // shorthand to print a string and an int:
+  static void pInt(String s, int i) {
+    prt(s + &quot; = &quot; + i);
+  }
+  // shorthand to print a string and a float:
+  static void pFlt(String s, float f) {
+    prt(s + &quot; = &quot; + f);
+  }
+  public static void main(String[] args) {
+    // Create a random number generator,
+    // seeds with current time by default:
+    Random rand = new Random();
+    int i, j, k;
+    // '%' limits maximum value to 99:
+    j = rand.nextInt() % 100;
+    k = rand.nextInt() % 100;
+    pInt(&quot;j&quot;,j);  pInt(&quot;k&quot;,k);
+    i = j + k; pInt(&quot;j + k&quot;, i);
+    i = j - k; pInt(&quot;j - k&quot;, i);
+    i = k / j; pInt(&quot;k / j&quot;, i);
+    i = k * j; pInt(&quot;k * j&quot;, i);
+    i = k % j; pInt(&quot;k % j&quot;, i);
+    j %= k; pInt(&quot;j %= k&quot;, j);
+    // Floating-point number tests:
+    float u,v,w;  // applies to doubles, too
+    v = rand.nextFloat();
+    w = rand.nextFloat();
+    pFlt(&quot;v&quot;, v); pFlt(&quot;w&quot;, w);
+    u = v + w; pFlt(&quot;v + w&quot;, u);
+    u = v - w; pFlt(&quot;v - w&quot;, u);
+    u = v * w; pFlt(&quot;v * w&quot;, u);
+    u = v / w; pFlt(&quot;v / w&quot;, u);
+    // the following also works for
+    // char, byte, short, int, long,
+    // and double:
+    u += v; pFlt(&quot;u += v&quot;, u);
+    u -= v; pFlt(&quot;u -= v&quot;, u);
+    u *= v; pFlt(&quot;u *= v&quot;, u);
+    u /= v; pFlt(&quot;u /= v&quot;, u);
+  }
+} ///:~
+</code></pre></div><p>我们注意到的第一件事情就是用于打印（显示）的一些快捷方法：<code>prt()</code>方法打印一个<code>String</code>；<code>pInt()</code>先打印一个<code>String</code>，再打印一个<code>int</code>；而<code>pFlt()</code>先打印一个<code>String</code>，再打印一个<code>float</code>。当然，它们最终都要用<code>System.out.println()</code>结尾。</p> <p>为生成数字，程序首先会创建一个<code>Random</code>（随机）对象。由于参数是在创建过程中传递的，所以Java将当前时间作为一个“种子值”，由随机数生成器利用。通过<code>Random</code>对象，程序可生成许多不同类型的随机数字。做法很简单，只需调用不同的方法即可：<code>nextInt()</code>，<code>nextLong()</code>，<code>nextFloat()</code>或者<code>nextDouble()</code>。</p> <p>若随同随机数生成器的结果使用，模数运算符（<code>%</code>）可将结果限制到运算对象减1的上限（本例是99）之下。</p> <p><strong>1. 一元加、减运算符</strong></p> <p>一元减号（<code>-</code>）和一元加号（<code>+</code>）与二元加号和减号都是相同的运算符。根据表达式的书写形式，编译器会自动判断使用哪一种。例如下述语句：</p> <div class="language- extra-class"><pre class="language-text"><code>x = -a;
+</code></pre></div><p>它的含义是显然的。编译器能正确识别下述语句：</p> <div class="language- extra-class"><pre class="language-text"><code>x = a * -b;
+</code></pre></div><p>但读者会被搞糊涂，所以最好更明确地写成：</p> <div class="language- extra-class"><pre class="language-text"><code>x = a * (-b);
+</code></pre></div><p>一元减号得到的运算对象的负值。一元加号的含义与一元减号相反，虽然它实际并不做任何事情。</p> <h2 id="_3-1-4-自动递增和递减"><a href="#_3-1-4-自动递增和递减" class="header-anchor">#</a> 3.1.4 自动递增和递减</h2> <p>和C类似，Java提供了丰富的快捷运算方式。这些快捷运算可使代码更清爽，更易录入，也更易读者辨读。</p> <p>两种很不错的快捷运算方式是递增和递减运算符（常称作“自动递增”和“自动递减”运算符）。其中，递减运算符是<code>--</code>，意为“减少一个单位”；递增运算符是<code>++</code>，意为“增加一个单位”。举个例子来说，假设A是一个<code>int</code>（整数）值，则表达式<code>++A</code>就等价于（<code>A = A + 1</code>）。递增和递减运算符结果生成的是变量的值。</p> <p>对每种类型的运算符，都有两个版本可供选用；通常将其称为“前缀版”和“后缀版”。“前递增”表示<code>++</code>运算符位于变量或表达式的前面；而“后递增”表示<code>++</code>运算符位于变量或表达式的后面。类似地，“前递减”意味着<code>--</code>运算符位于变量或表达式的前面；而“后递减”意味着<code>--</code>运算符位于变量或表达式的后面。对于前递增和前递减（如<code>++A</code>或<code>--A</code>），会先执行运算，复用成值。而对于后递增和后递减（如<code>A++</code>或<code>A--</code>），会先生成值，再执行运算。下面是一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>//: AutoInc.java
+// Demonstrates the ++ and -- operators
+
+public class AutoInc {
+  public static void main(String[] args) {
+    int i = 1;
+    prt(&quot;i : &quot; + i);
+    prt(&quot;++i : &quot; + ++i); // Pre-increment
+    prt(&quot;i++ : &quot; + i++); // Post-increment
+    prt(&quot;i : &quot; + i);
+    prt(&quot;--i : &quot; + --i); // Pre-decrement
+    prt(&quot;i-- : &quot; + i--); // Post-decrement
+    prt(&quot;i : &quot; + i);
+  }
+  static void prt(String s) {
+    System.out.println(s);
+  }
+} ///:~
+</code></pre></div><p>该程序的输出如下：</p> <div class="language- extra-class"><pre class="language-text"><code>i : 1
+++i : 2
+i++ : 2
+i : 3
+--i : 2
+i-- : 2
+i : 1
+</code></pre></div><p>从中可以看到，对于前缀形式，我们在执行完运算后才得到值。但对于后缀形式，则是在运算执行之前就得到值。它们是唯一具有“副作用”的运算符（除那些涉及赋值的以外）。也就是说，它们会改变运算对象，而不仅仅是使用自己的值。</p> <p>递增运算符正是对“C++”这个名字的一种解释，暗示着“超载C的一步”。在早期的一次Java演讲中，Bill Joy（始创人之一）声称“Java=C++--”（C加加减减），意味着Java已去除了C++一些没来由折磨人的地方，形成一种更精简的语言。正如大家会在这本书中学到的那样，Java的许多地方都得到了简化，所以Java的学习比C++更容易。</p> <h2 id="_3-1-5-关系运算符"><a href="#_3-1-5-关系运算符" class="header-anchor">#</a> 3.1.5 关系运算符</h2> <p>关系运算符生成的是一个“布尔”（<code>Boolean</code>）结果。它们评价的是运算对象值之间的关系。若关系是真实的，关系表达式会生成<code>true</code>（真）；若关系不真实，则生成<code>false</code>（假）。关系运算符包括小于（<code>&lt;</code>）、大于（<code>&gt;</code>）、小于或等于（<code>&lt;=</code>）、大于或等于（<code>&gt;=</code>）、等于（<code>==</code>）以及不等于（<code>!=</code>）。等于和不等于适用于所有内建的数据类型，但其他比较不适用于<code>boolean</code>类型。</p> <p><strong>1. 检查对象是否相等</strong></p> <p>关系运算符<code>==</code>和<code>!=</code>也适用于所有对象，但它们的含义通常会使初涉Java领域的人找不到北。下面是一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Equivalence.java
+
+public class Equivalence {
+  public static void main(String[] args) {
+    Integer n1 = new Integer(47);
+    Integer n2 = new Integer(47);
+    System.out.println(n1 == n2);
+    System.out.println(n1 != n2);
+  }
+} ///:~
+</code></pre></div><p>其中，表达式<code>System.out.println(n1 == n2)</code>可打印出内部的布尔比较结果。一般人都会认为输出结果肯定先是<code>true</code>，再是<code>false</code>，因为两个<code>Integer</code>对象都是相同的。但尽管对象的内容相同，引用却是不同的，而<code>==</code>和<code>!=</code>比较的正好就是对象引用。所以输出结果实际上先是<code>false</code>，再是<code>true</code>。这自然会使第一次接触的人感到惊奇。</p> <p>若想对比两个对象的实际内容是否相同，又该如何操作呢？此时，必须使用所有对象都适用的特殊方法<code>equals()</code>。但这个方法不适用于“基本类型”，那些类型直接使用<code>==</code>和<code>!=</code>即可。下面举例说明如何使用：</p> <div class="language- extra-class"><pre class="language-text"><code>//: EqualsMethod.java
+
+public class EqualsMethod {
+  public static void main(String[] args) {
+    Integer n1 = new Integer(47);
+    Integer n2 = new Integer(47);
+    System.out.println(n1.equals(n2));
+  }
+} ///:~
+</code></pre></div><p>正如我们预计的那样，此时得到的结果是<code>true</code>。但事情并未到此结束！假设您创建了自己的类，就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>//: EqualsMethod2.java
+
+class Value {
+  int i;
+}
+
+public class EqualsMethod2 {
+  public static void main(String[] args) {
+    Value v1 = new Value();
+    Value v2 = new Value();
+    v1.i = v2.i = 100;
+    System.out.println(v1.equals(v2));
+  }
+} ///:~
+</code></pre></div><p>此时的结果又变回了<code>false</code>！这是由于<code>equals()</code>的默认行为是比较引用。所以除非在自己的新类中改变了<code>equals()</code>，否则不可能表现出我们希望的行为。不幸的是，要到第7章才会学习如何改变行为。但要注意<code>equals()</code>的这种行为方式同时或许能够避免一些“灾难”性的事件。</p> <p>大多数Java类库都实现了<code>equals()</code>，所以它实际比较的是对象的内容，而非它们的引用。</p> <h2 id="_3-1-6-逻辑运算符"><a href="#_3-1-6-逻辑运算符" class="header-anchor">#</a> 3.1.6 逻辑运算符</h2> <p>逻辑运算符AND（<code>&amp;&amp;</code>）、OR（<code>||</code>）以及NOT（<code>!</code>）能生成一个布尔值（<code>true</code>或<code>false</code>）——以参数的逻辑关系为基础。下面这个例子向大家展示了如何使用关系和逻辑运算符。</p> <div class="language- extra-class"><pre class="language-text"><code>//: Bool.java
+// Relational and logical operators
+import java.util.*;
+
+public class Bool {
+  public static void main(String[] args) {
+    Random rand = new Random();
+    int i = rand.nextInt() % 100;
+    int j = rand.nextInt() % 100;
+    prt(&quot;i = &quot; + i);
+    prt(&quot;j = &quot; + j);
+    prt(&quot;i &gt; j is &quot; + (i &gt; j));
+    prt(&quot;i &lt; j is &quot; + (i &lt; j));
+    prt(&quot;i &gt;= j is &quot; + (i &gt;= j));
+    prt(&quot;i &lt;= j is &quot; + (i &lt;= j));
+    prt(&quot;i == j is &quot; + (i == j));
+    prt(&quot;i != j is &quot; + (i != j));
+
+    // Treating an int as a boolean is
+    // not legal Java
+//! prt(&quot;i &amp;&amp; j is &quot; + (i &amp;&amp; j));
+//! prt(&quot;i || j is &quot; + (i || j));
+//! prt(&quot;!i is &quot; + !i);
+
+    prt(&quot;(i &lt; 10) &amp;&amp; (j &lt; 10) is &quot;
+       + ((i &lt; 10) &amp;&amp; (j &lt; 10)) );
+    prt(&quot;(i &lt; 10) || (j &lt; 10) is &quot;
+       + ((i &lt; 10) || (j &lt; 10)) );
+  }
+  static void prt(String s) {
+    System.out.println(s);
+  }
+} ///:~
+</code></pre></div><p>只可将AND，OR或NOT应用于布尔值。与在C及C++中不同，不可将一个非布尔值当作布尔值在逻辑表达式中使用。若这样做，就会发现尝试失败，并用一个<code>//!</code>标出。然而，后续的表达式利用关系比较生成布尔值，然后对结果进行逻辑运算。</p> <p>输出列表看起来象下面这个样子：</p> <div class="language- extra-class"><pre class="language-text"><code>i = 85
+j = 4
+i &gt; j is true
+i &lt; j is false
+i &gt;= j is true
+i &lt;= j is false
+i == j is false
+i != j is true
+(i &lt; 10) &amp;&amp; (j &lt; 10) is false
+(i &lt; 10) || (j &lt; 10) is true
+</code></pre></div><p>注意若在预计为<code>String</code>值的地方使用，布尔值会自动转换成适当的文本形式。</p> <p>在上述程序中，可将对<code>int</code>的定义替换成除<code>boolean</code>以外的其他任何主数据类型。但要注意，对浮点数字的比较是非常严格的。即使一个数字仅在小数部分与另一个数字存在极微小的差异，仍然认为它们是“不相等”的。即使一个数字只比零大一点点（例如2不停地开平方根），它仍然属于“非零”值。</p> <p><strong>1. 短路</strong></p> <p>操作逻辑运算符时，我们会遇到一种名为“短路”的情况。这意味着只有明确得出整个表达式真或假的结论，才会对表达式进行逻辑求值。因此，一个逻辑表达式的所有部分都有可能不进行求值：</p> <div class="language- extra-class"><pre class="language-text"><code>//: ShortCircuit.java
+// Demonstrates short-circuiting behavior
+// with logical operators.
+
+public class ShortCircuit {
+  static boolean test1(int val) {
+    System.out.println(&quot;test1(&quot; + val + &quot;)&quot;);
+    System.out.println(&quot;result: &quot; + (val &lt; 1));
+    return val &lt; 1;
+  }
+  static boolean test2(int val) {
+    System.out.println(&quot;test2(&quot; + val + &quot;)&quot;);
+    System.out.println(&quot;result: &quot; + (val &lt; 2));
+    return val &lt; 2;
+  }
+  static boolean test3(int val) {
+    System.out.println(&quot;test3(&quot; + val + &quot;)&quot;);
+    System.out.println(&quot;result: &quot; + (val &lt; 3));
+    return val &lt; 3;
+  }
+  public static void main(String[] args) {
+    if(test1(0) &amp;&amp; test2(2) &amp;&amp; test3(2))
+      System.out.println(&quot;expression is true&quot;);
+    else
+      System.out.println(&quot;expression is false&quot;);
+  }
+} ///:~
+</code></pre></div><p>每次测试都会比较参数，并返回真或假。它不会显示与准备调用什么有关的资料。测试在下面这个表达式中进行：</p> <div class="language- extra-class"><pre class="language-text"><code>if(test1(0)) &amp;&amp; test2(2) &amp;&amp; test3(2))
+</code></pre></div><p>很自然地，你也许认为所有这三个测试都会得以执行。但希望输出结果不至于使你大吃一惊：</p> <div class="language- extra-class"><pre class="language-text"><code>if(test1(0) &amp;&amp; test2(2) &amp;&amp; test3(2))
+</code></pre></div><p>第一个测试生成一个<code>true</code>结果，所以表达式求值会继续下去。然而，第二个测试产生了一个<code>false</code>结果。由于这意味着整个表达式肯定为<code>false</code>，所以为什么还要继续剩余的表达式呢？这样做只会徒劳无益。事实上，“短路”一词的由来正种因于此。如果一个逻辑表达式的所有部分都不必执行下去，那么潜在的性能提升将是相当可观的。</p> <h2 id="_3-1-7-按位运算符"><a href="#_3-1-7-按位运算符" class="header-anchor">#</a> 3.1.7 按位运算符</h2> <p>按位运算符允许我们操作一个整数主数据类型中的单个“比特”，即二进制位。按位运算符会对两个参数中对应的位执行布尔代数，并最终生成一个结果。</p> <p>按位运算来源于C语言的低级操作。我们经常都要直接操纵硬件，需要频繁设置硬件寄存器内的二进制位。Java的设计初衷是嵌入电视顶置盒内，所以这种低级操作仍被保留下来了。然而，由于操作系统的进步，现在也许不必过于频繁地进行按位运算。</p> <p>若两个输入位都是1，则按位AND运算符（<code>&amp;</code>）在输出位里生成一个1；否则生成0。若两个输入位里至少有一个是1，则按位OR运算符（<code>|</code>）在输出位里生成一个1；只有在两个输入位都是0的情况下，它才会生成一个0。若两个输入位的某一个是1，但不全都是1，那么按位XOR（<code>^</code>，异或）在输出位里生成一个1。按位NOT（<code>~</code>，也叫作“非”运算符）属于一元运算符；它只对一个参数进行操作（其他所有运算符都是二元运算符）。按位NOT生成与输入位的相反的值——若输入0，则输出1；输入1，则输出0。</p> <p>按位运算符和逻辑运算符都使用了同样的字符，只是数量不同。因此，我们能方便地记忆各自的含义：由于“位”是非常“小”的，所以按位运算符仅使用了一个字符。</p> <p>按位运算符可与等号（<code>=</code>）联合使用，以便合并运算及赋值：<code>&amp;=</code>，<code>|=</code>和<code>^=</code>都是合法的（由于<code>~</code>是一元运算符，所以不可与<code>=</code>联合使用）。</p> <p>我们将<code>boolean</code>（布尔）类型当作一种“单位”或“单比特”值对待，所以它多少有些独特的地方。我们可执行按位AND，OR和XOR，但不能执行按位NOT（大概是为了避免与逻辑NOT混淆）。对于布尔值，按位运算符具有与逻辑运算符相同的效果，只是它们不会中途“短路”。此外，针对布尔值进行的按位运算为我们新增了一个XOR逻辑运算符，它并未包括在“逻辑”运算符的列表中。在移位表达式中，我们被禁止使用布尔运算，原因将在下面解释。</p> <h2 id="_3-1-8-移位运算符"><a href="#_3-1-8-移位运算符" class="header-anchor">#</a> 3.1.8 移位运算符</h2> <p>移位运算符面向的运算对象也是二进制的“位”。可单独用它们处理整数类型（基本类型的一种）。左移位运算符（<code>&lt;&lt;</code>）能将运算符左边的运算对象向左移动运算符右侧指定的位数（在低位补0）。“有符号”右移位运算符（<code>&gt;&gt;</code>）则将运算符左边的运算对象向右移动运算符右侧指定的位数。“有符号”右移位运算符使用了“符号扩展”：若值为正，则在高位插入0；若值为负，则在高位插入1。Java也添加了一种“无符号”右移位运算符（<code>&gt;&gt;&gt;</code>），它使用了“零扩展”：无论正负，都在高位插入0。这一运算符是C或C++没有的。</p> <p>若对<code>char</code>，<code>byte</code>或者<code>short</code>进行移位处理，那么在移位进行之前，它们会自动转换成一个<code>int</code>。只有右侧的5个低位才会用到。这样可防止我们在一个<code>int</code>数里移动不切实际的位数。若对一个<code>long</code>值进行处理，最后得到的结果也是<code>long</code>。此时只会用到右侧的6个低位，防止移动超过<code>long</code>值里现成的位数。但在进行“无符号”右移位时，也可能遇到一个问题。若对<code>byte</code>或<code>short</code>值进行右移位运算，得到的可能不是正确的结果（Java 1.0和Java 1.1特别突出）。它们会自动转换成<code>int</code>类型，并进行右移位。但“零扩展”不会发生，所以在那些情况下会得到-1的结果。可用下面这个例子检测自己的实现方案：</p> <div class="language- extra-class"><pre class="language-text"><code>//: URShift.java
+// Test of unsigned right shift
+
+public class URShift {
+  public static void main(String[] args) {
+    int i = -1;
+    i &gt;&gt;&gt;= 10;
+    System.out.println(i);
+    long l = -1;
+    l &gt;&gt;&gt;= 10;
+    System.out.println(l);
+    short s = -1;
+    s &gt;&gt;&gt;= 10;
+    System.out.println(s);
+    byte b = -1;
+    b &gt;&gt;&gt;= 10;
+    System.out.println(b);
+  }
+} ///:~
+</code></pre></div><p>移位可与等号（<code>&lt;&lt;=</code>或<code>&gt;&gt;=</code>或<code>&gt;&gt;&gt;=</code>）组合使用。此时，运算符左边的值会移动由右边的值指定的位数，再将得到的结果赋回左边的值。</p> <p>下面这个例子向大家阐示了如何应用涉及“按位”操作的所有运算符，以及它们的效果：</p> <div class="language- extra-class"><pre class="language-text"><code>//: BitManipulation.java
+// Using the bitwise operators
+import java.util.*;
+
+public class BitManipulation {
+  public static void main(String[] args) {
+    Random rand = new Random();
+    int i = rand.nextInt();
+    int j = rand.nextInt();
+    pBinInt(&quot;-1&quot;, -1);
+    pBinInt(&quot;+1&quot;, +1);
+    int maxpos = 2147483647;
+    pBinInt(&quot;maxpos&quot;, maxpos);
+    int maxneg = -2147483648;
+    pBinInt(&quot;maxneg&quot;, maxneg);
+    pBinInt(&quot;i&quot;, i);
+    pBinInt(&quot;~i&quot;, ~i);
+    pBinInt(&quot;-i&quot;, -i);
+    pBinInt(&quot;j&quot;, j);
+    pBinInt(&quot;i &amp; j&quot;, i &amp; j);
+    pBinInt(&quot;i | j&quot;, i | j);
+    pBinInt(&quot;i ^ j&quot;, i ^ j);
+    pBinInt(&quot;i &lt;&lt; 5&quot;, i &lt;&lt; 5);
+    pBinInt(&quot;i &gt;&gt; 5&quot;, i &gt;&gt; 5);
+    pBinInt(&quot;(~i) &gt;&gt; 5&quot;, (~i) &gt;&gt; 5);
+    pBinInt(&quot;i &gt;&gt;&gt; 5&quot;, i &gt;&gt;&gt; 5);
+    pBinInt(&quot;(~i) &gt;&gt;&gt; 5&quot;, (~i) &gt;&gt;&gt; 5);
+
+    long l = rand.nextLong();
+    long m = rand.nextLong();
+    pBinLong(&quot;-1L&quot;, -1L);
+    pBinLong(&quot;+1L&quot;, +1L);
+    long ll = 9223372036854775807L;
+    pBinLong(&quot;maxpos&quot;, ll);
+    long lln = -9223372036854775808L;
+    pBinLong(&quot;maxneg&quot;, lln);
+    pBinLong(&quot;l&quot;, l);
+    pBinLong(&quot;~l&quot;, ~l);
+    pBinLong(&quot;-l&quot;, -l);
+    pBinLong(&quot;m&quot;, m);
+    pBinLong(&quot;l &amp; m&quot;, l &amp; m);
+    pBinLong(&quot;l | m&quot;, l | m);
+    pBinLong(&quot;l ^ m&quot;, l ^ m);
+    pBinLong(&quot;l &lt;&lt; 5&quot;, l &lt;&lt; 5);
+    pBinLong(&quot;l &gt;&gt; 5&quot;, l &gt;&gt; 5);
+    pBinLong(&quot;(~l) &gt;&gt; 5&quot;, (~l) &gt;&gt; 5);
+    pBinLong(&quot;l &gt;&gt;&gt; 5&quot;, l &gt;&gt;&gt; 5);
+    pBinLong(&quot;(~l) &gt;&gt;&gt; 5&quot;, (~l) &gt;&gt;&gt; 5);
+  }
+  static void pBinInt(String s, int i) {
+    System.out.println(
+      s + &quot;, int: &quot; + i + &quot;, binary: &quot;);
+    System.out.print(&quot;   &quot;);
+    for(int j = 31; j &gt;=0; j--)
+      if(((1 &lt;&lt; j) &amp;  i) != 0)
+        System.out.print(&quot;1&quot;);
+      else
+        System.out.print(&quot;0&quot;);
+    System.out.println();
+  }
+  static void pBinLong(String s, long l) {
+    System.out.println(
+      s + &quot;, long: &quot; + l + &quot;, binary: &quot;);
+    System.out.print(&quot;   &quot;);
+    for(int i = 63; i &gt;=0; i--)
+      if(((1L &lt;&lt; i) &amp; l) != 0)
+        System.out.print(&quot;1&quot;);
+      else
+        System.out.print(&quot;0&quot;);
+    System.out.println();
+  }
+} ///:~
+</code></pre></div><p>程序末尾调用了两个方法：<code>pBinInt()</code>和<code>pBinLong()</code>。它们分别操作一个<code>int</code>和<code>long</code>值，并用一种二进制格式输出，同时附有简要的说明文字。目前，可暂时忽略它们具体的实现方案。</p> <p>大家要注意的是<code>System.out.print()</code>的使用，而不是<code>System.out.println()</code>。<code>print()</code>方法不会产生一个新行，以便在同一行里罗列多种信息。</p> <p>除展示所有按位运算符针对<code>int</code>和<code>long</code>的效果之外，本例也展示了<code>int</code>和<code>long</code>的最小值、最大值、+1和-1值，使大家能体会它们的情况。注意高位代表正负号：0为正，1为负。下面列出<code>int</code>部分的输出：</p> <div class="language- extra-class"><pre class="language-text"><code>-1, int: -1, binary:
+   11111111111111111111111111111111
++1, int: 1, binary:
+   00000000000000000000000000000001
+maxpos, int: 2147483647, binary:
+   01111111111111111111111111111111
+maxneg, int: -2147483648, binary:
+   10000000000000000000000000000000
+i, int: 59081716, binary:
+   00000011100001011000001111110100
+~i, int: -59081717, binary:
+   11111100011110100111110000001011
+-i, int: -59081716, binary:
+   11111100011110100111110000001100
+j, int: 198850956, binary:
+   00001011110110100011100110001100
+i &amp; j, int: 58720644, binary:
+   00000011100000000000000110000100
+i | j, int: 199212028, binary:
+   00001011110111111011101111111100
+i ^ j, int: 140491384, binary:
+   00001000010111111011101001111000
+i &lt;&lt; 5, int: 1890614912, binary:
+   01110000101100000111111010000000
+i &gt;&gt; 5, int: 1846303, binary:
+   00000000000111000010110000011111
+(~i) &gt;&gt; 5, int: -1846304, binary:
+   11111111111000111101001111100000
+i &gt;&gt;&gt; 5, int: 1846303, binary:
+   00000000000111000010110000011111
+(~i) &gt;&gt;&gt; 5, int: 132371424, binary:
+   00000111111000111101001111100000
+</code></pre></div><p>数字的二进制形式表现为“有符号2的补值”。</p> <h2 id="_3-1-9-三元if-else运算符"><a href="#_3-1-9-三元if-else运算符" class="header-anchor">#</a> 3.1.9 三元<code>if-else</code>运算符</h2> <p>这种运算符比较罕见，因为它有三个运算对象。但它确实属于运算符的一种，因为它最终也会生成一个值。这与本章后一节要讲述的普通<code>if-else</code>语句是不同的。表达式采取下述形式：</p> <div class="language- extra-class"><pre class="language-text"><code>布尔表达式 ? 值0:值1
+</code></pre></div><p>若“布尔表达式”的结果为<code>true</code>，就计算“值0”，而且它的结果成为最终由运算符产生的值。但若“布尔表达式”的结果为<code>false</code>，计算的就是“值1”，而且它的结果成为最终由运算符产生的值。</p> <p>当然，也可以换用普通的<code>if-else</code>语句（在后面介绍），但三元运算符更加简洁。尽管C引以为傲的就是它是一种简练的语言，而且三元运算符的引入多半就是为了体现这种高效率的编程，但假若您打算频繁用它，还是要先多作一些思量——它很容易就会产生可读性极差的代码。</p> <p>可将条件运算符用于自己的“副作用”，或用于它生成的值。但通常都应将其用于值，因为那样做可将运算符与<code>if-else</code>明确区别开。下面便是一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>static int ternary(int i) {
+return i &lt; 10 ? i * 100 : i * 10;
+}
+</code></pre></div><p>可以看出，假设用普通的<code>if-else</code>结构写上述代码，代码量会比上面多出许多。如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>static int alternative(int i) {
+if (i &lt; 10)
+return i * 100;
+return i * 10;
+}
+</code></pre></div><p>但第二种形式更易理解，而且不要求更多的录入。所以在挑选三元运算符时，请务必权衡一下利弊。</p> <h2 id="_3-1-10-逗号运算符"><a href="#_3-1-10-逗号运算符" class="header-anchor">#</a> 3.1.10 逗号运算符</h2> <p>在C和C++里，逗号不仅作为函数参数列表的分隔符使用，也作为进行后续计算的一个运算符使用。在Java里需要用到逗号的唯一场所就是<code>for</code>循环，本章稍后会对此详加解释。</p> <h2 id="_3-1-11-字符串运算符"><a href="#_3-1-11-字符串运算符" class="header-anchor">#</a> 3.1.11 字符串运算符<code>+</code></h2> <p>这个运算符在Java里有一项特殊用途：连接不同的字符串。这一点已在前面的例子中展示过了。尽管与<code>+</code>的传统意义不符，但用<code>+</code>来做这件事情仍然是非常自然的。在C++里，这一功能看起来非常不错，所以引入了一项“运算符重载”机制，以便C++程序员为几乎所有运算符增加特殊的含义。但非常不幸，与C++的另外一些限制结合，运算符重载成为一种非常复杂的特性，程序员在设计自己的类时必须对此有周到的考虑。与C++相比，尽管运算符重载在Java里更易实现，但迄今为止仍然认为这一特性过于复杂。所以Java程序员不能象C++程序员那样设计自己的重载运算符。</p> <p>我们注意到运用<code>String +</code>时一些有趣的现象。若表达式以一个<code>String</code>起头，那么后续所有运算对象都必须是字符串。如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>int x = 0, y = 1, z = 2;
+String sString = &quot;x, y, z &quot;;
+System.out.println(sString + x + y + z);
+</code></pre></div><p>在这里，Java编译程序会将<code>x</code>，<code>y</code>和<code>z</code>转换成它们的字符串形式，而不是先把它们加到一起。然而，如果使用下述语句：</p> <div class="language- extra-class"><pre class="language-text"><code>System.out.println(x + sString);
+</code></pre></div><p>那么早期版本的Java就会提示出错（以后的版本能将<code>x</code>转换成一个字符串）。因此，如果想通过“加号”连接字符串（使用Java的早期版本），请务必保证第一个元素是字符串（或加上引号的一系列字符，编译能将其识别成一个字符串）。</p> <h2 id="_3-1-12-运算符常规操作规则"><a href="#_3-1-12-运算符常规操作规则" class="header-anchor">#</a> 3.1.12 运算符常规操作规则</h2> <p>使用运算符的一个缺点是括号的运用经常容易搞错。即使对一个表达式如何计算有丝毫不确定的因素，都容易混淆括号的用法。这个问题在Java里仍然存在。
+在C和C++中，一个特别常见的错误如下：</p> <div class="language- extra-class"><pre class="language-text"><code>while(x = y) {
+//...
+}
+</code></pre></div><p>程序的意图是测试是否“相等”（<code>==</code>），而不是进行赋值操作。在C和C++中，若<code>y</code>是一个非零值，那么这种赋值的结果肯定是<code>true</code>。这样使可能得到一个无限循环。在Java里，这个表达式的结果并不是布尔值，而编译器期望的是一个布尔值，而且不会从一个<code>int</code>数值中转换得来。所以在编译时，系统就会提示出现错误，有效地阻止我们进一步运行程序。所以这个缺点在Java里永远不会造成更严重的后果。唯一不会得到编译错误的时候是<code>x</code>和<code>y</code>都为布尔值。在这种情况下，<code>x = y</code>属于合法表达式。而在上述情况下，则可能是一个错误。</p> <p>在C和C++里，类似的一个问题是使用按位AND和OR，而不是逻辑AND和OR。按位AND和OR使用两个字符之一（<code>&amp;</code>或<code>|</code>），而逻辑AND和OR使用两个相同的字符（<code>&amp;&amp;</code>或<code>||</code>）。就象<code>=</code>和<code>==</code>一样，键入一个字符当然要比键入两个简单。在Java里，编译器同样可防止这一点，因为它不允许我们强行使用一种并不属于的类型。</p> <h2 id="_3-1-13-转换运算符"><a href="#_3-1-13-转换运算符" class="header-anchor">#</a> 3.1.13 转换运算符</h2> <p>“转换”（Cast）的作用是“与一个模型匹配”。在适当的时候，Java会将一种数据类型自动转换成另一种。例如，假设我们为浮点变量分配一个整数值，计算机会将<code>int</code>自动转换成<code>float</code>。通过转换，我们可明确设置这种类型的转换，或者在一般没有可能进行的时候强迫它进行。</p> <p>为进行一次转换，要将括号中希望的数据类型（包括所有修改符）置于其他任何值的左侧。下面是一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>void casts() {
+int i = 200;
+long l = (long)i;
+long l2 = (long)200;
+}
+</code></pre></div><p>正如您看到的那样，既可对一个数值进行转换处理，亦可对一个变量进行转换处理。但在这儿展示的两种情况下，转换均是多余的，因为编译器在必要的时候会自动进行<code>int</code>值到<code>long</code>值的转换。当然，仍然可以设置一个转换，提醒自己留意，也使程序更清楚。在其他情况下，转换只有在代码编译时才显出重要性。</p> <p>在C和C++中，转换有时会让人头痛。在Java里，转换则是一种比较安全的操作。但是，若进行一种名为“缩小转换”（Narrowing Conversion）的操作（也就是说，脚本是能容纳更多信息的数据类型，将其转换成容量较小的类型），此时就可能面临信息丢失的危险。此时，编译器会强迫我们进行转换，就好象说：“这可能是一件危险的事情——如果您想让我不顾一切地做，那么对不起，请明确转换。”而对于“放大转换”（Widening conversion），则不必进行明确转换，因为新类型肯定能容纳原来类型的信息，不会造成任何信息的丢失。</p> <p>Java允许我们将任何基本类型“转换”为其他任何一种基本类型，但布尔值（<code>bollean</code>）要除外，后者根本不允许进行任何转换处理。“类”不允许进行转换。为了将一种类转换成另一种，必须采用特殊的方法（字符串是一种特殊的情况，本书后面会讲到将对象转换到一个类型“家族”里；例如，“橡树”可转换为“树”；反之亦然。但对于其他外来类型，如“岩石”，则不能转换为“树”）。</p> <p><strong>1. 字面值</strong></p> <p>最开始的时候，若在一个程序里插入“字面值”（Literal），编译器通常能准确知道要生成什么样的类型。但在有些时候，对于类型却是暧昧不清的。若发生这种情况，必须对编译器加以适当的“指导”。方法是用与字面值关联的字符形式加入一些额外的信息。下面这段代码向大家展示了这些字符。</p> <div class="language- extra-class"><pre class="language-text"><code>//: Literals.java
+
+class Literals {
+  char c = 0xffff; // max char hex value
+  byte b = 0x7f; // max byte hex value
+  short s = 0x7fff; // max short hex value
+  int i1 = 0x2f; // Hexadecimal (lowercase)
+  int i2 = 0X2F; // Hexadecimal (uppercase)
+  int i3 = 0177; // Octal (leading zero)
+  // Hex and Oct also work with long.
+  long n1 = 200L; // long suffix
+  long n2 = 200l; // long suffix
+  long n3 = 200;
+  //! long l6(200); // not allowed
+  float f1 = 1;
+  float f2 = 1F; // float suffix
+  float f3 = 1f; // float suffix
+  float f4 = 1e-45f; // 10 to the power
+  float f5 = 1e+9f; // float suffix
+  double d1 = 1d; // double suffix
+  double d2 = 1D; // double suffix
+  double d3 = 47e47d; // 10 to the power
+} ///:~
+</code></pre></div><p>十六进制（Base 16）——它适用于所有整数数据类型——用一个前置的<code>0x</code>或<code>0X</code>指示。并在后面跟随采用大写或小写形式的<code>0-9</code>以及<code>a-f</code>。若试图将一个变量初始化成超出自身能力的一个值（无论这个值的数值形式如何），编译器就会向我们报告一条出错消息。注意在上述代码中，最大的十六进制值只会在<code>char</code>，<code>byte</code>以及<code>short</code>身上出现。若超出这一限制，编译器会将值自动变成一个<code>int</code>，并告诉我们需要对这一次赋值进行“缩小转换”。这样一来，我们就可清楚获知自己已超载了边界。</p> <p>八进制（Base 8）是用数字中的一个前置<code>0</code>以及<code>0-7</code>的数位指示的。在C，C++或者Java中，对二进制数字没有相应的“字面”表示方法。</p> <p>字面值后的尾随字符标志着它的类型。若为大写或小写的<code>L</code>，代表<code>long</code>；大写或小写的<code>F</code>，代表<code>float</code>；大写或小写的<code>D</code>，则代表<code>double</code>。</p> <p>指数总是采用一种我们认为很不直观的记号方法：<code>1.39e-47f</code>。在科学与工程学领域，<code>e</code>代表自然对数的基数，约等于<code>2.718</code>（Java一种更精确的<code>double</code>值采用<code>Math.E</code>的形式）。它在象“<code>1.39×e</code>的-47次方”这样的指数表达式中使用，意味着“<code>1.39×2.718</code>的-47次方”。然而，自FORTRAN语言发明后，人们自然而然地觉得<code>e</code>代表“10多少次幂”。这种做法显得颇为古怪，因为FORTRAN最初面向的是科学与工程设计领域。理所当然，它的设计者应对这样的混淆概念持谨慎态度（注释①）。但不管怎样，这种特别的表达方法在C，C++以及现在的Java中顽固地保留下来了。所以倘若您习惯将<code>e</code>作为自然对数的基数使用，那么在Java中看到象<code>1.39e-47f</code>这样的表达式时，请转换您的思维，从程序设计的角度思考它；它真正的含义是“<code>1.39×10</code>的-47次方”。</p> <p>①：John Kirkham这样写道：“我最早于1962年在一部IBM 1620机器上使用FORTRAN II。那时——包括60年代以及70年代的早期，FORTRAN一直都是使用大写字母。之所以会出现这一情况，可能是由于早期的输入设备大多是老式电传打字机，使用5位Baudot码，那种码并不具备小写能力。乘幂表达式中的‘E’也肯定是大写的，所以不会与自然对数的基数<code>e</code>发生冲突，后者必然是小写的。<code>E</code>这个字母的含义其实很简单，就是‘Exponential’的意思，即‘指数’或‘幂数’，代表计算系统的基数——一般都是10。当时，八进制也在程序员中广泛使用。尽管我自己未看到它的使用，但假若我在乘幂表达式中看到一个八进制数字，就会把它认作Base 8。我记得第一次看到用小写<code>e</code>表示指数是在70年代末期。我当时也觉得它极易产生混淆。所以说，这个问题完全是自己‘潜入’FORTRAN里去的，并非一开始就有。如果你真的想使用自然对数的基数，实际有现成的函数可供利用，但它们都是大写的。”</p> <p>注意如果编译器能够正确地识别类型，就不必使用尾随字符。对于下述语句：</p> <div class="language- extra-class"><pre class="language-text"><code>long n3 = 200;
+</code></pre></div><p>它并不存在含混不清的地方，所以200后面的一个<code>L</code>大可省去。然而，对于下述语句：</p> <div class="language- extra-class"><pre class="language-text"><code>float f4 = 1e-47f; //10的幂数
+</code></pre></div><p>编译器通常会将指数作为双精度数（<code>double</code>）处理，所以假如没有这个尾随的<code>f</code>，就会收到一条出错提示，告诉我们须用一个“转换”将<code>double</code>转换成<code>float</code>。</p> <p><strong>2. 转型</strong></p> <p>大家会发现假若对主数据类型执行任何算术或按位运算，只要它们“比<code>int</code>小”（即<code>char</code>，<code>byte</code>或者<code>short</code>），那么在正式执行运算之前，那些值会自动转换成<code>int</code>。这样一来，最终生成的值就是<code>int</code>类型。所以只要把一个值赋回较小的类型，就必须使用“转换”。此外，由于是将值赋回给较小的类型，所以可能出现信息丢失的情况）。通常，表达式中最大的数据类型是决定了表达式最终结果大小的那个类型。若将一个<code>float</code>值与一个<code>double</code>值相乘，结果就是<code>double</code>；如将一个<code>int</code>和一个<code>long</code>值相加，则结果为<code>long</code>。</p> <h2 id="_3-1-14-java没有sizeof"><a href="#_3-1-14-java没有sizeof" class="header-anchor">#</a> 3.1.14 Java没有<code>sizeof</code></h2> <p>在C和C++中，<code>sizeof()</code>运算符能满足我们的一项特殊需要：获知为数据项目分配的字符数量。在C和C++中，<code>size()</code>最常见的一种应用就是“移植”。不同的数据在不同的机器上可能有不同的大小，所以在进行一些对大小敏感的运算时，程序员必须对那些类型有多大做到心中有数。例如，一台计算机可用32位来保存整数，而另一台只用16位保存。显然，在第一台机器中，程序可保存更大的值。正如您可能已经想到的那样，移植是令C和C++程序员颇为头痛的一个问题。
+Java不需要<code>sizeof()</code>运算符来满足这方面的需要，因为所有数据类型在所有机器的大小都是相同的。我们不必考虑移植问题——Java本身就是一种“与平台无关”的语言。</p> <h2 id="_3-1-15-复习计算顺序"><a href="#_3-1-15-复习计算顺序" class="header-anchor">#</a> 3.1.15 复习计算顺序</h2> <p>在我举办的一次培训班中，有人抱怨运算符的优先顺序太难记了。一名学生推荐用一句话来帮助记忆：“Ulcer Addicts Really Like C A lot”，即“溃疡患者特别喜欢（维生素）C”。</p> <table><thead><tr><th>助记词</th> <th style="text-align:center;">运算符类型</th> <th style="text-align:right;">运算符</th></tr></thead> <tbody><tr><td>Ulcer</td> <td style="text-align:center;">Unary</td> <td style="text-align:right;"><code>+ - ++ – [[ rest...]]</code></td></tr> <tr><td>Addicts</td> <td style="text-align:center;">Arithmetic (and shift)</td> <td style="text-align:right;"><code>* / % + - &lt;&lt; &gt;&gt;</code></td></tr> <tr><td>Really</td> <td style="text-align:center;">Relational</td> <td style="text-align:right;"><code>&gt; &lt; &gt;= &lt;= == !=</code></td></tr> <tr><td>Like</td> <td style="text-align:center;">Logical (and bitwise)</td> <td style="text-align:right;">** &amp;&amp;</td></tr> <tr><td>C</td> <td style="text-align:center;">Conditional (ternary)</td> <td style="text-align:right;"><code>A &gt; B ? X : Y</code></td></tr> <tr><td>A Lot</td> <td style="text-align:center;">Assignment</td> <td style="text-align:right;"><code>= (and compound assignment like *=)</code></td></tr></tbody></table> <p>当然，对于移位和按位运算符，上表并不是完美的助记方法；但对于其他运算来说，它确实很管用。</p> <h2 id="_3-1-16-运算符总结"><a href="#_3-1-16-运算符总结" class="header-anchor">#</a> 3.1.16 运算符总结</h2> <p>下面这个例子向大家展示了如何随同特定的运算符使用主数据类型。从根本上说，它是同一个例子反迭代复地执行，只是使用了不同的主数据类型。文件编译时不会报错，因为那些会导致错误的行已用<code>//!</code>变成了注释内容。</p> <div class="language- extra-class"><pre class="language-text"><code>//: AllOps.java
+// Tests all the operators on all the
+// primitive data types to show which
+// ones are accepted by the Java compiler.
+
+class AllOps {
+  // To accept the results of a boolean test:
+  void f(boolean b) {}
+  void boolTest(boolean x, boolean y) {
+    // Arithmetic operators:
+    //! x = x * y;
+    //! x = x / y;
+    //! x = x % y;
+    //! x = x + y;
+    //! x = x - y;
+    //! x++;
+    //! x--;
+    //! x = +y;
+    //! x = -y;
+    // Relational and logical:
+    //! f(x &gt; y);
+    //! f(x &gt;= y);
+    //! f(x &lt; y);
+    //! f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    f(!y);
+    x = x &amp;&amp; y;
+    x = x || y;
+    // Bitwise operators:
+    //! x = ~y;
+    x = x &amp; y;
+    x = x | y;
+    x = x ^ y;
+    //! x = x &lt;&lt; 1;
+    //! x = x &gt;&gt; 1;
+    //! x = x &gt;&gt;&gt; 1;
+    // Compound assignment:
+    //! x += y;
+    //! x -= y;
+    //! x *= y;
+    //! x /= y;
+    //! x %= y;
+    //! x &lt;&lt;= 1;
+    //! x &gt;&gt;= 1;
+    //! x &gt;&gt;&gt;= 1;
+    x &amp;= y;
+    x ^= y;
+    x |= y;
+    // Casting:
+    //! char c = (char)x;
+    //! byte B = (byte)x;
+    //! short s = (short)x;
+    //! int i = (int)x;
+    //! long l = (long)x;
+    //! float f = (float)x;
+    //! double d = (double)x;
+  }
+  void charTest(char x, char y) {
+    // Arithmetic operators:
+    x = (char)(x * y);
+    x = (char)(x / y);
+    x = (char)(x % y);
+    x = (char)(x + y);
+    x = (char)(x - y);
+    x++;
+    x--;
+    x = (char)+y;
+    x = (char)-y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    x= (char)~y;
+    x = (char)(x &amp; y);
+    x  = (char)(x | y);
+    x = (char)(x ^ y);
+    x = (char)(x &lt;&lt; 1);
+    x = (char)(x &gt;&gt; 1);
+    x = (char)(x &gt;&gt;&gt; 1);
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    x &lt;&lt;= 1;
+    x &gt;&gt;= 1;
+    x &gt;&gt;&gt;= 1;
+    x &amp;= y;
+    x ^= y;
+    x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    byte B = (byte)x;
+    short s = (short)x;
+    int i = (int)x;
+    long l = (long)x;
+    float f = (float)x;
+    double d = (double)x;
+  }
+  void byteTest(byte x, byte y) {
+    // Arithmetic operators:
+    x = (byte)(x* y);
+    x = (byte)(x / y);
+    x = (byte)(x % y);
+    x = (byte)(x + y);
+    x = (byte)(x - y);
+    x++;
+    x--;
+    x = (byte)+ y;
+    x = (byte)- y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    x = (byte)~y;
+    x = (byte)(x &amp; y);
+    x = (byte)(x | y);
+    x = (byte)(x ^ y);
+    x = (byte)(x &lt;&lt; 1);
+    x = (byte)(x &gt;&gt; 1);
+    x = (byte)(x &gt;&gt;&gt; 1);
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    x &lt;&lt;= 1;
+    x &gt;&gt;= 1;
+    x &gt;&gt;&gt;= 1;
+    x &amp;= y;
+    x ^= y;
+    x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    char c = (char)x;
+    short s = (short)x;
+    int i = (int)x;
+    long l = (long)x;
+    float f = (float)x;
+    double d = (double)x;
+  }
+  void shortTest(short x, short y) {
+    // Arithmetic operators:
+    x = (short)(x * y);
+    x = (short)(x / y);
+    x = (short)(x % y);
+    x = (short)(x + y);
+    x = (short)(x - y);
+    x++;
+    x--;
+    x = (short)+y;
+    x = (short)-y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    x = (short)~y;
+    x = (short)(x &amp; y);
+    x = (short)(x | y);
+    x = (short)(x ^ y);
+    x = (short)(x &lt;&lt; 1);
+    x = (short)(x &gt;&gt; 1);
+    x = (short)(x &gt;&gt;&gt; 1);
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    x &lt;&lt;= 1;
+    x &gt;&gt;= 1;
+    x &gt;&gt;&gt;= 1;
+    x &amp;= y;
+    x ^= y;
+    x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    char c = (char)x;
+    byte B = (byte)x;
+    int i = (int)x;
+    long l = (long)x;
+    float f = (float)x;
+    double d = (double)x;
+  }
+  void intTest(int x, int y) {
+    // Arithmetic operators:
+    x = x * y;
+    x = x / y;
+    x = x % y;
+    x = x + y;
+    x = x - y;
+    x++;
+    x--;
+    x = +y;
+    x = -y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    x = ~y;
+    x = x &amp; y;
+    x = x | y;
+    x = x ^ y;
+    x = x &lt;&lt; 1;
+    x = x &gt;&gt; 1;
+    x = x &gt;&gt;&gt; 1;
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    x &lt;&lt;= 1;
+    x &gt;&gt;= 1;
+    x &gt;&gt;&gt;= 1;
+    x &amp;= y;
+    x ^= y;
+    x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    char c = (char)x;
+    byte B = (byte)x;
+    short s = (short)x;
+    long l = (long)x;
+    float f = (float)x;
+    double d = (double)x;
+  }
+  void longTest(long x, long y) {
+    // Arithmetic operators:
+    x = x * y;
+    x = x / y;
+    x = x % y;
+    x = x + y;
+    x = x - y;
+    x++;
+    x--;
+    x = +y;
+    x = -y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    x = ~y;
+    x = x &amp; y;
+    x = x | y;
+    x = x ^ y;
+    x = x &lt;&lt; 1;
+    x = x &gt;&gt; 1;
+    x = x &gt;&gt;&gt; 1;
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    x &lt;&lt;= 1;
+    x &gt;&gt;= 1;
+    x &gt;&gt;&gt;= 1;
+    x &amp;= y;
+    x ^= y;
+    x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    char c = (char)x;
+    byte B = (byte)x;
+    short s = (short)x;
+    int i = (int)x;
+    float f = (float)x;
+    double d = (double)x;
+  }
+  void floatTest(float x, float y) {
+    // Arithmetic operators:
+    x = x * y;
+    x = x / y;
+    x = x % y;
+    x = x + y;
+    x = x - y;
+    x++;
+    x--;
+    x = +y;
+    x = -y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    //! x = ~y;
+    //! x = x &amp; y;
+    //! x = x | y;
+    //! x = x ^ y;
+    //! x = x &lt;&lt; 1;
+    //! x = x &gt;&gt; 1;
+    //! x = x &gt;&gt;&gt; 1;
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    //! x &lt;&lt;= 1;
+    //! x &gt;&gt;= 1;
+    //! x &gt;&gt;&gt;= 1;
+    //! x &amp;= y;
+    //! x ^= y;
+    //! x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    char c = (char)x;
+    byte B = (byte)x;
+    short s = (short)x;
+    int i = (int)x;
+    long l = (long)x;
+    double d = (double)x;
+  }
+  void doubleTest(double x, double y) {
+    // Arithmetic operators:
+    x = x * y;
+    x = x / y;
+    x = x % y;
+    x = x + y;
+    x = x - y;
+    x++;
+    x--;
+    x = +y;
+    x = -y;
+    // Relational and logical:
+    f(x &gt; y);
+    f(x &gt;= y);
+    f(x &lt; y);
+    f(x &lt;= y);
+    f(x == y);
+    f(x != y);
+    //! f(!x);
+    //! f(x &amp;&amp; y);
+    //! f(x || y);
+    // Bitwise operators:
+    //! x = ~y;
+    //! x = x &amp; y;
+    //! x = x | y;
+    //! x = x ^ y;
+    //! x = x &lt;&lt; 1;
+    //! x = x &gt;&gt; 1;
+    //! x = x &gt;&gt;&gt; 1;
+    // Compound assignment:
+    x += y;
+    x -= y;
+    x *= y;
+    x /= y;
+    x %= y;
+    //! x &lt;&lt;= 1;
+    //! x &gt;&gt;= 1;
+    //! x &gt;&gt;&gt;= 1;
+    //! x &amp;= y;
+    //! x ^= y;
+    //! x |= y;
+    // Casting:
+    //! boolean b = (boolean)x;
+    char c = (char)x;
+    byte B = (byte)x;
+    short s = (short)x;
+    int i = (int)x;
+    long l = (long)x;
+    float f = (float)x;
+  }
+} ///:~
+</code></pre></div><p>注意布尔值（<code>boolean</code>）的能力非常有限。我们只能为其赋予<code>true</code>和<code>false</code>值。而且可测试它为真还是为假，但不可为它们再添加布尔值，或进行其他其他任何类型运算。</p> <p>在<code>char</code>，<code>byte</code>和<code>short</code>中，我们可看到算术运算符的“转型”效果。对这些类型的任何一个进行算术运算，都会获得一个<code>int</code>结果。必须将其明确“转换”回原来的类型（缩小转换会造成信息的丢失），以便将值赋回那个类型。但对于<code>int</code>值，却不必进行转换处理，因为所有数据都已经属于<code>int</code>类型。然而，不要放松警惕，认为一切事情都是安全的。如果对两个足够大的int值执行乘法运算，结果值就会溢出。下面这个例子向大家展示了这一点：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Overflow.java
+// Surprise! Java lets you overflow.
+
+public class Overflow {
+  public static void main(String[] args) {
+    int big = 0x7fffffff; // max int value
+    prt(&quot;big = &quot; + big);
+    int bigger = big * 4;
+    prt(&quot;bigger = &quot; + bigger);
+  }
+  static void prt(String s) {
+    System.out.println(s);
+  }
+} ///:~
+</code></pre></div><p>输出结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>big = 2147483647
+bigger = -4
+</code></pre></div><p>而且不会从编译器那里收到出错提示，运行时也不会出现异常反应。爪哇咖啡（Java）确实是很好的东西，但却没有“那么”好！</p> <p>对于<code>char</code>，<code>byte</code>或者<code>short</code>，混合赋值并不需要转换。即使它们执行转型操作，也会获得与直接算术运算相同的结果。而在另一方面，将转换略去可使代码显得更加简练。</p> <p>大家可以看到，除<code>boolean</code>以外，任何一种基本类型都可通过转换变为其他基本类型。同样地，当转换成一种较小的类型时，必须留意“缩小转换”的后果。否则会在转换过程中不知不觉地丢失信息。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/thinking-in-java-zh/2.11.html" class="prev">
+        2.11 练习
+      </a></span> <span class="next"><a href="/thinking-in-java-zh/3.2.html">
+        3.2 执行控制
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/thinking-in-java-zh/assets/js/app.fa9256b7.js" defer></script><script src="/thinking-in-java-zh/assets/js/2.908605f2.js" defer></script><script src="/thinking-in-java-zh/assets/js/118.fefdab4e.js" defer></script>
+  </body>
+</html>

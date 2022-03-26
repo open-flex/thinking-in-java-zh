@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15.6 Java与CGI的沟通 | Java 编程思想</title>
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css" as="style"><link rel="preload" href="/thinking-in-java-zh/assets/js/app.fa9256b7.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/2.908605f2.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/84.d20935f6.js" as="script"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/10.bf0f8be8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/100.8d6b6f0a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/101.42353165.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/102.b35fd164.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/103.34c9ec8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/104.63e41eda.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/105.a8196ba3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/106.3c787cca.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/107.5fd47e23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/108.81d2c2cd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/109.5345df07.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/11.decefde0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/110.9a402e3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/111.80737508.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/112.ff092004.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/113.d88e257d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/114.de29474b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/115.9c8d96e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/116.a9fe9af6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/117.0788e070.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/118.fefdab4e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/119.400faa62.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/12.a09f7f64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/120.d0ad5c24.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/121.b7379e1b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/122.352bd6de.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/123.7291c3a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/124.431ed770.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/125.306c4c7c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/126.9b3ff272.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/127.5d35566d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/128.c7458e50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/129.abf0b62b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/13.74ebe0f1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/130.ca484630.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/131.3b65be65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/132.8cc44765.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/133.39cab05a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/134.e1bc010e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/135.848b8e8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/136.e38c13cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/137.e6be7ef1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/138.c921af48.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/139.605a3ad8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/14.9a71923b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/140.7047d727.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/141.eee98409.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/142.b1b6affe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/143.8e53cafe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/144.e78d4c16.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/145.a6924d98.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/146.6afa9e38.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/147.81a0fa1f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/148.9b9deb8c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/149.27e9a5ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/15.c40fedbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/150.d5cb64f7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/151.58f4c6e0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/152.877f491f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/153.2a0f7bc8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/154.0600529e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/155.60aac4f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/156.28542a9d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/157.71f374f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/158.f97abefc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/159.678b2841.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/16.e021272d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/160.50d096d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/161.65ef5e27.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/162.9945598d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/163.fbdc28a7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/164.b9de90b9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/165.f04b9c4d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/166.492b521e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/167.44fc78f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/168.9ead6145.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/169.ecb10302.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/17.6a5a39db.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/170.c5cf73cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/171.1e4044b2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/172.bdf06080.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/173.b9993d87.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/174.7e9fc4ea.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/175.a1371c92.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/176.06a2686c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/177.3fd0af17.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/178.e20d739c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/179.0c4bab32.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/18.2a0fe016.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/180.09aa6003.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/181.f723e5b0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/182.5121b3e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/183.ed3590f5.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/184.715b33ae.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/185.2fc87a63.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/186.1092562b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/187.2a099e97.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/188.5ba09f11.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/19.d85e5c9e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/20.0c5db47c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/21.e0626c88.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/22.71c5879a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/23.7b68c569.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/24.e4a060c9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/25.b3969598.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/26.5944fa66.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/27.b54d648d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/28.b3bd9b90.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/29.85fb52b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/3.7e7b25d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/30.e68d5f52.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/31.8a9dda64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/32.e86d5c44.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/33.3bc564dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/34.c9e1ae64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/35.b994b5bd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/36.8ccf0963.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/37.ecf3eb69.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/38.ab79219e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/39.04161d2f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/40.ea7690ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/41.1343bb93.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/42.3f7fe11a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/43.efcf4c2a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/44.d9ec22df.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/45.151cd823.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/46.2e7d0d19.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/47.2132be00.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/48.8f934c34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/49.debd52f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/50.32165d5a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/51.d8ba02fd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/52.ed339d2d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/53.8e4ba4c8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/54.60bf4f03.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/55.152bdcd2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/56.b7f52a23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/57.9be7e60b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/58.2ee15f50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/59.b8c3cade.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/60.2658363d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/61.691159a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/62.9d9c6c65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/63.07a1ba1a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/64.750c0918.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/65.1e1fa59d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/66.64b896e2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/67.0d9cdf7e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/68.40bd0a61.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/69.8233b339.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/7.37fa1201.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/70.25de6d15.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/71.f2848d8f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/72.e156c27a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/73.725fabfd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/74.3341aaba.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/75.c1f15dbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/76.e61dbcfe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/77.a3bae194.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/78.658cd2a6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/79.3f4258dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/8.cb3738e7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/80.28670e73.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/81.2acef4dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/82.cc58e6b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/83.b9d7c5fe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/85.2647d331.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/86.387d330d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/87.4a744b41.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/88.04a81a34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/89.7e4d6e77.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/9.a197fc43.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/90.d390efe2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/91.985ecc95.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/92.9c6399c6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/93.5c771e45.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/94.b6bfece6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/95.7ffcbc3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/96.c8dee444.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/97.a6814ee4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/98.ca141a6e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/99.7bd02f80.js">
+    <link rel="stylesheet" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNFKK7VGLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JNFKK7VGLS');
+    </script>
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/thinking-in-java-zh/" class="home-link router-link-active"><!----> <span class="site-name">Java 编程思想</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/thinking-in-java-zh/0.1.html" class="sidebar-link">写在前面的话</a></li><li><a href="/thinking-in-java-zh/0.2.html" class="sidebar-link">引言</a></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/1" class="sidebar-heading clickable"><span>第1章 对象入门</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/1.1.html" class="sidebar-link">1.1 抽象的进步</a></li><li><a href="/thinking-in-java-zh/1.2.html" class="sidebar-link">1.2 对象的接口</a></li><li><a href="/thinking-in-java-zh/1.3.html" class="sidebar-link">1.3 实现方案的隐藏</a></li><li><a href="/thinking-in-java-zh/1.4.html" class="sidebar-link">1.4 方案的重复使用</a></li><li><a href="/thinking-in-java-zh/1.5.html" class="sidebar-link">1.5 继承：重新使用接口</a></li><li><a href="/thinking-in-java-zh/1.6.html" class="sidebar-link">1.6 多态对象的互换使用</a></li><li><a href="/thinking-in-java-zh/1.7.html" class="sidebar-link">1.7 对象的创建和存在时间</a></li><li><a href="/thinking-in-java-zh/1.8.html" class="sidebar-link">1.8 异常控制：解决错误</a></li><li><a href="/thinking-in-java-zh/1.9.html" class="sidebar-link">1.9 多线程</a></li><li><a href="/thinking-in-java-zh/1.10.html" class="sidebar-link">1.10 永久性</a></li><li><a href="/thinking-in-java-zh/1.11.html" class="sidebar-link">1.11 Java和因特网</a></li><li><a href="/thinking-in-java-zh/1.12.html" class="sidebar-link">1.12 分析和设计</a></li><li><a href="/thinking-in-java-zh/1.13.html" class="sidebar-link">1.13 Java还是C++</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/2" class="sidebar-heading clickable"><span>第2章 一切都是对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/2.1.html" class="sidebar-link">2.1 用引用操纵对象</a></li><li><a href="/thinking-in-java-zh/2.2.html" class="sidebar-link">2.2 所有对象都必须创建</a></li><li><a href="/thinking-in-java-zh/2.3.html" class="sidebar-link">2.3 绝对不要清除对象</a></li><li><a href="/thinking-in-java-zh/2.4.html" class="sidebar-link">2.4 新建数据类型：类</a></li><li><a href="/thinking-in-java-zh/2.5.html" class="sidebar-link">2.5 方法、参数和返回值</a></li><li><a href="/thinking-in-java-zh/2.6.html" class="sidebar-link">2.6 构建Java程序</a></li><li><a href="/thinking-in-java-zh/2.7.html" class="sidebar-link">2.7 我们的第一个Java程序</a></li><li><a href="/thinking-in-java-zh/2.8.html" class="sidebar-link">2.8 注释和嵌入文档</a></li><li><a href="/thinking-in-java-zh/2.9.html" class="sidebar-link">2.9 编码样式</a></li><li><a href="/thinking-in-java-zh/2.10.html" class="sidebar-link">2.10 总结</a></li><li><a href="/thinking-in-java-zh/2.11.html" class="sidebar-link">2.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/3" class="sidebar-heading clickable"><span>第3章 控制程序流程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/3.1.html" class="sidebar-link">3.1 使用Java运算符</a></li><li><a href="/thinking-in-java-zh/3.2.html" class="sidebar-link">3.2 执行控制</a></li><li><a href="/thinking-in-java-zh/3.3.html" class="sidebar-link">3.3 总结</a></li><li><a href="/thinking-in-java-zh/3.4.html" class="sidebar-link">3.4 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/4" class="sidebar-heading clickable"><span>第4章 初始化和清除</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/4.1.html" class="sidebar-link">4.1 用构造器自动初始化</a></li><li><a href="/thinking-in-java-zh/4.2.html" class="sidebar-link">4.2 方法重载</a></li><li><a href="/thinking-in-java-zh/4.3.html" class="sidebar-link">4.3 清除：收尾和垃圾收集</a></li><li><a href="/thinking-in-java-zh/4.4.html" class="sidebar-link">4.4 成员初始化</a></li><li><a href="/thinking-in-java-zh/4.5.html" class="sidebar-link">4.5 数组初始化</a></li><li><a href="/thinking-in-java-zh/4.6.html" class="sidebar-link">4.6 总结</a></li><li><a href="/thinking-in-java-zh/4.7.html" class="sidebar-link">4.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/5" class="sidebar-heading clickable"><span>第5章 隐藏实现过程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/5.1.html" class="sidebar-link">5.1 包：库单元</a></li><li><a href="/thinking-in-java-zh/5.2.html" class="sidebar-link">5.2 Java访问指示符</a></li><li><a href="/thinking-in-java-zh/5.3.html" class="sidebar-link">5.3 接口与实现</a></li><li><a href="/thinking-in-java-zh/5.4.html" class="sidebar-link">5.4 类访问</a></li><li><a href="/thinking-in-java-zh/5.5.html" class="sidebar-link">5.5 总结</a></li><li><a href="/thinking-in-java-zh/5.6.html" class="sidebar-link">5.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/6" class="sidebar-heading clickable"><span>第6章 类复用</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/6.1.html" class="sidebar-link">6.1 組合的语法</a></li><li><a href="/thinking-in-java-zh/6.2.html" class="sidebar-link">6.2 继承的语法</a></li><li><a href="/thinking-in-java-zh/6.3.html" class="sidebar-link">6.3 组合与继承的结合</a></li><li><a href="/thinking-in-java-zh/6.4.html" class="sidebar-link">6.4 到底选择组合还是继承</a></li><li><a href="/thinking-in-java-zh/6.5.html" class="sidebar-link">6.5 protected</a></li><li><a href="/thinking-in-java-zh/6.6.html" class="sidebar-link">6.6 累积开发</a></li><li><a href="/thinking-in-java-zh/6.7.html" class="sidebar-link">6.7 向上转换</a></li><li><a href="/thinking-in-java-zh/6.8.html" class="sidebar-link">6.8 final关键字</a></li><li><a href="/thinking-in-java-zh/6.9.html" class="sidebar-link">6.9 初始化和类装载</a></li><li><a href="/thinking-in-java-zh/6.10.html" class="sidebar-link">6.10 总结</a></li><li><a href="/thinking-in-java-zh/6.11.html" class="sidebar-link">6.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/7" class="sidebar-heading clickable"><span>第7章 多态性</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/7.1.html" class="sidebar-link">7.1 向上转换</a></li><li><a href="/thinking-in-java-zh/7.2.html" class="sidebar-link">7.2 深入理解</a></li><li><a href="/thinking-in-java-zh/7.3.html" class="sidebar-link">7.3 覆盖与重载</a></li><li><a href="/thinking-in-java-zh/7.4.html" class="sidebar-link">7.4 抽象类和方法</a></li><li><a href="/thinking-in-java-zh/7.5.html" class="sidebar-link">7.5 接口</a></li><li><a href="/thinking-in-java-zh/7.6.html" class="sidebar-link">7.6 内部类</a></li><li><a href="/thinking-in-java-zh/7.7.html" class="sidebar-link">7.7 构造器和多态性</a></li><li><a href="/thinking-in-java-zh/7.8.html" class="sidebar-link">7.8 通过继承进行设计</a></li><li><a href="/thinking-in-java-zh/7.9.html" class="sidebar-link">7.9 总结</a></li><li><a href="/thinking-in-java-zh/7.10.html" class="sidebar-link">7.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/8" class="sidebar-heading clickable"><span>第8章 对象的容纳</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/8.1.html" class="sidebar-link">8.1 数组</a></li><li><a href="/thinking-in-java-zh/8.2.html" class="sidebar-link">8.2 集合</a></li><li><a href="/thinking-in-java-zh/8.3.html" class="sidebar-link">8.3 枚举器（迭代器）</a></li><li><a href="/thinking-in-java-zh/8.4.html" class="sidebar-link">8.4 集合的类型</a></li><li><a href="/thinking-in-java-zh/8.5.html" class="sidebar-link">8.5 排序</a></li><li><a href="/thinking-in-java-zh/8.6.html" class="sidebar-link">8.6 通用集合库</a></li><li><a href="/thinking-in-java-zh/8.7.html" class="sidebar-link">8.7 新集合</a></li><li><a href="/thinking-in-java-zh/8.8.html" class="sidebar-link">8.8 总结</a></li><li><a href="/thinking-in-java-zh/8.9.html" class="sidebar-link">8.9 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/9" class="sidebar-heading clickable"><span>第9章 异常差错控制</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/9.1.html" class="sidebar-link">9.1 基本异常</a></li><li><a href="/thinking-in-java-zh/9.2.html" class="sidebar-link">9.2 异常的捕获</a></li><li><a href="/thinking-in-java-zh/9.3.html" class="sidebar-link">9.3 标准Java异常</a></li><li><a href="/thinking-in-java-zh/9.4.html" class="sidebar-link">9.4 创建自己的异常</a></li><li><a href="/thinking-in-java-zh/9.5.html" class="sidebar-link">9.5 异常的限制</a></li><li><a href="/thinking-in-java-zh/9.6.html" class="sidebar-link">9.6 用finally清除</a></li><li><a href="/thinking-in-java-zh/9.7.html" class="sidebar-link">9.7 构造器</a></li><li><a href="/thinking-in-java-zh/9.8.html" class="sidebar-link">9.8 异常匹配</a></li><li><a href="/thinking-in-java-zh/9.9.html" class="sidebar-link">9.9 总结</a></li><li><a href="/thinking-in-java-zh/9.10.html" class="sidebar-link">9.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/10" class="sidebar-heading clickable"><span>第10章 Java IO系统</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/10.1.html" class="sidebar-link">10.1 输入和输出</a></li><li><a href="/thinking-in-java-zh/10.2.html" class="sidebar-link">10.2 增添属性和有用的接口</a></li><li><a href="/thinking-in-java-zh/10.3.html" class="sidebar-link">10.3 本身的缺陷：RandomAccessFile</a></li><li><a href="/thinking-in-java-zh/10.4.html" class="sidebar-link">10.4 File类</a></li><li><a href="/thinking-in-java-zh/10.5.html" class="sidebar-link">10.5 IO流的典型应用</a></li><li><a href="/thinking-in-java-zh/10.6.html" class="sidebar-link">10.6 StreamTokenizer</a></li><li><a href="/thinking-in-java-zh/10.7.html" class="sidebar-link">10.7 Java 1.1的IO流</a></li><li><a href="/thinking-in-java-zh/10.8.html" class="sidebar-link">10.8 压缩</a></li><li><a href="/thinking-in-java-zh/10.9.html" class="sidebar-link">10.9 对象序列化</a></li><li><a href="/thinking-in-java-zh/10.10.html" class="sidebar-link">10.10 总结</a></li><li><a href="/thinking-in-java-zh/10.11.html" class="sidebar-link">10.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/11" class="sidebar-heading clickable"><span>第11章 运行期类型识别</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/11.1.html" class="sidebar-link">11.1 对RTTI的需要</a></li><li><a href="/thinking-in-java-zh/11.2.html" class="sidebar-link">11.2 RTTI语法</a></li><li><a href="/thinking-in-java-zh/11.3.html" class="sidebar-link">11.3 反射：运行期类信息</a></li><li><a href="/thinking-in-java-zh/11.4.html" class="sidebar-link">11.4 总结</a></li><li><a href="/thinking-in-java-zh/11.5.html" class="sidebar-link">11.5 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/12" class="sidebar-heading clickable"><span>第12章 传递和返回对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/12.1.html" class="sidebar-link">12.1 传递引用</a></li><li><a href="/thinking-in-java-zh/12.2.html" class="sidebar-link">12.2 制作本地副本</a></li><li><a href="/thinking-in-java-zh/12.3.html" class="sidebar-link">12.3 克隆的控制</a></li><li><a href="/thinking-in-java-zh/12.4.html" class="sidebar-link">12.4 只读类</a></li><li><a href="/thinking-in-java-zh/12.5.html" class="sidebar-link">12.5 总结</a></li><li><a href="/thinking-in-java-zh/12.6.html" class="sidebar-link">12.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/13" class="sidebar-heading clickable"><span>第13章 创建窗口和程序片</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/13.1.html" class="sidebar-link">13.1 为何要用AWT？</a></li><li><a href="/thinking-in-java-zh/13.2.html" class="sidebar-link">13.2 基本程序片</a></li><li><a href="/thinking-in-java-zh/13.3.html" class="sidebar-link">13.3 制作按钮</a></li><li><a href="/thinking-in-java-zh/13.4.html" class="sidebar-link">13.4 捕获事件</a></li><li><a href="/thinking-in-java-zh/13.5.html" class="sidebar-link">13.5 文本字段</a></li><li><a href="/thinking-in-java-zh/13.6.html" class="sidebar-link">13.6 文本区域</a></li><li><a href="/thinking-in-java-zh/13.7.html" class="sidebar-link">13.7 标签</a></li><li><a href="/thinking-in-java-zh/13.8.html" class="sidebar-link">13.8 复选框</a></li><li><a href="/thinking-in-java-zh/13.9.html" class="sidebar-link">13.9 单选钮</a></li><li><a href="/thinking-in-java-zh/13.10.html" class="sidebar-link">13.10 下拉列表</a></li><li><a href="/thinking-in-java-zh/13.11.html" class="sidebar-link">13.11 列表框</a></li><li><a href="/thinking-in-java-zh/13.12.html" class="sidebar-link">13.12 布局的控制</a></li><li><a href="/thinking-in-java-zh/13.13.html" class="sidebar-link">13.13 action的替代品</a></li><li><a href="/thinking-in-java-zh/13.14.html" class="sidebar-link">13.14 程序片的局限</a></li><li><a href="/thinking-in-java-zh/13.15.html" class="sidebar-link">13.15 视窗化应用</a></li><li><a href="/thinking-in-java-zh/13.16.html" class="sidebar-link">13.16 新型AWT</a></li><li><a href="/thinking-in-java-zh/13.17.html" class="sidebar-link">13.17 Java 1.1用户接口API</a></li><li><a href="/thinking-in-java-zh/13.18.html" class="sidebar-link">13.18 可视编程和Beans</a></li><li><a href="/thinking-in-java-zh/13.19.html" class="sidebar-link">13.19 Swing入门（注释⑦）</a></li><li><a href="/thinking-in-java-zh/13.20.html" class="sidebar-link">13.20 总结</a></li><li><a href="/thinking-in-java-zh/13.21.html" class="sidebar-link">13.21 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/14" class="sidebar-heading clickable"><span>第14章 多线程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/14.1.html" class="sidebar-link">14.1 反应灵敏的用户界面</a></li><li><a href="/thinking-in-java-zh/14.2.html" class="sidebar-link">14.2 共享有限的资源</a></li><li><a href="/thinking-in-java-zh/14.3.html" class="sidebar-link">14.3 堵塞</a></li><li><a href="/thinking-in-java-zh/14.4.html" class="sidebar-link">14.4 优先级</a></li><li><a href="/thinking-in-java-zh/14.5.html" class="sidebar-link">14.5 回顾runnable</a></li><li><a href="/thinking-in-java-zh/14.6.html" class="sidebar-link">14.6 总结</a></li><li><a href="/thinking-in-java-zh/14.7.html" class="sidebar-link">14.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/15" class="sidebar-heading clickable open"><span>第15章 网络编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/15.1.html" class="sidebar-link">15.1 机器的标识</a></li><li><a href="/thinking-in-java-zh/15.2.html" class="sidebar-link">15.2 套接字</a></li><li><a href="/thinking-in-java-zh/15.3.html" class="sidebar-link">15.3 服务多个客户</a></li><li><a href="/thinking-in-java-zh/15.4.html" class="sidebar-link">15.4 数据报</a></li><li><a href="/thinking-in-java-zh/15.5.html" class="sidebar-link">15.5 一个Web应用</a></li><li><a href="/thinking-in-java-zh/15.6.html" aria-current="page" class="active sidebar-link">15.6 Java与CGI的沟通</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/15.6.html#_15-6-1-cgi数据的编码" class="sidebar-link">15.6.1 CGI数据的编码</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/15.6.html#_15-6-2-程序片" class="sidebar-link">15.6.2 程序片</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/15.6.html#_15-6-3-用c-写的cgi程序" class="sidebar-link">15.6.3 用C++写的CGI程序</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/15.6.html#_15-6-4-post的概念" class="sidebar-link">15.6.4 POST的概念</a></li></ul></li><li><a href="/thinking-in-java-zh/15.7.html" class="sidebar-link">15.7 用JDBC连接数据库</a></li><li><a href="/thinking-in-java-zh/15.8.html" class="sidebar-link">15.8 远程方法</a></li><li><a href="/thinking-in-java-zh/15.9.html" class="sidebar-link">15.9 总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/16" class="sidebar-heading clickable"><span>第16章 设计模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/16.1.html" class="sidebar-link">16.1 模式的概念</a></li><li><a href="/thinking-in-java-zh/16.2.html" class="sidebar-link">16.2 观察器模式</a></li><li><a href="/thinking-in-java-zh/16.3.html" class="sidebar-link">16.3 模拟垃圾回收站</a></li><li><a href="/thinking-in-java-zh/16.4.html" class="sidebar-link">16.4 改进设计</a></li><li><a href="/thinking-in-java-zh/16.5.html" class="sidebar-link">16.5 抽象的应用</a></li><li><a href="/thinking-in-java-zh/16.6.html" class="sidebar-link">16.6 多重分发</a></li><li><a href="/thinking-in-java-zh/16.7.html" class="sidebar-link">16.7 访问器模式</a></li><li><a href="/thinking-in-java-zh/16.8.html" class="sidebar-link">16.8 RTTI真的有害吗</a></li><li><a href="/thinking-in-java-zh/16.9.html" class="sidebar-link">16.9 总结</a></li><li><a href="/thinking-in-java-zh/16.10.html" class="sidebar-link">16.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/17" class="sidebar-heading clickable"><span>第17章 项目</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/17.1.html" class="sidebar-link">17.1 文字处理</a></li><li><a href="/thinking-in-java-zh/17.2.html" class="sidebar-link">17.2 方法查找工具</a></li><li><a href="/thinking-in-java-zh/17.3.html" class="sidebar-link">17.3 复杂性理论</a></li><li><a href="/thinking-in-java-zh/17.4.html" class="sidebar-link">17.4 总结</a></li><li><a href="/thinking-in-java-zh/17.5.html" class="sidebar-link">17.5 练习</a></li></ul></section></li><li><a href="/thinking-in-java-zh/a.html" class="sidebar-link">附录A 使用非JAVA代码</a></li><li><a href="/thinking-in-java-zh/b.html" class="sidebar-link">附录B 对比C++和Java</a></li><li><a href="/thinking-in-java-zh/c.html" class="sidebar-link">附录C Java编程规则</a></li><li><a href="/thinking-in-java-zh/d.html" class="sidebar-link">附录D 性能</a></li><li><a href="/thinking-in-java-zh/e.html" class="sidebar-link">附录E 关于垃圾收集的一些话</a></li><li><a href="/thinking-in-java-zh/f.html" class="sidebar-link">附录F 推荐读物</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_15-6-java与cgi的沟通"><a href="#_15-6-java与cgi的沟通" class="header-anchor">#</a> 15.6 Java与CGI的沟通</h1> <p>Java程序可向一个服务器发出一个CGI请求，这与HTML表单页没什么两样。而且和HTML页一样，这个请求既可以设为GET（下载），亦可设为POST（上传）。除此以外，Java程序还可拦截CGI程序的输出，所以不必依赖程序来格式化一个新页，也不必在出错的时候强迫用户从一个页回转到另一个页。事实上，程序的外观可以做得跟以前的版本别无二致。</p> <p>代码也要简单一些，毕竟用CGI也不是很难就能写出来（前提是真正地理解它）。所以在这一节里，我们准备办个CGI编程速成班。为解决常规问题，将用C++创建一些CGI工具，以便我们编写一个能解决所有问题的CGI程序。这样做的好处是移植能力特别强——即将看到的例子能在支持CGI的任何系统上运行，而且不存在防火墙的问题。</p> <p>这个例子也阐示了如何在程序片（Applet）和CGI程序之间建立连接，以便将其方便地改编到自己的项目中。</p> <h2 id="_15-6-1-cgi数据的编码"><a href="#_15-6-1-cgi数据的编码" class="header-anchor">#</a> 15.6.1 CGI数据的编码</h2> <p>在这个版本中，我们将收集名字和电子函件地址，并用下述形式将其保存到文件中：</p> <div class="language- extra-class"><pre class="language-text"><code>First Last &lt;email@domain.com&gt;;
+</code></pre></div><p>这对任何E-mail程序来说都是一种非常方便的格式。由于只需收集两个字段，而且CGI为字段中的编码采用了一种特殊的格式，所以这里没有简便的方法。如果自己动手编制一个原始的HTML页，并加入下述代码行，即可正确地理解这一点：</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;Form method=&quot;GET&quot; ACTION=&quot;/cgi-bin/Listmgr2.exe&quot;&gt;
+&lt;P&gt;Name: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;name&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;P&gt;Email Address: &lt;INPUT TYPE = &quot;text&quot;
+NAME = &quot;email&quot; VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type = &quot;submit&quot; name = &quot;submit&quot; &gt; &lt;/p&gt;
+&lt;/Form&gt;
+</code></pre></div><p>上述代码创建了两个数据输入字段（区），名为<code>name</code>和<code>email</code>。另外还有一个<code>submit</code>（提交）按钮，用于收集数据，并将其发给CGI程序。<code>Listmgr2.exe</code>是驻留在特殊程序目录中的一个可执行文件。在我们的Web服务器上，该目录一般都叫作<code>cgi-bin</code>（注释③）。如果在那个目录里找不到该程序，结果就无法出现。填好这个表单，然后按下提交按钮，即可在浏览器的URL地址窗口里看到象下面这样的内容：</p> <div class="language- extra-class"><pre class="language-text"><code>http://www.myhome.com/cgi-bin/Listmgr2.exe?name=First+Last&amp;email=email@domain.com&amp;submit=Submit
+</code></pre></div><p>③：在Windows32平台下，可利用与Microsoft Office 97或其他产品配套提供的Microsoft Personal Web Server（微软个人Web服务器）进行测试。这是进行试验的最好方法，因为不必正式连入网络，可在本地环境中完成测试（速度也非常快）。如果使用的是不同的平台，或者没有Office 97或者FrontPage 98那样的产品，可到网上找一个免费的Web服务器供自己测试。</p> <p>当然，上述URL实际显示时是不会拆行的。从中可稍微看出如何对数据编码并传给CGI。至少有一件事情能够肯定——空格是不允许的（因为它通常用于分隔命令行参数）。所有必需的空格都用“+”号替代，每个字段都包含了字段名（具体由HTML页决定），后面跟随一个<code>=</code>号以及正式的字段数据，最后用一个<code>&amp;</code>结束。</p> <p>到这时，大家也许会对<code>+</code>，<code>=</code>以及<code>&amp;</code>的使用产生疑惑。假如必须在字段里使用这些字符，那么该如何声明呢？例如，我们可能使用“John &amp; MarshaSmith”这个名字，其中的<code>&amp;</code>代表“And”。事实上，它会编码成下面这个样子：</p> <div class="language- extra-class"><pre class="language-text"><code>John+%26+Marsha+Smith
+</code></pre></div><p>也就是说，特殊字符会转换成一个<code>%</code>，并在后面跟上它的十六进制ASCII编码。</p> <p>幸运的是，Java有一个工具来帮助我们进行这种编码。这是<code>URLEncoder</code>类的一个静态方法，名为<code>encode()</code>。可用下述程序来试验这个方法：</p> <div class="language- extra-class"><pre class="language-text"><code>//: EncodeDemo.java
+// Demonstration of URLEncoder.encode()
+import java.net.*;
+
+public class EncodeDemo {
+  public static void main(String[] args) {
+    String s = &quot;&quot;;
+    for(int i = 0; i &lt; args.length; i++)
+      s += args[i] + &quot; &quot;;
+    s = URLEncoder.encode(s.trim());
+    System.out.println(s);
+  }
+} ///:~
+</code></pre></div><p>该程序将获取一些命令行参数，把它们合并成一个由多个词构成的字符串，各词之间用空格分隔（最后一个空格用<code>String.trim()</code>剔除了）。随后对它们进行编码，并打印出来。</p> <p>为调用一个CGI程序，程序片要做的全部事情就是从自己的字段或其他地方收集数据，将所有数据都编码成正确的URL样式，然后汇编到单独一个字符串里。每个字段名后面都加上一个<code>=</code>符号，紧跟正式数据，再紧跟一个<code>&amp;</code>。为构建完整的CGI命令，我们将这个字符串置于CGI程序的URL以及一个<code>?</code>后。这是调用所有CGI程序的标准方法。大家马上就会看到，用一个程序片能够很轻松地完成所有这些编码与合并。</p> <h2 id="_15-6-2-程序片"><a href="#_15-6-2-程序片" class="header-anchor">#</a> 15.6.2 程序片</h2> <p>程序片实际要比<code>NameSender.java</code>简单一些。这部分是由于很容易即可发出一个GET请求。此外，也不必等候回复信息。现在有两个字段，而非一个，但大家会发现许多程序片都是熟悉的，请比较<code>NameSender.java</code>。</p> <div class="language- extra-class"><pre class="language-text"><code>//: NameSender2.java
+// An applet that sends an email address
+// via a CGI GET, using Java 1.02.
+import java.awt.*;
+import java.applet.*;
+import java.net.*;
+import java.io.*;
+
+public class NameSender2 extends Applet {
+  final String CGIProgram = &quot;Listmgr2.exe&quot;;
+  Button send = new Button(
+    &quot;Add email address to mailing list&quot;);
+  TextField name = new TextField(
+    &quot;type your name here&quot;, 40),
+    email = new TextField(
+    &quot;type your email address here&quot;, 40);
+  String str = new String();
+  Label l = new Label(), l2 = new Label();
+  int vcount = 0;
+  public void init() {
+    setLayout(new BorderLayout());
+    Panel p = new Panel();
+    p.setLayout(new GridLayout(3, 1));
+    p.add(name);
+    p.add(email);
+    p.add(send);
+    add(&quot;North&quot;, p);
+    Panel labels = new Panel();
+    labels.setLayout(new GridLayout(2, 1));
+    labels.add(l);
+    labels.add(l2);
+    add(&quot;Center&quot;, labels);
+    l.setText(&quot;Ready to send email address&quot;);
+  }
+  public boolean action (Event evt, Object arg) {
+    if(evt.target.equals(send)) {
+      l2.setText(&quot;&quot;);
+      // Check for errors in data:
+      if(name.getText().trim()
+         .indexOf(' ') == -1) {
+        l.setText(
+          &quot;Please give first and last name&quot;);
+        l2.setText(&quot;&quot;);
+        return true;
+      }
+      str = email.getText().trim();
+      if(str.indexOf(' ') != -1) {
+        l.setText(
+          &quot;Spaces not allowed in email name&quot;);
+        l2.setText(&quot;&quot;);
+        return true;
+      }
+      if(str.indexOf(',') != -1) {
+        l.setText(
+          &quot;Commas not allowed in email name&quot;);
+        return true;
+      }
+      if(str.indexOf('@') == -1) {
+        l.setText(&quot;Email name must include '@'&quot;);
+        l2.setText(&quot;&quot;);
+        return true;
+      }
+      if(str.indexOf('@') == 0) {
+        l.setText(
+          &quot;Name must preceed '@' in email name&quot;);
+        l2.setText(&quot;&quot;);
+        return true;
+      }
+      String end =
+        str.substring(str.indexOf('@'));
+      if(end.indexOf('.') == -1) {
+        l.setText(&quot;Portion after '@' must &quot; +
+          &quot;have an extension, such as '.com'&quot;);
+        l2.setText(&quot;&quot;);
+        return true;
+      }
+      // Build and encode the email data:
+      String emailData =
+        &quot;name=&quot; + URLEncoder.encode(
+          name.getText().trim()) +
+        &quot;&amp;email=&quot; + URLEncoder.encode(
+          email.getText().trim().toLowerCase()) +
+        &quot;&amp;submit=Submit&quot;;
+      // Send the name using CGI's GET process:
+      try {
+        l.setText(&quot;Sending...&quot;);
+        URL u = new URL(
+          getDocumentBase(), &quot;cgi-bin/&quot; +
+          CGIProgram + &quot;?&quot; + emailData);
+        l.setText(&quot;Sent: &quot; + email.getText());
+        send.setLabel(&quot;Re-send&quot;);
+        l2.setText(
+          &quot;Waiting for reply &quot; + ++vcount);
+        DataInputStream server =
+          new DataInputStream(u.openStream());
+        String line;
+        while((line = server.readLine()) != null)
+          l2.setText(line);
+      } catch(MalformedURLException e) {
+        l.setText(&quot;Bad URl&quot;);
+      } catch(IOException e) {
+        l.setText(&quot;IO Exception&quot;);
+      }
+    }
+    else return super.action(evt, arg);
+    return true;
+  }
+} ///:~
+</code></pre></div><p>CGI程序（不久即可看到）的名字是<code>Listmgr2.exe</code>。许多Web服务器都在Unix机器上运行（Linux也越来越受到青睐）。根据传统，它们一般不为自己的可执行程序采用<code>.exe</code>扩展名。但在Unix操作系统中，可以把自己的程序称呼为自己希望的任何东西。若使用的是<code>.exe</code>扩展名，程序毋需任何修改即可通过Unix和Win32的运行测试。</p> <p>和往常一样，程序片设置了自己的用户界面（这次是两个输入字段，不是一个）。唯一显著的区别是在<code>action()</code>方法内产生的。该方法的作用是对按钮按下事件进行控制。名字检查过以后，大家会发现下述代码行：</p> <div class="language- extra-class"><pre class="language-text"><code>      String emailData =
+        &quot;name=&quot; + URLEncoder.encode(
+          name.getText().trim()) +
+        &quot;&amp;email=&quot; + URLEncoder.encode(
+          email.getText().trim().toLowerCase()) +
+        &quot;&amp;submit=Submit&quot;;
+      // Send the name using CGI's GET process:
+      try {
+        l.setText(&quot;Sending...&quot;);
+        URL u = new URL(
+          getDocumentBase(), &quot;cgi-bin/&quot; +
+          CGIProgram + &quot;?&quot; + emailData);
+        l.setText(&quot;Sent: &quot; + email.getText());
+        send.setLabel(&quot;Re-send&quot;);
+        l2.setText(
+          &quot;Waiting for reply &quot; + ++vcount);
+        DataInputStream server =
+          new DataInputStream(u.openStream());
+        String line;
+        while((line = server.readLine()) != null)
+          l2.setText(line);
+        // ...
+</code></pre></div><p><code>name</code>和<code>email</code>数据都是它们对应的文字框里提取出来，而且两端多余的空格都用<code>trim()</code>剔去了。为了进入列表，<code>email</code>名字被强制换成小写形式，以便能够准确地对比（防止基于大小写形式的错误判断）。来自每个字段的数据都编码为URL形式，随后采用与HTML页中一样的方式汇编GET字符串（这样一来，我们可将Java程序片与现有的任何CGI程序结合使用，以满足常规的HTML GET请求）。</p> <p>到这时，一些Java的魔力已经开始发挥作用了：如果想同任何URL连接，只需创建一个URL对象，并将地址传递给构造器即可。构造器会负责建立同服务器的连接（对Web服务器来说，所有连接行动都是根据作为URL使用的字符串来判断的）。就目前这种情况来说，URL指向的是当前Web站点的<code>cgi-bin</code>目录（当前Web站点的基础地址是用<code>getDocumentBase()</code>设定的）。一旦Web服务器在URL中看到了一个<code>cgi-bin</code>，会接着希望在它后面跟随了<code>cgi-bin</code>目录内的某个程序的名字，那是我们要运行的目标程序。程序名后面是一个问号以及CGI程序会在<code>QUERY_STRING</code>环境变量中查找的一个参数字符串（马上就要学到）。</p> <p>我们发出任何形式的请求后，一般都会得到一个回应的HTML页。但若使用Java的URL对象，我们可以拦截自CGI程序传回的任何东西，只需从URL对象里取得一个<code>InputStream</code>（输入数据流）即可。这是用URL对象的<code>openStream()</code>方法实现，它要封装到一个<code>DataInputStream</code>里。随后就可以读取数据行，若<code>readLine()</code>返回一个null（空值），就表明CGI程序已结束了它的输出。
+我们即将看到的CGI程序返回的仅仅是一行，它是用于标志成功与否（以及失败的具体原因）的一个字符串。这一行会被捕获并置放第二个<code>Label</code>字段里，使用户看到具体发生了什么事情。</p> <p>(1) 从程序片里显示一个Web页</p> <p>程序亦可将CGI程序的结果作为一个Web页显示出来，就象它们在普通HTML模式中运行那样。可用下述代码做到这一点：</p> <div class="language- extra-class"><pre class="language-text"><code>getAppletContext().showDocument(u);
+</code></pre></div><p>其中，<code>u</code>代表URL对象。这是将我们重新定向于另一个Web页的一个简单例子。那个页凑巧是一个CGI程序的输出，但可以非常方便地进入一个原始的HTML页，所以可以构建这个程序片，令其产生一个由密码保护的网关，通过它进入自己Web站点的特殊部分：</p> <div class="language- extra-class"><pre class="language-text"><code>//: ShowHTML.java
+import java.awt.*;
+import java.applet.*;
+import java.net.*;
+import java.io.*;
+
+public class ShowHTML extends Applet {
+  static final String CGIProgram = &quot;MyCGIProgram&quot;;
+  Button send = new Button(&quot;Go&quot;);
+  Label l = new Label();
+  public void init() {
+    add(send);
+    add(l);
+  }
+  public boolean action (Event evt, Object arg) {
+    if(evt.target.equals(send)) {
+      try {
+        // This could be an HTML page instead of
+        // a CGI program. Notice that this CGI
+        // program doesn't use arguments, but
+        // you can add them in the usual way.
+        URL u = new URL(
+          getDocumentBase(),
+          &quot;cgi-bin/&quot; + CGIProgram);
+        // Display the output of the URL using
+        // the Web browser, as an ordinary page:
+        getAppletContext().showDocument(u);
+      } catch(Exception e) {
+        l.setText(e.toString());
+      }
+    }
+    else return super.action(evt, arg);
+    return true;
+  }
+} ///:~
+</code></pre></div><p>URL类的最大的特点就是有效地保护了我们的安全。可以同一个Web服务器建立连接，毋需知道幕后的任何东西。</p> <h2 id="_15-6-3-用c-写的cgi程序"><a href="#_15-6-3-用c-写的cgi程序" class="header-anchor">#</a> 15.6.3 用C++写的CGI程序</h2> <p>经过前面的学习，大家应该能够根据例子用ANSI C为自己的服务器写出CGI程序。之所以选用ANSI C，是因为它几乎随处可见，是最流行的C语言标准。当然，现在的C++也非常流行了，特别是采用GNU C++编译器（g++）形式的那一些（注释④）。可从网上许多地方免费下载g++，而且可选用几乎所有平台的版本（通常与Linux那样的操作系统配套提供，且已预先安装好）。正如大家即将看到的那样，从CGI程序可获得面向对象程序设计的许多好处。</p> <p>④：GNU的全称是“Gnu's Not Unix”。这最早是由“自由软件基金会”（FSF）负责开发的一个项目，致力于用一个免费的版本取代原有的Unix操作系统。现在的Linux似乎正在做前人没有做到的事情。但GNU工具在Linux的开发中扮演了至关重要的角色。事实上，Linux的整套软件包附带了数量非常多的GNU组件。</p> <p>为避免第一次就提出过多的新概念，这个程序并未打算成为一个“纯”C++程序；有些代码是用普通C写成的——尽管还可选用C++的一些替用形式。但这并不是个突出的问题，因为该程序用C++制作最大的好处就是能够创建类。在解析CGI信息的时候，由于我们最关心的是字段的“名称／值”对，所以要用一个类（<code>Pair</code>）来代表单个名称／值对；另一个类（<code>CGI_vector</code>）则将CGI字符串自动解析到它会容纳的Pair对象里（作为一个<code>vector</code>），这样即可在有空的时候把每个Pair（对）都取出来。</p> <p>这个程序同时也非常有趣，因为它演示了C++与Java相比的许多优缺点。大家会看到一些相似的东西；比如<code>class</code>关键字。访问控制使用的是完全相同的关键字<code>public</code>和<code>private</code>，但用法却有所不同。它们控制的是一个块，而非单个方法或字段（也就是说，如果指定<code>private:</code>，后续的每个定义都具有<code>private</code>属性，直到我们再指定<code>public:</code>为止）。另外在创建一个类的时候，所有定义都自动默认为<code>private</code>。</p> <p>在这儿使用C++的一个原因是要利用C++“标准模板库”（STL）提供的便利。至少，STL包含了一个<code>vector</code>类。这是一个C++模板，可在编译期间进行配置，令其只容纳一种特定类型的对象（这里是<code>Pair</code>对象）。和Java的<code>Vector</code>不同，如果我们试图将除<code>Pair</code>对象之外的任何东西置入<code>vector</code>，C++的<code>vector</code>模板都会造成一个编译期错误；而Java的<code>Vector</code>能够照单全收。而且从<code>vector</code>里取出什么东西的时候，它会自动成为一个<code>Pair</code>对象，毋需进行转换处理。所以检查在编译期进行，这使程序显得更为“健壮”。此外，程序的运行速度也可以加快，因为没有必要进行运行期间的转换。<code>vector</code>也会重载<code>operator[]</code>，所以可以利用非常方便的语法来提取<code>Pair</code>对象。<code>vector</code>模板将在<code>CGI_vector</code>创建时使用；在那时，大家就可以体会到如此简短的一个定义居然蕴藏有那么巨大的能量。</p> <p>若提到缺点，就一定不要忘记<code>Pair</code>在下列代码中定义时的复杂程度。与我们在Java代码中看到的相比，<code>Pair</code>的方法定义要多得多。这是由于C++的程序员必须提前知道如何用副本构造器控制复制过程，而且要用重载的<code>operator=</code>完成赋值。正如第12章解释的那样，我们有时也要在Java中考虑同样的事情。但在C++中，几乎一刻都不能放松对这些问题的关注。</p> <p>这个项目首先创建一个可以重复使用的部分，由C++头文件中的<code>Pair</code>和<code>CGI_vector</code>构成。从技术角度看，确实不应把这些东西都塞到一个头文件里。但就目前的例子来说，这样做不会造成任何方面的损害，而且更具有Java风格，所以大家阅读理解代码时要显得轻松一些：</p> <div class="language- extra-class"><pre class="language-text"><code>//: CGITools.h
+// Automatically extracts and decodes data
+// from CGI GETs and POSTs. Tested with GNU C++
+// (available for most server machines).
+#include &lt;string.h&gt;
+#include &lt;vector&gt; // STL vector
+using namespace std;
+
+// A class to hold a single name-value pair from
+// a CGI query. CGI_vector holds Pair objects and
+// returns them from its operator[].
+class Pair {
+  char* nm;
+  char* val;
+public:
+  Pair() { nm = val = 0; }
+  Pair(char* name, char* value) {
+    // Creates new memory:
+    nm = decodeURLString(name);
+    val = decodeURLString(value);
+  }
+  const char* name() const { return nm; }
+  const char* value() const { return val; }
+  // Test for &quot;emptiness&quot;
+  bool empty() const {
+    return (nm == 0) || (val == 0);
+  }
+  // Automatic type conversion for boolean test:
+  operator bool() const {
+    return (nm != 0) &amp;&amp; (val != 0);
+  }
+  // The following constructors &amp; destructor are
+  // necessary for bookkeeping in C++.
+  // Copy-constructor:
+  Pair(const Pair&amp; p) {
+    if(p.nm == 0 || p.val == 0) {
+      nm = val = 0;
+    } else {
+      // Create storage &amp; copy rhs values:
+      nm = new char[strlen(p.nm) + 1];
+      strcpy(nm, p.nm);
+      val = new char[strlen(p.val) + 1];
+      strcpy(val, p.val);
+    }
+  }
+  // Assignment operator:
+  Pair&amp; operator=(const Pair&amp; p) {
+    // Clean up old lvalues:
+    delete nm;
+    delete val;
+    if(p.nm == 0 || p.val == 0) {
+      nm = val = 0;
+    } else {
+      // Create storage &amp; copy rhs values:
+      nm = new char[strlen(p.nm) + 1];
+      strcpy(nm, p.nm);
+      val = new char[strlen(p.val) + 1];
+      strcpy(val, p.val);
+    }
+    return *this;
+  }
+  ~Pair() { // Destructor
+    delete nm; // 0 value OK
+    delete val;
+  }
+  // If you use this method outide this class,
+  // you're responsible for calling 'delete' on
+  // the pointer that's returned:
+  static char*
+  decodeURLString(const char* URLstr) {
+    int len = strlen(URLstr);
+    char* result = new char[len + 1];
+    memset(result, len + 1, 0);
+    for(int i = 0, j = 0; i &lt;= len; i++, j++) {
+      if(URLstr[i] == '+')
+        result[j] = ' ';
+      else if(URLstr[i] == '%') {
+        result[j] =
+          translateHex(URLstr[i + 1]) * 16 +
+          translateHex(URLstr[i + 2]);
+        i += 2; // Move past hex code
+      } else // An ordinary character
+        result[j] = URLstr[i];
+    }
+    return result;
+  }
+  // Translate a single hex character; used by
+  // decodeURLString():
+  static char translateHex(char hex) {
+    if(hex &gt;= 'A')
+      return (hex &amp; 0xdf) - 'A' + 10;
+    else
+      return hex - '0';
+  }
+};
+
+// Parses any CGI query and turns it
+// into an STL vector of Pair objects:
+class CGI_vector : public vector&lt;Pair&gt; {
+  char* qry;
+  const char* start; // Save starting position
+  // Prevent assignment and copy-construction:
+  void operator=(CGI_vector&amp;);
+  CGI_vector(CGI_vector&amp;);
+public:
+  // const fields must be initialized in the C++
+  // &quot;Constructor initializer list&quot;:
+  CGI_vector(char* query) :
+      start(new char[strlen(query) + 1]) {
+    qry = (char*)start; // Cast to non-const
+    strcpy(qry, query);
+    Pair p;
+    while((p = nextPair()) != 0)
+      push_back(p);
+  }
+  // Destructor:
+  ~CGI_vector() { delete start; }
+private:
+  // Produces name-value pairs from the query
+  // string. Returns an empty Pair when there's
+  // no more query string left:
+  Pair nextPair() {
+    char* name = qry;
+    if(name == 0 || *name == '\0')
+      return Pair(); // End, return null Pair
+    char* value = strchr(name, '=');
+    if(value == 0)
+      return Pair(); // Error, return null Pair
+    // Null-terminate name, move value to start
+    // of its set of characters:
+    *value = '\0';
+    value++;
+    // Look for end of value, marked by '&amp;':
+    qry = strchr(value, '&amp;');
+    if(qry == 0) qry = &quot;&quot;; // Last pair found
+    else {
+      *qry = '\0'; // Terminate value string
+      qry++; // Move to next pair
+    }
+    return Pair(name, value);
+  }
+}; ///:~
+</code></pre></div><p>在<code>#include</code>语句后，可看到有一行是：</p> <div class="language- extra-class"><pre class="language-text"><code>using namespace std;
+</code></pre></div><p>C++中的“命名空间”（Namespace）解决了由Java的<code>package</code>负责的一个问题：将库名隐藏起来。<code>std</code>命名空间引用的是标准C++库，而<code>vector</code>就在这个库中，所以这一行是必需的。</p> <p><code>Pair</code>类表面看异常简单，只是容纳了两个（<code>private</code>）字符指针而已——一个用于名字，另一个用于值。默认构造器将这两个指针简单地设为零。这是由于在C++中，对象的内存不会自动置零。第二个构造器调用方法<code>decodeURLString()</code>，在新分配的堆内存中生成一个解码过后的字符串。这个内存区域必须由对象负责管理及清除，这与“析构器”中见到的相同。<code>name()</code>和<code>value()</code>方法为相关的字段产生只读指针。利用<code>empty()</code>方法，我们查询<code>Pair</code>对象它的某个字段是否为空；返回的结果是一个<code>bool</code>——C++内建的基本布尔数据类型。<code>operator bool()</code>使用的是C++“运算符重载”的一种特殊形式。它允许我们控制自动类型转换。如果有一个名为<code>p</code>的<code>Pair</code>对象，而且在一个本来希望是布尔结果的表达式中使用，比如<code>if(p){//...</code>，那么编译器能辨别出它有一个<code>Pair</code>，而且需要的是个布尔值，所以自动调用<code>operator bool()</code>，进行必要的转换。</p> <p>接下来的三个方法属于常规编码，在C++中创建类时必须用到它们。根据C++类采用的所谓“经典形式”，我们必须定义必要的“原始”构造器，以及一个副本构造器和赋值运算符——<code>operator=</code>（以及析构器，用于清除内存）。之所以要作这样的定义，是由于编译器会“默默”地调用它们。在对象传入、传出一个函数的时候，需要调用副本构造器；而在分配对象时，需要调用赋值运算符。只有真正掌握了副本构造器和赋值运算符的工作原理，才能在C++里写出真正“健壮”的类，但这需要需要一个比较艰苦的过程（注释⑤）。</p> <p>⑤：我的《Thinking in C++》（Prentice-Hall,1995）用了一整章的地方来讨论这个主题。若需更多的帮助，请务必看看那一章。</p> <p>只要将一个对象按值传入或传出函数，就会自动调用副本构造器<code>Pair(const Pair&amp;)</code>。也就是说，对于准备为其制作一个完整副本的那个对象，我们不准备在函数框架中传递它的地址。这并不是Java提供的一个选项，由于我们只能传递引用，所以在Java里没有所谓的副本构造器（如果想制作一个本地副本，可以“克隆”那个对象——使用<code>clone()</code>，参见第12章）。类似地，如果在Java里分配一个引用，它会简单地复制。但C++中的赋值意味着整个对象都会复制。在副本构造器中，我们创建新的存储空间，并复制原始数据。但对于赋值运算符，我们必须在分配新存储空间之前释放老存储空间。我们要见到的也许是C++类最复杂的一种情况，但那正是Java的支持者们论证Java比C++简单得多的有力证据。在Java中，我们可以自由传递引用，善后工作则由垃圾收集器负责，所以可以轻松许多。</p> <p>但事情并没有完。<code>Pair</code>类为<code>nm</code>和<code>val</code>使用的是<code>char*</code>，最复杂的情况主要是围绕指针展开的。如果用较时髦的C++ <code>string</code>类来代替 <code>char*</code> ，事情就要变得简单得多（当然，并不是所有编译器都提供了对<code>string</code>的支持）。那么，<code>Pair</code>的第一部分看起来就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>class Pair {
+  string nm;
+  string val;
+public:
+  Pair() { }
+  Pair(char* name, char* value) {
+    nm = decodeURLString(name);
+    val = decodeURLString(value);
+  }
+  const char* name() const { return nm.c_str(); }
+  const char* value() const {
+    return val.c_str();
+  }
+  // Test for &quot;emptiness&quot;
+  bool empty() const {
+    return (nm.length() == 0)
+      || (val.length() == 0);
+  }
+  // Automatic type conversion for boolean test:
+  operator bool() const {
+    return (nm.length() != 0)
+      &amp;&amp; (val.length() != 0);
+  }
+</code></pre></div><p>（此外，对这个类<code>decodeURLString()</code>会返回一个<code>string</code>，而不是一个<code>char*</code>）。我们不必定义副本构造器、<code>operator=</code>或者析构器，因为编译器已帮我们做了，而且做得非常好。但即使有些事情是自动进行的，C++程序员也必须了解副本构建以及赋值的细节。</p> <p><code>Pair</code>类剩下的部分由两个方法构成：<code>decodeURLString()</code>以及一个“帮助器”方法<code>translateHex()</code>——将由<code>decodeURLString()</code>使用。注意<code>translateHex()</code>并不能防范用户的恶意输入，比如<code>%1H</code>。分配好足够的存储空间后（必须由析构器释放），<code>decodeURLString()</code>就会其中遍历，将所有<code>+</code>都换成一个空格；将所有十六进制代码（以一个<code>%</code>打头）换成对应的字符。</p> <p><code>CGI_vector</code>用于解析和容纳整个CGI GET命令。它是从STL<code>vector</code>里继承的，后者例示为容纳<code>Pair</code>。C++中的继承是用一个冒号表示，在Java中则要用<code>extends</code>。此外，继承默认为<code>private</code>属性，所以几乎肯定需要用到<code>public</code>关键字，就象这样做的那样。大家也会发现<code>CGI_vector</code>有一个副本构造器以及一个<code>operator=</code>，但它们都声明成<code>private</code>。这样做是为了防止编译器同步两个函数（如果不自己声明它们，两者就会同步）。但这同时也禁止了客户程序员按值或者通过赋值传递一个<code>CGI_vector</code>。</p> <p><code>CGI_vector</code>的工作是获取<code>QUERY_STRING</code>，并把它解析成“名称／值”对，这需要在<code>Pair</code>的帮助下完成。它首先将字符串复制到本地分配的内存，并用常数指针<code>start</code>跟踪起始地址（稍后会在析构器中用于释放内存）。随后，它用自己的<code>nextPair()</code>方法将字符串解析成原始的“名称／值”对，各个对之间用一个<code>=</code>和<code>&amp;</code>符号分隔。这些对由<code>nextPair()</code>传递给<code>Pair</code>构造器，所以<code>nextPair()</code>返回的是一个<code>Pair</code>对象。随后用<code>push_back()</code>将该对象加入<code>vector</code>。<code>nextPair()</code>遍历完整个<code>QUERY_STRING</code>后，会返回一个零值。</p> <p>现在基本工具已定义好，它们可以简单地在一个CGI程序中使用，就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Listmgr2.cpp
+// CGI version of Listmgr.c in C++, which
+// extracts its input via the GET submission
+// from the associated applet. Also works as
+// an ordinary CGI program with HTML forms.
+#include &lt;stdio.h&gt;
+#include &quot;CGITools.h&quot;
+const char* dataFile = &quot;list2.txt&quot;;
+const char* notify = &quot;Bruce@EckelObjects.com&quot;;
+#undef DEBUG
+
+// Similar code as before, except that it looks
+// for the email name inside of '&lt;&gt;':
+int inList(FILE* list, const char* emailName) {
+  const int BSIZE = 255;
+  char lbuf[BSIZE];
+  char emname[BSIZE];
+  // Put the email name in '&lt;&gt;' so there's no
+  // possibility of a match within another name:
+  sprintf(emname, &quot;&lt;%s&gt;&quot;, emailName);
+  // Go to the beginning of the list:
+  fseek(list, 0, SEEK_SET);
+  // Read each line in the list:
+  while(fgets(lbuf, BSIZE, list)) {
+    // Strip off the newline:
+    char * newline = strchr(lbuf, '\n');
+    if(newline != 0)
+      *newline = '\0';
+    if(strstr(lbuf, emname) != 0)
+      return 1;
+  }
+  return 0;
+}
+
+void main() {
+  // You MUST print this out, otherwise the
+  // server will not send the response:
+  printf(&quot;Content-type: text/plain\n\n&quot;);
+  FILE* list = fopen(dataFile, &quot;a+t&quot;);
+  if(list == 0) {
+    printf(&quot;error: could not open database. &quot;);
+    printf(&quot;Notify %s&quot;, notify);
+    return;
+  }
+  // For a CGI &quot;GET,&quot; the server puts the data
+  // in the environment variable QUERY_STRING:
+  CGI_vector query(getenv(&quot;QUERY_STRING&quot;));
+  #if defined(DEBUG)
+  // Test: dump all names and values
+  for(int i = 0; i &lt; query.size(); i++) {
+    printf(&quot;query[%d].name() = [%s], &quot;,
+      i, query[i].name());
+    printf(&quot;query[%d].value() = [%s]\n&quot;,
+      i, query[i].value());
+  }
+  #endif(DEBUG)
+  Pair name = query[0];
+  Pair email = query[1];
+  if(name.empty() || email.empty()) {
+    printf(&quot;error: null name or email&quot;);
+    return;
+  }
+  if(inList(list, email.value())) {
+    printf(&quot;Already in list: %s&quot;, email.value());
+    return;
+  }
+  // It's not in the list, add it:
+  fseek(list, 0, SEEK_END);
+  fprintf(list, &quot;%s &lt;%s&gt;;\n&quot;,
+    name.value(), email.value());
+  fflush(list);
+  fclose(list);
+  printf(&quot;%s &lt;%s&gt; added to list\n&quot;,
+    name.value(), email.value());
+} ///:~
+</code></pre></div><p><code>alreadyInList()</code>函数与前一个版本几乎是完全相同的，只是它假定所有电子函件地址都在一个<code>&lt;&gt;</code>内。</p> <p>在使用GET方法时（通过在<code>FORM</code>引导命令的<code>METHOD</code>标记内部设置，但这在这里由数据发送的方式控制），Web服务器会收集位于<code>?</code>后面的所有信息，并把它们置入环境变量<code>QUERY_STRING</code>（查询字符串）里。所以为了读取那些信息，必须获得<code>QUERY_STRING</code>的值，这是用标准的C库函数<code>getenv()</code>完成的。在<code>main()</code>中，注意对<code>QUERY_STRING</code>的解析有多么容易：只需把它传递给用于<code>CGI_vector</code>对象的构造器（名为<code>query</code>），剩下的所有工作都会自动进行。从这时开始，我们就可以从<code>query</code>中取出名称和值，把它们当作数组看待（这是由于<code>operator[]</code>在<code>vector</code>里已经重载了）。在调试代码中，大家可看到这一切是如何运作的；调试代码封装在预处理器引导命令<code>#if defined(DEBUG)</code>和<code>#endif(DEBUG)</code>之间。</p> <p>现在，我们迫切需要掌握一些与CGI有关的东西。CGI程序用两个方式之一传递它们的输入：在GET执行期间通过<code>QUERY_STRING</code>传递（目前用的这种方式），或者在POST期间通过标准输入。但CGI程序通过标准输出发送自己的输出，这通常是用C程序的<code>printf()</code>命令实现的。那么这个输出到哪里去了呢？它回到了Web服务器，由服务器决定该如何处理它。服务器作出决定的依据是<code>content-type</code>（内容类型）头数据。这意味着假如<code>content-type</code>头不是它看到的第一件东西，就不知道该如何处理收到的数据。因此，我们无论如何也要使所有CGI程序都从<code>content-type</code>头开始输出。</p> <p>在目前这种情况下，我们希望服务器将所有信息都直接反馈回客户程序（亦即我们的程序片，它们正在等候给自己的回复）。信息应该原封不动，所以<code>content-type</code>设为<code>text/plain</code>（纯文本）。一旦服务器看到这个头，就会将所有字符串都直接发还给客户。所以每个字符串（三个用于出错条件，一个用于成功的加入）都会返回程序片。</p> <p>我们用相同的代码添加电子函件名称（用户的姓名）。但在CGI脚本的情况下，并不存在无限循环——程序只是简单地响应，然后就中断。每次有一个CGI请求抵达时，程序都会启动，对那个请求作出反应，然后自行关闭。所以CPU不可能陷入空等待的尴尬境地，只有启动程序和打开文件时才存在性能上的隐患。Web服务器对CGI请求进行控制时，它的开销会将这种隐患减轻到最低程度。</p> <p>这种设计的另一个好处是由于<code>Pair</code>和<code>CGI_vector</code>都得到了定义，大多数工作都帮我们自动完成了，所以只需修改<code>main()</code>即可轻松创建自己的CGI程序。尽管小服务程序（<code>Servlet</code>）最终会变得越来越流行，但为了创建快速的CGI程序，C++仍然显得非常方便。</p> <h2 id="_15-6-4-post的概念"><a href="#_15-6-4-post的概念" class="header-anchor">#</a> 15.6.4 POST的概念</h2> <p>在许多应用程序中使用GET都没有问题。但是，GET要求通过一个环境变量将自己的数据传递给CGI程序。但假如GET字符串过长，有些Web服务器可能用光自己的环境空间（若字符串长度超过200字符，就应开始关心这方面的问题）。CGI为此提供了一个解决方案：POST。通过POST，数据可以编码，并按与GET相同的方法连结起来。但POST利用标准输入将编码过后的查询字符串传递给CGI程序。我们要做的全部事情就是判断查询字符串的长度，而这个长度已在环境变量<code>CONTENT_LENGTH</code>中保存好了。一旦知道了长度，就可自由分配存储空间，并从标准输入中读入指定数量的字符。</p> <p>对一个用来控制POST的CGI程序，由<code>CGITools.h</code>提供的<code>Pair</code>和<code>CGI_vector</code>均可不加丝毫改变地使用。下面这段程序揭示了写这样的一个CGI程序有多么简单。这个例子将采用“纯”C++，所以<code>studio.h</code>库被<code>iostream</code>（IO数据流）代替。对于<code>iostream</code>，我们可以使用两个预先定义好的对象：<code>cin</code>，用于同标准输入连接；以及<code>cout</code>，用于同标准输出连接。有几个办法可从<code>cin</code>中读入数据以及向<code>cout</code>中写入。但下面这个程序准备采用标准方法：用<code>&lt;&lt;</code>将信息发给<code>cout</code>，并用一个成员函数（此时是<code>read()</code>）从<code>cin</code>中读入数据：</p> <div class="language- extra-class"><pre class="language-text"><code>//: POSTtest.cpp
+// CGI_vector works as easily with POST as it
+// does with GET. Written in &quot;pure&quot; C++.
+#include &lt;iostream.h&gt;
+#include &quot;CGITools.h&quot;
+
+void main() {
+  cout &lt;&lt; &quot;Content-type: text/plain\n&quot; &lt;&lt; endl;
+  // For a CGI &quot;POST,&quot; the server puts the length
+  // of the content string in the environment
+  // variable CONTENT_LENGTH:
+  char* clen = getenv(&quot;CONTENT_LENGTH&quot;);
+  if(clen == 0) {
+    cout &lt;&lt; &quot;Zero CONTENT_LENGTH&quot; &lt;&lt; endl;
+    return;
+  }
+  int len = atoi(clen);
+  char* query_str = new char[len + 1];
+  cin.read(query_str, len);
+  query_str[len] = '\0';
+  CGI_vector query(query_str);
+  // Test: dump all names and values
+  for(int i = 0; i &lt; query.size(); i++)
+    cout &lt;&lt; &quot;query[&quot; &lt;&lt; i &lt;&lt; &quot;].name() = [&quot; &lt;&lt;
+      query[i].name() &lt;&lt; &quot;], &quot; &lt;&lt;
+      &quot;query[&quot; &lt;&lt; i &lt;&lt; &quot;].value() = [&quot; &lt;&lt;
+      query[i].value() &lt;&lt; &quot;]&quot; &lt;&lt; endl;
+  delete query_str; // Release storage
+} ///:~
+</code></pre></div><p><code>getenv()</code>函数返回指向一个字符串的指针，那个字符串指示着内容的长度。若指针为零，表明<code>CONTENT_LENGTH</code>环境变量尚未设置，所以肯定某个地方出了问题。否则就必须用ANSI C库函数<code>atoi()</code>将字符串转换成一个整数。这个长度将与<code>new</code>一起运用，分配足够的存储空间，以便容纳查询字符串（另加它的空中止符）。随后为<code>cin()</code>调用<code>read()</code>。<code>read()</code>函数需要取得指向目标缓冲区的一个指针以及要读入的字节数。随后用空字符（<code>null</code>）中止<code>query_str</code>，指出已经抵达字符串的末尾，这就叫作“空中止”。</p> <p>到这个时候，我们得到的查询字符串与GET查询字符串已经没有什么区别，所以把它传递给用于<code>CGI_vector</code>的构造器。随后便和前例一样，我们可以自由·内不同的字段。</p> <p>为测试这个程序，必须把它编译到主机Web服务器的<code>cgi-bin</code>目录下。然后就可以写一个简单的HTML页进行测试，就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;META CONTENT=&quot;text/html&quot;&gt;
+&lt;TITLE&gt;A test of standard HTML POST&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+Test, uses standard html POST
+&lt;Form method=&quot;POST&quot; ACTION=&quot;/cgi-bin/POSTtest&quot;&gt;
+&lt;P&gt;Field1: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;Field1&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;P&gt;Field2: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;Field2&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;P&gt;Field3: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;Field3&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;P&gt;Field4: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;Field4&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;P&gt;Field5: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;Field5&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;P&gt;Field6: &lt;INPUT TYPE = &quot;text&quot; NAME = &quot;Field6&quot;
+VALUE = &quot;&quot; size = &quot;40&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type = &quot;submit&quot; name = &quot;submit&quot; &gt; &lt;/p&gt;
+&lt;/Form&gt;
+&lt;/HTML&gt;
+</code></pre></div><p>填好这个表单并提交出去以后，会得到一个简单的文本页，其中包含了解析出来的结果。从中可知道CGI程序是否在正常工作。</p> <p>当然，用一个程序片来提交数据显得更有趣一些。然而，POST数据的提交属于一个不同的过程。在用常规方式调用了CGI程序以后，必须另行建立与服务器的一个连接，以便将查询字符串反馈给它。服务器随后会进行一番处理，再通过标准输入将查询字符串反馈回CGI程序。</p> <p>为建立与服务器的一个直接连接，必须取得自己创建的URL，然后调用<code>openConnection()</code>创建一个<code>URLConnection</code>。但是，由于<code>URLConnection</code>一般不允许我们把数据发给它，所以必须很可笑地调用<code>setDoOutput(true</code>)函数，同时调用的还包括<code>setDoInput(true)</code>以及<code>setAllowUserInteraction(false)</code>——注释⑥。最后，可调用<code>getOutputStream()</code>来创建一个<code>OutputStream</code>（输出数据流），并把它封装到一个<code>DataOutputStream</code>里，以便能按传统方式同它通信。下面列出的便是一个用于完成上述工作的程序片，必须在从它的各个字段里收集了数据之后再执行它：</p> <div class="language- extra-class"><pre class="language-text"><code>//: POSTtest.java
+// An applet that sends its data via a CGI POST
+import java.awt.*;
+import java.applet.*;
+import java.net.*;
+import java.io.*;
+
+public class POSTtest extends Applet {
+  final static int SIZE = 10;
+  Button submit = new Button(&quot;Submit&quot;);
+  TextField[] t = new TextField[SIZE];
+  String query = &quot;&quot;;
+  Label l = new Label();
+  TextArea ta = new TextArea(15, 60);
+  public void init() {
+    Panel p = new Panel();
+    p.setLayout(new GridLayout(t.length + 2, 2));
+    for(int i = 0; i &lt; t.length; i++) {
+      p.add(new Label(
+        &quot;Field &quot; + i + &quot;  &quot;, Label.RIGHT));
+      p.add(t[i] = new TextField(30));
+    }
+    p.add(l);
+    p.add(submit);
+    add(&quot;North&quot;, p);
+    add(&quot;South&quot;, ta);
+  }
+  public boolean action (Event evt, Object arg) {
+    if(evt.target.equals(submit)) {
+      query = &quot;&quot;;
+      ta.setText(&quot;&quot;);
+      // Encode the query from the field data:
+      for(int i = 0; i &lt; t.length; i++)
+         query += &quot;Field&quot; + i + &quot;=&quot; +
+           URLEncoder.encode(
+             t[i].getText().trim()) +
+           &quot;&amp;&quot;;
+      query += &quot;submit=Submit&quot;;
+      // Send the name using CGI's POST process:
+      try {
+        URL u = new URL(
+          getDocumentBase(), &quot;cgi-bin/POSTtest&quot;);
+        URLConnection urlc = u.openConnection();
+        urlc.setDoOutput(true);
+        urlc.setDoInput(true);
+        urlc.setAllowUserInteraction(false);
+        DataOutputStream server =
+          new DataOutputStream(
+            urlc.getOutputStream());
+        // Send the data
+        server.writeBytes(query);
+        server.close();
+        // Read and display the response. You
+        // cannot use
+        // getAppletContext().showDocument(u);
+        // to display the results as a Web page!
+        DataInputStream in =
+          new DataInputStream(
+            urlc.getInputStream());
+        String s;
+        while((s = in.readLine()) != null) {
+          ta.appendText(s + &quot;\n&quot;);
+        }
+        in.close();
+      }
+      catch (Exception e) {
+        l.setText(e.toString());
+      }
+    }
+    else return super.action(evt, arg);
+    return true;
+  }
+} ///:~
+</code></pre></div><p>⑥：我不得不说自己并没有真正理解这儿都发生了什么事情，这些概念都是从Elliotte Rusty Harold编著的《Java Network Programming》里得来的，该书由O'Reilly于1997年出版。他在书中提到了Java连网函数库中出现的许多令人迷惑的Bug。所以一旦涉足这些领域，事情就不是编写代码，然后让它自己运行那么简单。一定要警惕潜在的陷阱！</p> <p>信息发送到服务器后，我们调用<code>getInputStream()</code>，并把返回值封装到一个<code>DataInputStream</code>里，以便自己能读取结果。要注意的一件事情是结果以文本行的形式显示在一个<code>TextArea</code>（文本区域）中。为什么不简单地使用<code>getAppletContext().showDocument(u)</code>呢？事实上，这正是那些陷阱中的一个。上述代码可以很好地工作，但假如试图换用<code>showDocument()</code>，几乎一切都会停止运行。也就是说，<code>showDocument()</code>确实可以运行，但从<code>POSTtest</code>得到的返回结果是<code>Zero CONTENT_LENGTH</code>（内容长度为零）。所以不知道为什么原因，<code>showDocument()</code>阻止了POST查询向CGI程序的传递。我很难判断这到底是一个在以后版本里会修复的Bug，还是由于我的理解不够（我看过的书对此讲得都很模糊）。但无论在哪种情况下，只要能坚持在文本区域里观看自CGI程序返回的内容，上述程序片运行时就没有问题。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/thinking-in-java-zh/15.5.html" class="prev">
+        15.5 一个Web应用
+      </a></span> <span class="next"><a href="/thinking-in-java-zh/15.7.html">
+        15.7 用JDBC连接数据库
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/thinking-in-java-zh/assets/js/app.fa9256b7.js" defer></script><script src="/thinking-in-java-zh/assets/js/2.908605f2.js" defer></script><script src="/thinking-in-java-zh/assets/js/84.d20935f6.js" defer></script>
+  </body>
+</html>

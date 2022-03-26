@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7.6 内部类 | Java 编程思想</title>
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css" as="style"><link rel="preload" href="/thinking-in-java-zh/assets/js/app.fa9256b7.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/2.908605f2.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/156.28542a9d.js" as="script"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/10.bf0f8be8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/100.8d6b6f0a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/101.42353165.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/102.b35fd164.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/103.34c9ec8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/104.63e41eda.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/105.a8196ba3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/106.3c787cca.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/107.5fd47e23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/108.81d2c2cd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/109.5345df07.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/11.decefde0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/110.9a402e3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/111.80737508.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/112.ff092004.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/113.d88e257d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/114.de29474b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/115.9c8d96e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/116.a9fe9af6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/117.0788e070.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/118.fefdab4e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/119.400faa62.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/12.a09f7f64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/120.d0ad5c24.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/121.b7379e1b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/122.352bd6de.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/123.7291c3a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/124.431ed770.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/125.306c4c7c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/126.9b3ff272.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/127.5d35566d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/128.c7458e50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/129.abf0b62b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/13.74ebe0f1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/130.ca484630.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/131.3b65be65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/132.8cc44765.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/133.39cab05a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/134.e1bc010e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/135.848b8e8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/136.e38c13cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/137.e6be7ef1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/138.c921af48.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/139.605a3ad8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/14.9a71923b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/140.7047d727.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/141.eee98409.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/142.b1b6affe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/143.8e53cafe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/144.e78d4c16.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/145.a6924d98.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/146.6afa9e38.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/147.81a0fa1f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/148.9b9deb8c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/149.27e9a5ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/15.c40fedbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/150.d5cb64f7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/151.58f4c6e0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/152.877f491f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/153.2a0f7bc8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/154.0600529e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/155.60aac4f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/157.71f374f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/158.f97abefc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/159.678b2841.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/16.e021272d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/160.50d096d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/161.65ef5e27.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/162.9945598d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/163.fbdc28a7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/164.b9de90b9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/165.f04b9c4d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/166.492b521e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/167.44fc78f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/168.9ead6145.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/169.ecb10302.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/17.6a5a39db.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/170.c5cf73cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/171.1e4044b2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/172.bdf06080.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/173.b9993d87.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/174.7e9fc4ea.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/175.a1371c92.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/176.06a2686c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/177.3fd0af17.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/178.e20d739c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/179.0c4bab32.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/18.2a0fe016.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/180.09aa6003.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/181.f723e5b0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/182.5121b3e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/183.ed3590f5.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/184.715b33ae.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/185.2fc87a63.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/186.1092562b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/187.2a099e97.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/188.5ba09f11.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/19.d85e5c9e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/20.0c5db47c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/21.e0626c88.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/22.71c5879a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/23.7b68c569.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/24.e4a060c9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/25.b3969598.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/26.5944fa66.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/27.b54d648d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/28.b3bd9b90.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/29.85fb52b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/3.7e7b25d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/30.e68d5f52.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/31.8a9dda64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/32.e86d5c44.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/33.3bc564dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/34.c9e1ae64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/35.b994b5bd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/36.8ccf0963.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/37.ecf3eb69.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/38.ab79219e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/39.04161d2f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/40.ea7690ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/41.1343bb93.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/42.3f7fe11a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/43.efcf4c2a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/44.d9ec22df.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/45.151cd823.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/46.2e7d0d19.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/47.2132be00.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/48.8f934c34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/49.debd52f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/50.32165d5a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/51.d8ba02fd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/52.ed339d2d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/53.8e4ba4c8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/54.60bf4f03.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/55.152bdcd2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/56.b7f52a23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/57.9be7e60b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/58.2ee15f50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/59.b8c3cade.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/60.2658363d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/61.691159a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/62.9d9c6c65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/63.07a1ba1a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/64.750c0918.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/65.1e1fa59d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/66.64b896e2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/67.0d9cdf7e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/68.40bd0a61.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/69.8233b339.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/7.37fa1201.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/70.25de6d15.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/71.f2848d8f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/72.e156c27a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/73.725fabfd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/74.3341aaba.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/75.c1f15dbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/76.e61dbcfe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/77.a3bae194.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/78.658cd2a6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/79.3f4258dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/8.cb3738e7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/80.28670e73.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/81.2acef4dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/82.cc58e6b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/83.b9d7c5fe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/84.d20935f6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/85.2647d331.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/86.387d330d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/87.4a744b41.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/88.04a81a34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/89.7e4d6e77.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/9.a197fc43.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/90.d390efe2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/91.985ecc95.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/92.9c6399c6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/93.5c771e45.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/94.b6bfece6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/95.7ffcbc3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/96.c8dee444.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/97.a6814ee4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/98.ca141a6e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/99.7bd02f80.js">
+    <link rel="stylesheet" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNFKK7VGLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JNFKK7VGLS');
+    </script>
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/thinking-in-java-zh/" class="home-link router-link-active"><!----> <span class="site-name">Java 编程思想</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/thinking-in-java-zh/0.1.html" class="sidebar-link">写在前面的话</a></li><li><a href="/thinking-in-java-zh/0.2.html" class="sidebar-link">引言</a></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/1" class="sidebar-heading clickable"><span>第1章 对象入门</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/1.1.html" class="sidebar-link">1.1 抽象的进步</a></li><li><a href="/thinking-in-java-zh/1.2.html" class="sidebar-link">1.2 对象的接口</a></li><li><a href="/thinking-in-java-zh/1.3.html" class="sidebar-link">1.3 实现方案的隐藏</a></li><li><a href="/thinking-in-java-zh/1.4.html" class="sidebar-link">1.4 方案的重复使用</a></li><li><a href="/thinking-in-java-zh/1.5.html" class="sidebar-link">1.5 继承：重新使用接口</a></li><li><a href="/thinking-in-java-zh/1.6.html" class="sidebar-link">1.6 多态对象的互换使用</a></li><li><a href="/thinking-in-java-zh/1.7.html" class="sidebar-link">1.7 对象的创建和存在时间</a></li><li><a href="/thinking-in-java-zh/1.8.html" class="sidebar-link">1.8 异常控制：解决错误</a></li><li><a href="/thinking-in-java-zh/1.9.html" class="sidebar-link">1.9 多线程</a></li><li><a href="/thinking-in-java-zh/1.10.html" class="sidebar-link">1.10 永久性</a></li><li><a href="/thinking-in-java-zh/1.11.html" class="sidebar-link">1.11 Java和因特网</a></li><li><a href="/thinking-in-java-zh/1.12.html" class="sidebar-link">1.12 分析和设计</a></li><li><a href="/thinking-in-java-zh/1.13.html" class="sidebar-link">1.13 Java还是C++</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/2" class="sidebar-heading clickable"><span>第2章 一切都是对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/2.1.html" class="sidebar-link">2.1 用引用操纵对象</a></li><li><a href="/thinking-in-java-zh/2.2.html" class="sidebar-link">2.2 所有对象都必须创建</a></li><li><a href="/thinking-in-java-zh/2.3.html" class="sidebar-link">2.3 绝对不要清除对象</a></li><li><a href="/thinking-in-java-zh/2.4.html" class="sidebar-link">2.4 新建数据类型：类</a></li><li><a href="/thinking-in-java-zh/2.5.html" class="sidebar-link">2.5 方法、参数和返回值</a></li><li><a href="/thinking-in-java-zh/2.6.html" class="sidebar-link">2.6 构建Java程序</a></li><li><a href="/thinking-in-java-zh/2.7.html" class="sidebar-link">2.7 我们的第一个Java程序</a></li><li><a href="/thinking-in-java-zh/2.8.html" class="sidebar-link">2.8 注释和嵌入文档</a></li><li><a href="/thinking-in-java-zh/2.9.html" class="sidebar-link">2.9 编码样式</a></li><li><a href="/thinking-in-java-zh/2.10.html" class="sidebar-link">2.10 总结</a></li><li><a href="/thinking-in-java-zh/2.11.html" class="sidebar-link">2.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/3" class="sidebar-heading clickable"><span>第3章 控制程序流程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/3.1.html" class="sidebar-link">3.1 使用Java运算符</a></li><li><a href="/thinking-in-java-zh/3.2.html" class="sidebar-link">3.2 执行控制</a></li><li><a href="/thinking-in-java-zh/3.3.html" class="sidebar-link">3.3 总结</a></li><li><a href="/thinking-in-java-zh/3.4.html" class="sidebar-link">3.4 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/4" class="sidebar-heading clickable"><span>第4章 初始化和清除</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/4.1.html" class="sidebar-link">4.1 用构造器自动初始化</a></li><li><a href="/thinking-in-java-zh/4.2.html" class="sidebar-link">4.2 方法重载</a></li><li><a href="/thinking-in-java-zh/4.3.html" class="sidebar-link">4.3 清除：收尾和垃圾收集</a></li><li><a href="/thinking-in-java-zh/4.4.html" class="sidebar-link">4.4 成员初始化</a></li><li><a href="/thinking-in-java-zh/4.5.html" class="sidebar-link">4.5 数组初始化</a></li><li><a href="/thinking-in-java-zh/4.6.html" class="sidebar-link">4.6 总结</a></li><li><a href="/thinking-in-java-zh/4.7.html" class="sidebar-link">4.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/5" class="sidebar-heading clickable"><span>第5章 隐藏实现过程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/5.1.html" class="sidebar-link">5.1 包：库单元</a></li><li><a href="/thinking-in-java-zh/5.2.html" class="sidebar-link">5.2 Java访问指示符</a></li><li><a href="/thinking-in-java-zh/5.3.html" class="sidebar-link">5.3 接口与实现</a></li><li><a href="/thinking-in-java-zh/5.4.html" class="sidebar-link">5.4 类访问</a></li><li><a href="/thinking-in-java-zh/5.5.html" class="sidebar-link">5.5 总结</a></li><li><a href="/thinking-in-java-zh/5.6.html" class="sidebar-link">5.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/6" class="sidebar-heading clickable"><span>第6章 类复用</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/6.1.html" class="sidebar-link">6.1 組合的语法</a></li><li><a href="/thinking-in-java-zh/6.2.html" class="sidebar-link">6.2 继承的语法</a></li><li><a href="/thinking-in-java-zh/6.3.html" class="sidebar-link">6.3 组合与继承的结合</a></li><li><a href="/thinking-in-java-zh/6.4.html" class="sidebar-link">6.4 到底选择组合还是继承</a></li><li><a href="/thinking-in-java-zh/6.5.html" class="sidebar-link">6.5 protected</a></li><li><a href="/thinking-in-java-zh/6.6.html" class="sidebar-link">6.6 累积开发</a></li><li><a href="/thinking-in-java-zh/6.7.html" class="sidebar-link">6.7 向上转换</a></li><li><a href="/thinking-in-java-zh/6.8.html" class="sidebar-link">6.8 final关键字</a></li><li><a href="/thinking-in-java-zh/6.9.html" class="sidebar-link">6.9 初始化和类装载</a></li><li><a href="/thinking-in-java-zh/6.10.html" class="sidebar-link">6.10 总结</a></li><li><a href="/thinking-in-java-zh/6.11.html" class="sidebar-link">6.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/7" class="sidebar-heading clickable open"><span>第7章 多态性</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/7.1.html" class="sidebar-link">7.1 向上转换</a></li><li><a href="/thinking-in-java-zh/7.2.html" class="sidebar-link">7.2 深入理解</a></li><li><a href="/thinking-in-java-zh/7.3.html" class="sidebar-link">7.3 覆盖与重载</a></li><li><a href="/thinking-in-java-zh/7.4.html" class="sidebar-link">7.4 抽象类和方法</a></li><li><a href="/thinking-in-java-zh/7.5.html" class="sidebar-link">7.5 接口</a></li><li><a href="/thinking-in-java-zh/7.6.html" aria-current="page" class="active sidebar-link">7.6 内部类</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-1-内部类和向上转换" class="sidebar-link">7.6.1 内部类和向上转换</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-2-方法和作用域中的内部类" class="sidebar-link">7.6.2 方法和作用域中的内部类</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-3-链接到外部类" class="sidebar-link">7.6.3 链接到外部类</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-4-static内部类" class="sidebar-link">7.6.4 static内部类</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-5-引用外部类对象" class="sidebar-link">7.6.5 引用外部类对象</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-6-从内部类继承" class="sidebar-link">7.6.6 从内部类继承</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-7-内部类可以覆盖吗" class="sidebar-link">7.6.7 内部类可以覆盖吗？</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-8-内部类标识符" class="sidebar-link">7.6.8 内部类标识符</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/7.6.html#_7-6-9-为什么要用内部类-控制框架" class="sidebar-link">7.6.9 为什么要用内部类：控制框架</a></li></ul></li><li><a href="/thinking-in-java-zh/7.7.html" class="sidebar-link">7.7 构造器和多态性</a></li><li><a href="/thinking-in-java-zh/7.8.html" class="sidebar-link">7.8 通过继承进行设计</a></li><li><a href="/thinking-in-java-zh/7.9.html" class="sidebar-link">7.9 总结</a></li><li><a href="/thinking-in-java-zh/7.10.html" class="sidebar-link">7.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/8" class="sidebar-heading clickable"><span>第8章 对象的容纳</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/8.1.html" class="sidebar-link">8.1 数组</a></li><li><a href="/thinking-in-java-zh/8.2.html" class="sidebar-link">8.2 集合</a></li><li><a href="/thinking-in-java-zh/8.3.html" class="sidebar-link">8.3 枚举器（迭代器）</a></li><li><a href="/thinking-in-java-zh/8.4.html" class="sidebar-link">8.4 集合的类型</a></li><li><a href="/thinking-in-java-zh/8.5.html" class="sidebar-link">8.5 排序</a></li><li><a href="/thinking-in-java-zh/8.6.html" class="sidebar-link">8.6 通用集合库</a></li><li><a href="/thinking-in-java-zh/8.7.html" class="sidebar-link">8.7 新集合</a></li><li><a href="/thinking-in-java-zh/8.8.html" class="sidebar-link">8.8 总结</a></li><li><a href="/thinking-in-java-zh/8.9.html" class="sidebar-link">8.9 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/9" class="sidebar-heading clickable"><span>第9章 异常差错控制</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/9.1.html" class="sidebar-link">9.1 基本异常</a></li><li><a href="/thinking-in-java-zh/9.2.html" class="sidebar-link">9.2 异常的捕获</a></li><li><a href="/thinking-in-java-zh/9.3.html" class="sidebar-link">9.3 标准Java异常</a></li><li><a href="/thinking-in-java-zh/9.4.html" class="sidebar-link">9.4 创建自己的异常</a></li><li><a href="/thinking-in-java-zh/9.5.html" class="sidebar-link">9.5 异常的限制</a></li><li><a href="/thinking-in-java-zh/9.6.html" class="sidebar-link">9.6 用finally清除</a></li><li><a href="/thinking-in-java-zh/9.7.html" class="sidebar-link">9.7 构造器</a></li><li><a href="/thinking-in-java-zh/9.8.html" class="sidebar-link">9.8 异常匹配</a></li><li><a href="/thinking-in-java-zh/9.9.html" class="sidebar-link">9.9 总结</a></li><li><a href="/thinking-in-java-zh/9.10.html" class="sidebar-link">9.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/10" class="sidebar-heading clickable"><span>第10章 Java IO系统</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/10.1.html" class="sidebar-link">10.1 输入和输出</a></li><li><a href="/thinking-in-java-zh/10.2.html" class="sidebar-link">10.2 增添属性和有用的接口</a></li><li><a href="/thinking-in-java-zh/10.3.html" class="sidebar-link">10.3 本身的缺陷：RandomAccessFile</a></li><li><a href="/thinking-in-java-zh/10.4.html" class="sidebar-link">10.4 File类</a></li><li><a href="/thinking-in-java-zh/10.5.html" class="sidebar-link">10.5 IO流的典型应用</a></li><li><a href="/thinking-in-java-zh/10.6.html" class="sidebar-link">10.6 StreamTokenizer</a></li><li><a href="/thinking-in-java-zh/10.7.html" class="sidebar-link">10.7 Java 1.1的IO流</a></li><li><a href="/thinking-in-java-zh/10.8.html" class="sidebar-link">10.8 压缩</a></li><li><a href="/thinking-in-java-zh/10.9.html" class="sidebar-link">10.9 对象序列化</a></li><li><a href="/thinking-in-java-zh/10.10.html" class="sidebar-link">10.10 总结</a></li><li><a href="/thinking-in-java-zh/10.11.html" class="sidebar-link">10.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/11" class="sidebar-heading clickable"><span>第11章 运行期类型识别</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/11.1.html" class="sidebar-link">11.1 对RTTI的需要</a></li><li><a href="/thinking-in-java-zh/11.2.html" class="sidebar-link">11.2 RTTI语法</a></li><li><a href="/thinking-in-java-zh/11.3.html" class="sidebar-link">11.3 反射：运行期类信息</a></li><li><a href="/thinking-in-java-zh/11.4.html" class="sidebar-link">11.4 总结</a></li><li><a href="/thinking-in-java-zh/11.5.html" class="sidebar-link">11.5 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/12" class="sidebar-heading clickable"><span>第12章 传递和返回对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/12.1.html" class="sidebar-link">12.1 传递引用</a></li><li><a href="/thinking-in-java-zh/12.2.html" class="sidebar-link">12.2 制作本地副本</a></li><li><a href="/thinking-in-java-zh/12.3.html" class="sidebar-link">12.3 克隆的控制</a></li><li><a href="/thinking-in-java-zh/12.4.html" class="sidebar-link">12.4 只读类</a></li><li><a href="/thinking-in-java-zh/12.5.html" class="sidebar-link">12.5 总结</a></li><li><a href="/thinking-in-java-zh/12.6.html" class="sidebar-link">12.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/13" class="sidebar-heading clickable"><span>第13章 创建窗口和程序片</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/13.1.html" class="sidebar-link">13.1 为何要用AWT？</a></li><li><a href="/thinking-in-java-zh/13.2.html" class="sidebar-link">13.2 基本程序片</a></li><li><a href="/thinking-in-java-zh/13.3.html" class="sidebar-link">13.3 制作按钮</a></li><li><a href="/thinking-in-java-zh/13.4.html" class="sidebar-link">13.4 捕获事件</a></li><li><a href="/thinking-in-java-zh/13.5.html" class="sidebar-link">13.5 文本字段</a></li><li><a href="/thinking-in-java-zh/13.6.html" class="sidebar-link">13.6 文本区域</a></li><li><a href="/thinking-in-java-zh/13.7.html" class="sidebar-link">13.7 标签</a></li><li><a href="/thinking-in-java-zh/13.8.html" class="sidebar-link">13.8 复选框</a></li><li><a href="/thinking-in-java-zh/13.9.html" class="sidebar-link">13.9 单选钮</a></li><li><a href="/thinking-in-java-zh/13.10.html" class="sidebar-link">13.10 下拉列表</a></li><li><a href="/thinking-in-java-zh/13.11.html" class="sidebar-link">13.11 列表框</a></li><li><a href="/thinking-in-java-zh/13.12.html" class="sidebar-link">13.12 布局的控制</a></li><li><a href="/thinking-in-java-zh/13.13.html" class="sidebar-link">13.13 action的替代品</a></li><li><a href="/thinking-in-java-zh/13.14.html" class="sidebar-link">13.14 程序片的局限</a></li><li><a href="/thinking-in-java-zh/13.15.html" class="sidebar-link">13.15 视窗化应用</a></li><li><a href="/thinking-in-java-zh/13.16.html" class="sidebar-link">13.16 新型AWT</a></li><li><a href="/thinking-in-java-zh/13.17.html" class="sidebar-link">13.17 Java 1.1用户接口API</a></li><li><a href="/thinking-in-java-zh/13.18.html" class="sidebar-link">13.18 可视编程和Beans</a></li><li><a href="/thinking-in-java-zh/13.19.html" class="sidebar-link">13.19 Swing入门（注释⑦）</a></li><li><a href="/thinking-in-java-zh/13.20.html" class="sidebar-link">13.20 总结</a></li><li><a href="/thinking-in-java-zh/13.21.html" class="sidebar-link">13.21 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/14" class="sidebar-heading clickable"><span>第14章 多线程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/14.1.html" class="sidebar-link">14.1 反应灵敏的用户界面</a></li><li><a href="/thinking-in-java-zh/14.2.html" class="sidebar-link">14.2 共享有限的资源</a></li><li><a href="/thinking-in-java-zh/14.3.html" class="sidebar-link">14.3 堵塞</a></li><li><a href="/thinking-in-java-zh/14.4.html" class="sidebar-link">14.4 优先级</a></li><li><a href="/thinking-in-java-zh/14.5.html" class="sidebar-link">14.5 回顾runnable</a></li><li><a href="/thinking-in-java-zh/14.6.html" class="sidebar-link">14.6 总结</a></li><li><a href="/thinking-in-java-zh/14.7.html" class="sidebar-link">14.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/15" class="sidebar-heading clickable"><span>第15章 网络编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/15.1.html" class="sidebar-link">15.1 机器的标识</a></li><li><a href="/thinking-in-java-zh/15.2.html" class="sidebar-link">15.2 套接字</a></li><li><a href="/thinking-in-java-zh/15.3.html" class="sidebar-link">15.3 服务多个客户</a></li><li><a href="/thinking-in-java-zh/15.4.html" class="sidebar-link">15.4 数据报</a></li><li><a href="/thinking-in-java-zh/15.5.html" class="sidebar-link">15.5 一个Web应用</a></li><li><a href="/thinking-in-java-zh/15.6.html" class="sidebar-link">15.6 Java与CGI的沟通</a></li><li><a href="/thinking-in-java-zh/15.7.html" class="sidebar-link">15.7 用JDBC连接数据库</a></li><li><a href="/thinking-in-java-zh/15.8.html" class="sidebar-link">15.8 远程方法</a></li><li><a href="/thinking-in-java-zh/15.9.html" class="sidebar-link">15.9 总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/16" class="sidebar-heading clickable"><span>第16章 设计模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/16.1.html" class="sidebar-link">16.1 模式的概念</a></li><li><a href="/thinking-in-java-zh/16.2.html" class="sidebar-link">16.2 观察器模式</a></li><li><a href="/thinking-in-java-zh/16.3.html" class="sidebar-link">16.3 模拟垃圾回收站</a></li><li><a href="/thinking-in-java-zh/16.4.html" class="sidebar-link">16.4 改进设计</a></li><li><a href="/thinking-in-java-zh/16.5.html" class="sidebar-link">16.5 抽象的应用</a></li><li><a href="/thinking-in-java-zh/16.6.html" class="sidebar-link">16.6 多重分发</a></li><li><a href="/thinking-in-java-zh/16.7.html" class="sidebar-link">16.7 访问器模式</a></li><li><a href="/thinking-in-java-zh/16.8.html" class="sidebar-link">16.8 RTTI真的有害吗</a></li><li><a href="/thinking-in-java-zh/16.9.html" class="sidebar-link">16.9 总结</a></li><li><a href="/thinking-in-java-zh/16.10.html" class="sidebar-link">16.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/17" class="sidebar-heading clickable"><span>第17章 项目</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/17.1.html" class="sidebar-link">17.1 文字处理</a></li><li><a href="/thinking-in-java-zh/17.2.html" class="sidebar-link">17.2 方法查找工具</a></li><li><a href="/thinking-in-java-zh/17.3.html" class="sidebar-link">17.3 复杂性理论</a></li><li><a href="/thinking-in-java-zh/17.4.html" class="sidebar-link">17.4 总结</a></li><li><a href="/thinking-in-java-zh/17.5.html" class="sidebar-link">17.5 练习</a></li></ul></section></li><li><a href="/thinking-in-java-zh/a.html" class="sidebar-link">附录A 使用非JAVA代码</a></li><li><a href="/thinking-in-java-zh/b.html" class="sidebar-link">附录B 对比C++和Java</a></li><li><a href="/thinking-in-java-zh/c.html" class="sidebar-link">附录C Java编程规则</a></li><li><a href="/thinking-in-java-zh/d.html" class="sidebar-link">附录D 性能</a></li><li><a href="/thinking-in-java-zh/e.html" class="sidebar-link">附录E 关于垃圾收集的一些话</a></li><li><a href="/thinking-in-java-zh/f.html" class="sidebar-link">附录F 推荐读物</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_7-6-内部类"><a href="#_7-6-内部类" class="header-anchor">#</a> 7.6 内部类</h1> <p>在Java 1.1中，可将一个类定义置入另一个类定义中。这就叫作“内部类”。内部类对我们非常有用，因为利用它可对那些逻辑上相互联系的类进行分组，并可控制一个类在另一个类里的“可见性”。然而，我们必须认识到内部类与以前讲述的“组合”方法存在着根本的区别。</p> <p>通常，对内部类的需要并不是特别明显的，至少不会立即感觉到自己需要使用内部类。在本章的末尾，介绍完内部类的所有语法之后，大家会发现一个特别的例子。通过它应该可以清晰地认识到内部类的好处。</p> <p>创建内部类的过程是平淡无奇的：将类定义置入一个用于封装它的类内部（若执行这个程序遇到麻烦，请参见第3章的3.1.2小节“赋值”）：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel1.java
+// Creating inner classes
+package c07.parcel1;
+
+public class Parcel1 {
+  class Contents {
+    private int i = 11;
+    public int value() { return i; }
+  }
+  class Destination {
+    private String label;
+    Destination(String whereTo) {
+      label = whereTo;
+    }
+    String readLabel() { return label; }
+  }
+  // Using inner classes looks just like
+  // using any other class, within Parcel1:
+  public void ship(String dest) {
+    Contents c = new Contents();
+    Destination d = new Destination(dest);
+  }  
+  public static void main(String[] args) {
+    Parcel1 p = new Parcel1();
+    p.ship(&quot;Tanzania&quot;);
+  }
+} ///:~
+</code></pre></div><p>若在<code>ship()</code>内部使用，内部类的使用看起来和其他任何类都没什么分别。在这里，唯一明显的区别就是它的名字嵌套在<code>Parcel1</code>里面。但大家不久就会知道，这其实并非唯一的区别。</p> <p>更典型的一种情况是，一个外部类拥有一个特殊的方法，它会返回指向一个内部类的引用。就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel2.java
+// Returning a handle to an inner class
+package c07.parcel2;
+
+public class Parcel2 {
+  class Contents {
+    private int i = 11;
+    public int value() { return i; }
+  }
+  class Destination {
+    private String label;
+    Destination(String whereTo) {
+      label = whereTo;
+    }
+    String readLabel() { return label; }
+  }
+  public Destination to(String s) {
+    return new Destination(s);
+  }
+  public Contents cont() {
+    return new Contents();
+  }
+  public void ship(String dest) {
+    Contents c = cont();
+    Destination d = to(dest);
+  }  
+  public static void main(String[] args) {
+    Parcel2 p = new Parcel2();
+    p.ship(&quot;Tanzania&quot;);
+    Parcel2 q = new Parcel2();
+    // Defining handles to inner classes:
+    Parcel2.Contents c = q.cont();
+    Parcel2.Destination d = q.to(&quot;Borneo&quot;);
+  }
+} ///:~
+</code></pre></div><p>若想在除外部类非<code>static</code>方法内部之外的任何地方生成内部类的一个对象，必须将那个对象的类型设为<code>外部类名.内部类名</code>，就象<code>main()</code>中展示的那样。</p> <h2 id="_7-6-1-内部类和向上转换"><a href="#_7-6-1-内部类和向上转换" class="header-anchor">#</a> 7.6.1 内部类和向上转换</h2> <p>迄今为止，内部类看起来仍然没什么特别的地方。毕竟，用它实现隐藏显得有些大题小做。Java已经有一个非常优秀的隐藏机制——只允许类成为“友好的”（只在一个包内可见），而不是把它创建成一个内部类。</p> <p>然而，当我们准备向上转换到一个基类（特别是到一个接口）的时候，内部类就开始发挥其关键作用（从用于实现的对象生成一个接口引用具有与向上转换至一个基类相同的效果）。这是由于内部类随后可完全进入不可见或不可用状态——对任何人都将如此。所以我们可以非常方便地隐藏实现细节。我们得到的全部回报就是一个基类或者接口的引用，而且甚至有可能不知道准确的类型。就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel3.java
+// Returning a handle to an inner class
+package c07.parcel3;
+
+abstract class Contents {
+  abstract public int value();
+}
+
+interface Destination {
+  String readLabel();
+}
+
+public class Parcel3 {
+  private class PContents extends Contents {
+    private int i = 11;
+    public int value() { return i; }
+  }
+  protected class PDestination
+      implements Destination {
+    private String label;
+    private PDestination(String whereTo) {
+      label = whereTo;
+    }
+    public String readLabel() { return label; }
+  }
+  public Destination dest(String s) {
+    return new PDestination(s);
+  }
+  public Contents cont() {
+    return new PContents();
+  }
+}
+
+class Test {
+  public static void main(String[] args) {
+    Parcel3 p = new Parcel3();
+    Contents c = p.cont();
+    Destination d = p.dest(&quot;Tanzania&quot;);
+    // Illegal -- can't access private class:
+    //! Parcel3.PContents c = p.new PContents();
+  }
+} ///:~
+</code></pre></div><p>现在，<code>Contents</code>和<code>Destination</code>代表可由客户程序员使用的接口（记住接口会将自己的所有成员都变成<code>public</code>属性）。为方便起见，它们置于单独一个文件里，但原始的<code>Contents</code>和<code>Destination</code>在它们自己的文件中是相互<code>public</code>的。</p> <p>在<code>Parcel3</code>中，一些新东西已经加入：内部类<code>PContents</code>被设为<code>private</code>，所以除了<code>Parcel3</code>之外，其他任何东西都不能访问它。<code>PDestination</code>被设为<code>protected</code>，所以除了<code>Parcel3</code>，<code>Parcel3</code>包内的类（因为<code>protected</code>也为包赋予了访问权；也就是说，<code>protected</code>也是“友好的”），以及<code>Parcel3</code>的继承者之外，其他任何东西都不能访问<code>PDestination</code>。这意味着客户程序员对这些成员的认识与访问将会受到限制。事实上，我们甚至不能向下转换到一个<code>private</code>内部类（或者一个<code>protected</code>内部类，除非自己本身便是一个继承者），因为我们不能访问名字，就象在<code>classTest</code>里看到的那样。所以，利用<code>private</code>内部类，类设计人员可完全禁止其他人依赖类型编码，并可将具体的实现细节完全隐藏起来。除此以外，从客户程序员的角度来看，一个接口的范围没有意义的，因为他们不能访问不属于公共接口类的任何额外方法。这样一来，Java编译器也有机会生成效率更高的代码。</p> <p>普通（非内部）类不可设为<code>private</code>或<code>protected</code>——只允许public或者“友好的”。</p> <p>注意<code>Contents</code>不必成为一个抽象类。在这儿也可以使用一个普通类，但这种设计最典型的起点依然是一个“接口”。</p> <h2 id="_7-6-2-方法和作用域中的内部类"><a href="#_7-6-2-方法和作用域中的内部类" class="header-anchor">#</a> 7.6.2 方法和作用域中的内部类</h2> <p>至此，我们已基本理解了内部类的典型用途。对那些涉及内部类的代码，通常表达的都是“单纯”的内部类，非常简单，且极易理解。然而，内部类的设计非常全面，不可避免地会遇到它们的其他大量用法——假若我们在一个方法甚至一个任意的作用域内创建内部类。有两方面的原因促使我们这样做：</p> <p>(1) 正如前面展示的那样，我们准备实现某种形式的接口，使自己能创建和返回一个引用。</p> <p>(2) 要解决一个复杂的问题，并希望创建一个类，用来辅助自己的程序方案。同时不愿意把它公开。</p> <p>在下面这个例子里，将修改前面的代码，以便使用：</p> <p>(1) 在一个方法内定义的类</p> <p>(2) 在方法的一个作用域内定义的类</p> <p>(3) 一个匿名类，用于实现一个接口</p> <p>(4) 一个匿名类，用于扩展拥有非默认构造器的一个类</p> <p>(5) 一个匿名类，用于执行字段初始化</p> <p>(6) 一个匿名类，通过实例初始化进行构建（匿名内部类不可拥有构造器）</p> <p>所有这些都在<code>innerscopes</code>包内发生。首先，来自前述代码的通用接口会在它们自己的文件里获得定义，使它们能在所有的例子里使用：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Destination.java
+package c07.innerscopes;
+
+interface Destination {
+  String readLabel();
+} ///:~
+</code></pre></div><p>由于我们已认为<code>Contents</code>可能是一个抽象类，所以可采取下面这种更自然的形式，就象一个接口那样：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Contents.java
+package c07.innerscopes;
+
+interface Contents {
+  int value();
+} ///:~
+</code></pre></div><p>尽管是含有具体实现细节的一个普通类，但<code>Wrapping</code>也作为它所有派生类的一个通用“接口”使用：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Wrapping.java
+package c07.innerscopes;
+
+public class Wrapping {
+  private int i;
+  public Wrapping(int x) { i = x; }
+  public int value() { return i; }
+} ///:~
+</code></pre></div><p>在上面的代码中，我们注意到<code>Wrapping</code>有一个要求使用参数的构造器，这就使情况变得更加有趣了。</p> <p>第一个例子展示了如何在一个方法的作用域（而不是另一个类的作用域）中创建一个完整的类：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel4.java
+// Nesting a class within a method
+package c07.innerscopes;
+
+public class Parcel4 {
+  public Destination dest(String s) {
+    class PDestination
+        implements Destination {
+      private String label;
+      private PDestination(String whereTo) {
+        label = whereTo;
+      }
+      public String readLabel() { return label; }
+    }
+    return new PDestination(s);
+  }
+  public static void main(String[] args) {
+    Parcel4 p = new Parcel4();
+    Destination d = p.dest(&quot;Tanzania&quot;);
+  }
+} ///:~
+</code></pre></div><p><code>PDestination</code>类属于<code>dest()</code>的一部分，而不是<code>Parcel4</code>的一部分（同时注意可为相同目录内每个类内部的一个内部类使用类标识符<code>PDestination</code>，这样做不会发生命名的冲突）。因此，<code>PDestination</code>不可从<code>dest()</code>的外部访问。请注意在返回语句中发生的向上转换——除了指向基类<code>Destination</code>的一个引用之外，没有任何东西超出<code>dest()</code>的边界之外。当然，不能由于类<code>PDestination</code>的名字置于<code>dest()</code>内部，就认为在<code>dest()</code>返回之后<code>PDestination</code>不是一个有效的对象。</p> <p>下面这个例子展示了如何在任意作用域内嵌套一个内部类：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel5.java
+// Nesting a class within a scope
+package c07.innerscopes;
+
+public class Parcel5 {
+  private void internalTracking(boolean b) {
+    if(b) {
+      class TrackingSlip {
+        private String id;
+        TrackingSlip(String s) {
+          id = s;
+        }
+        String getSlip() { return id; }
+      }
+      TrackingSlip ts = new TrackingSlip(&quot;slip&quot;);
+      String s = ts.getSlip();
+    }
+    // Can't use it here! Out of scope:
+    //! TrackingSlip ts = new TrackingSlip(&quot;x&quot;);
+  }
+  public void track() { internalTracking(true); }
+  public static void main(String[] args) {
+    Parcel5 p = new Parcel5();
+    p.track();
+  }
+} ///:~
+</code></pre></div><p><code>TrackingSlip</code>类嵌套于一个<code>if</code>语句的作用域内。这并不意味着类是有条件创建的——它会随同其他所有东西得到编译。然而，在定义它的那个作用域之外，它是不可使用的。除这些以外，它看起来和一个普通类并没有什么区别。</p> <p>下面这个例子看起来有些奇怪：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel6.java
+// A method that returns an anonymous inner class
+package c07.innerscopes;
+
+public class Parcel6 {
+  public Contents cont() {
+    return new Contents() {
+      private int i = 11;
+      public int value() { return i; }
+    }; // Semicolon required in this case
+  }
+  public static void main(String[] args) {
+    Parcel6 p = new Parcel6();
+    Contents c = p.cont();
+  }
+} ///:~
+</code></pre></div><p><code>cont()</code>方法同时合并了返回值的创建代码，以及用于表示那个返回值的类。除此以外，这个类是匿名的——它没有名字。而且看起来似乎更让人摸不着头脑的是，我们准备创建一个<code>Contents</code>对象：</p> <div class="language- extra-class"><pre class="language-text"><code>return new Contents()
+</code></pre></div><p>但在这之后，在遇到分号之前，我们又说：“等一等，让我先在一个类定义里再耍一下花招”：</p> <div class="language- extra-class"><pre class="language-text"><code>return new Contents() {
+private int i = 11;
+public int value() { return i; }
+};
+</code></pre></div><p>这种奇怪的语法要表达的意思是：“创建从<code>Contents</code>派生出来的匿名类的一个对象”。由<code>new</code>表达式返回的引用会自动向上转换成一个<code>Contents</code>引用。匿名内部类的语法其实要表达的是：</p> <div class="language- extra-class"><pre class="language-text"><code>class MyContents extends Contents {
+private int i = 11;
+public int value() { return i; }
+}
+return new MyContents();
+</code></pre></div><p>在匿名内部类中，<code>Contents</code>是用一个默认构造器创建的。下面这段代码展示了基类需要含有参数的一个构造器时做的事情：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel7.java
+// An anonymous inner class that calls the
+// base-class constructor
+package c07.innerscopes;
+
+public class Parcel7 {
+  public Wrapping wrap(int x) {
+    // Base constructor call:
+    return new Wrapping(x) {
+      public int value() {
+        return super.value() * 47;
+      }
+    }; // Semicolon required
+  }
+  public static void main(String[] args) {
+    Parcel7 p = new Parcel7();
+    Wrapping w = p.wrap(10);
+  }
+} ///:~
+</code></pre></div><p>也就是说，我们将适当的参数简单地传递给基类构造器，在这儿表现为在<code>new Wrapping(x)</code>中传递<code>x</code>。匿名类不能拥有一个构造器，这和在调用<code>super()</code>时的常规做法不同。</p> <p>在前述的两个例子中，分号并不标志着类主体的结束（和C++不同）。相反，它标志着用于包含匿名类的那个表达式的结束。因此，它完全等价于在其他任何地方使用分号。</p> <p>若想对匿名内部类的一个对象进行某种形式的初始化，此时会出现什么情况呢？由于它是匿名的，没有名字赋给构造器，所以我们不能拥有一个构造器。然而，我们可在定义自己的字段时进行初始化：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel8.java
+// An anonymous inner class that performs
+// initialization. A briefer version
+// of Parcel5.java.
+package c07.innerscopes;
+
+public class Parcel8 {
+  // Argument must be final to use inside
+  // anonymous inner class:
+  public Destination dest(final String dest) {
+    return new Destination() {
+      private String label = dest;
+      public String readLabel() { return label; }
+    };
+  }
+  public static void main(String[] args) {
+    Parcel8 p = new Parcel8();
+    Destination d = p.dest(&quot;Tanzania&quot;);
+  }
+} ///:~
+</code></pre></div><p>若试图定义一个匿名内部类，并想使用在匿名内部类外部定义的一个对象，则编译器要求外部对象为<code>final</code>属性。这正是我们将<code>dest()</code>的参数设为<code>final</code>的原因。如果忘记这样做，就会得到一条编译期出错提示。</p> <p>只要自己只是想分配一个字段，上述方法就肯定可行。但假如需要采取一些类似于构造器的行动，又应怎样操作呢？通过Java 1.1的实例初始化，我们可以有效地为一个匿名内部类创建一个构造器：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel9.java
+// Using &quot;instance initialization&quot; to perform
+// construction on an anonymous inner class
+package c07.innerscopes;
+
+public class Parcel9 {
+  public Destination
+  dest(final String dest, final float price) {
+    return new Destination() {
+      private int cost;
+      // Instance initialization for each object:
+      {
+        cost = Math.round(price);
+        if(cost &gt; 100)
+          System.out.println(&quot;Over budget!&quot;);
+      }
+      private String label = dest;
+      public String readLabel() { return label; }
+    };
+  }
+  public static void main(String[] args) {
+    Parcel9 p = new Parcel9();
+    Destination d = p.dest(&quot;Tanzania&quot;, 101.395F);
+  }
+} ///:~
+</code></pre></div><p>在实例初始化模块中，我们可看到代码不能作为类初始化模块（即<code>if</code>语句）的一部分执行。所以实际上，一个实例初始化模块就是一个匿名内部类的构造器。当然，它的功能是有限的；我们不能对实例初始化模块进行重载处理，所以只能拥有这些构造器的其中一个。</p> <h2 id="_7-6-3-链接到外部类"><a href="#_7-6-3-链接到外部类" class="header-anchor">#</a> 7.6.3 链接到外部类</h2> <p>迄今为止，我们见到的内部类好象仅仅是一种名字隐藏以及代码组织方案。尽管这些功能非常有用，但似乎并不特别引人注目。然而，我们还忽略了另一个重要的事实。创建自己的内部类时，那个类的对象同时拥有指向封装对象（这些对象封装或生成了内部类）的一个链接。所以它们能访问那个封装对象的成员——毋需取得任何资格。除此以外，内部类拥有对封装类所有元素的访问权限（注释②）。下面这个例子阐示了这个问题：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Sequence.java
+// Holds a sequence of Objects
+
+interface Selector {
+  boolean end();
+  Object current();
+  void next();
+}
+
+public class Sequence {
+  private Object[] o;
+  private int next = 0;
+  public Sequence(int size) {
+    o = new Object[size];
+  }
+  public void add(Object x) {
+    if(next &lt; o.length) {
+      o[next] = x;
+      next++;
+    }
+  }
+  private class SSelector implements Selector {
+    int i = 0;
+    public boolean end() {
+      return i == o.length;
+    }
+    public Object current() {
+      return o[i];
+    }
+    public void next() {
+      if(i &lt; o.length) i++;
+    }
+  }
+  public Selector getSelector() {
+    return new SSelector();
+  }
+  public static void main(String[] args) {
+    Sequence s = new Sequence(10);
+    for(int i = 0; i &lt; 10; i++)
+      s.add(Integer.toString(i));
+    Selector sl = s.getSelector();    
+    while(!sl.end()) {
+      System.out.println((String)sl.current());
+      sl.next();
+    }
+  }
+} ///:~
+</code></pre></div><p>②：这与C++“嵌套类”的设计颇有不同，后者只是一种单纯的名字隐藏机制。在C++中，没有指向一个封装对象的链接，也不存在默认的访问权限。</p> <p>其中，<code>Sequence</code>只是一个大小固定的对象数组，有一个类将其封装在内部。我们调用<code>add()</code>，以便将一个新对象添加到<code>Sequence</code>末尾（如果还有地方的话）。为了取得<code>Sequence</code>中的每一个对象，要使用一个名为<code>Selector</code>的接口，它使我们能够知道自己是否位于最末尾（<code>end()</code>），能观看当前对象（<code>current() Object</code>），以及能够移至<code>Sequence</code>内的下一个对象（<code>next() Object</code>）。由于<code>Selector</code>是一个接口，所以其他许多类都能用它们自己的方式实现接口，而且许多方法都能将接口作为一个参数使用，从而创建一般的代码。</p> <p>在这里，<code>SSelector</code>是一个私有类，它提供了<code>Selector</code>功能。在<code>main()</code>中，大家可看到<code>Sequence</code>的创建过程，在它后面是一系列字符串对象的添加。随后，通过对<code>getSelector()</code>的一个调用生成一个<code>Selector</code>。并用它在<code>Sequence</code>中移动，同时选择每一个项目。</p> <p>从表面看，<code>SSelector</code>似乎只是另一个内部类。但不要被表面现象迷惑。请注意观察<code>end()</code>，<code>current()</code>以及<code>next()</code>，它们每个方法都引用了<code>o</code>。<code>o</code>是个不属于<code>SSelector</code>一部分的引用，而是位于封装类里的一个<code>private</code>字段。然而，内部类可以从封装类访问方法与字段，就象已经拥有了它们一样。这一特征对我们来说是非常方便的，就象在上面的例子中看到的那样。</p> <p>因此，我们现在知道一个内部类可以访问封装类的成员。这是如何实现的呢？内部类必须拥有对封装类的特定对象的一个引用，而封装类的作用就是创建这个内部类。随后，当我们引用封装类的一个成员时，就利用那个（隐藏）的引用来选择那个成员。幸运的是，编译器会帮助我们照管所有这些细节。但我们现在也可以理解内部类的一个对象只能与封装类的一个对象联合创建。在这个创建过程中，要求对封装类对象的引用进行初始化。若不能访问那个引用，编译器就会报错。进行所有这些操作的时候，大多数时候都不要求程序员的任何介入。</p> <h2 id="_7-6-4-static内部类"><a href="#_7-6-4-static内部类" class="header-anchor">#</a> 7.6.4 <code>static</code>内部类</h2> <p>为正确理解<code>static</code>在应用于内部类时的含义，必须记住内部类的对象默认持有创建它的那个封装类的一个对象的引用。然而，假如我们说一个内部类是<code>static</code>的，这种说法却是不成立的。<code>static</code>内部类意味着：</p> <p>(1) 为创建一个<code>static</code>内部类的对象，我们不需要一个外部类对象。</p> <p>(2) 不能从<code>static</code>内部类的一个对象中访问一个外部类对象。</p> <p>但在存在一些限制：由于<code>static</code>成员只能位于一个类的外部级别，所以内部类不可拥有<code>static</code>数据或<code>static</code>内部类。</p> <p>倘若为了创建内部类的对象而不需要创建外部类的一个对象，那么可将所有东西都设为<code>static</code>。为了能正常工作，同时也必须将内部类设为<code>static</code>。如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel10.java
+// Static inner classes
+package c07.parcel10;
+
+abstract class Contents {
+  abstract public int value();
+}
+
+interface Destination {
+  String readLabel();
+}
+
+public class Parcel10 {
+  private static class PContents
+  extends Contents {
+    private int i = 11;
+    public int value() { return i; }
+  }
+  protected static class PDestination
+      implements Destination {
+    private String label;
+    private PDestination(String whereTo) {
+      label = whereTo;
+    }
+    public String readLabel() { return label; }
+  }
+  public static Destination dest(String s) {
+    return new PDestination(s);
+  }
+  public static Contents cont() {
+    return new PContents();
+  }
+  public static void main(String[] args) {
+    Contents c = cont();
+    Destination d = dest(&quot;Tanzania&quot;);
+  }
+} ///:~
+</code></pre></div><p>在<code>main()</code>中，我们不需要<code>Parcel10</code>的对象；相反，我们用常规的语法来选择一个<code>static</code>成员，以便调用将引用返回<code>Contents</code>和<code>Destination</code>的方法。</p> <p>通常，我们不在一个接口里设置任何代码，但<code>static</code>内部类可以成为接口的一部分。由于类是“静态”的，所以它不会违反接口的规则——<code>static</code>内部类只位于接口的命名空间内部：</p> <div class="language- extra-class"><pre class="language-text"><code>//: IInterface.java
+// Static inner classes inside interfaces
+
+interface IInterface {
+  static class Inner {
+    int i, j, k;
+    public Inner() {}
+    void f() {}
+  }
+} ///:~
+</code></pre></div><p>在本书早些时候，我建议大家在每个类里都设置一个<code>main()</code>，将其作为那个类的测试床使用。这样做的一个缺点就是额外代码的数量太多。若不愿如此，可考虑用一个<code>static</code>内部类容纳自己的测试代码。如下所示：</p> <div class="language- extra-class"><pre class="language-text"><code>//: TestBed.java
+// Putting test code in a static inner class
+
+class TestBed {
+  TestBed() {}
+  void f() { System.out.println(&quot;f()&quot;); }
+  public static class Tester {
+    public static void main(String[] args) {
+      TestBed t = new TestBed();
+      t.f();
+    }
+  }
+} ///:~
+</code></pre></div><p>这样便生成一个独立的、名为<code>TestBed$Tester</code>的类（为运行程序，请使用<code>java TestBed$Tester</code>命令）。可将这个类用于测试，但不需在自己的最终发行版本中包含它。</p> <h2 id="_7-6-5-引用外部类对象"><a href="#_7-6-5-引用外部类对象" class="header-anchor">#</a> 7.6.5 引用外部类对象</h2> <p>若想生成外部类对象的引用，就要用一个点号以及一个<code>this</code>来命名外部类。举个例子来说，在<code>Sequence.SSelector</code>类中，它的所有方法都能产生外部类<code>Sequence</code>的存储引用，方法是采用<code>Sequence.this</code>的形式。结果获得的引用会自动具备正确的类型（这会在编译期间检查并核实，所以不会出现运行期的开销）。</p> <p>有些时候，我们想告诉其他某些对象创建它某个内部类的一个对象。为达到这个目的，必须在<code>new</code>表达式中提供指向其他外部类对象的一个引用，就象下面这样：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Parcel11.java
+// Creating inner classes
+package c07.parcel11;
+
+public class Parcel11 {
+  class Contents {
+    private int i = 11;
+    public int value() { return i; }
+  }
+  class Destination {
+    private String label;
+    Destination(String whereTo) {
+      label = whereTo;
+    }
+    String readLabel() { return label; }
+  }
+  public static void main(String[] args) {
+    Parcel11 p = new Parcel11();
+    // Must use instance of outer class
+    // to create an instances of the inner class:
+    Parcel11.Contents c = p.new Contents();
+    Parcel11.Destination d =
+      p.new Destination(&quot;Tanzania&quot;);
+  }
+} ///:~
+</code></pre></div><p>为直接创建内部类的一个对象，不能象大家或许猜想的那样——采用相同的形式，并引用外部类名<code>Parcel11</code>。此时，必须利用外部类的一个对象生成内部类的一个对象：</p> <div class="language- extra-class"><pre class="language-text"><code>Parcel11.Contents c = p.new Contents();
+</code></pre></div><p>因此，除非已拥有外部类的一个对象，否则不可能创建内部类的一个对象。这是由于内部类的对象已同创建它的外部类的对象“默默”地连接到一起。然而，如果生成一个<code>static</code>内部类，就不需要指向外部类对象的一个引用。</p> <h2 id="_7-6-6-从内部类继承"><a href="#_7-6-6-从内部类继承" class="header-anchor">#</a> 7.6.6 从内部类继承</h2> <p>由于内部类构造器必须同封装类对象的一个引用联系到一起，所以从一个内部类继承的时候，情况会稍微变得有些复杂。这儿的问题是封装类的“秘密”引用必须获得初始化，而且在派生类中不再有一个默认的对象可以连接。解决这个问题的办法是采用一种特殊的语法，明确建立这种关联：</p> <div class="language- extra-class"><pre class="language-text"><code>//: InheritInner.java
+// Inheriting an inner class
+
+class WithInner {
+  class Inner {}
+}
+
+public class InheritInner
+    extends WithInner.Inner {
+  //! InheritInner() {} // Won't compile
+  InheritInner(WithInner wi) {
+    wi.super();
+  }
+  public static void main(String[] args) {
+    WithInner wi = new WithInner();
+    InheritInner ii = new InheritInner(wi);
+  }
+} ///:~
+</code></pre></div><p>从中可以看到，<code>InheritInner</code>只对内部类进行了扩展，没有扩展外部类。但在需要创建一个构造器的时候，默认对象已经没有意义，我们不能只是传递封装对象的一个引用。此外，必须在构造器中采用下述语法：</p> <div class="language- extra-class"><pre class="language-text"><code>enclosingClassHandle.super();
+</code></pre></div><p>它提供了必要的引用，以便程序正确编译。</p> <h2 id="_7-6-7-内部类可以覆盖吗"><a href="#_7-6-7-内部类可以覆盖吗" class="header-anchor">#</a> 7.6.7 内部类可以覆盖吗？</h2> <p>若创建一个内部类，然后从封装类继承，并重新定义内部类，那么会出现什么情况呢？也就是说，我们有可能覆盖一个内部类吗？这看起来似乎是一个非常有用的概念，但“覆盖”一个内部类——好象它是外部类的另一个方法——这一概念实际不能做任何事情：</p> <div class="language- extra-class"><pre class="language-text"><code>//: BigEgg.java
+// An inner class cannot be overriden
+// like a method
+
+class Egg {
+  protected class Yolk {
+    public Yolk() {
+      System.out.println(&quot;Egg.Yolk()&quot;);
+    }
+  }
+  private Yolk y;
+  public Egg() {
+    System.out.println(&quot;New Egg()&quot;);
+    y = new Yolk();
+  }
+}
+
+public class BigEgg extends Egg {
+  public class Yolk {
+    public Yolk() {
+      System.out.println(&quot;BigEgg.Yolk()&quot;);
+    }
+  }
+  public static void main(String[] args) {
+    new BigEgg();
+  }
+} ///:~
+</code></pre></div><p>默认构造器是由编译器自动组合的，而且会调用基类的默认构造器。大家或许会认为由于准备创建一个<code>BigEgg</code>，所以会使用<code>Yolk</code>的“被覆盖”版本。但实际情况并非如此。输出如下：</p> <div class="language- extra-class"><pre class="language-text"><code>New Egg()
+Egg.Yolk()
+</code></pre></div><p>这个例子简单地揭示出当我们从外部类继承的时候，没有任何额外的内部类继续下去。然而，仍然有可能“明确”地从内部类继承：</p> <div class="language- extra-class"><pre class="language-text"><code>//: BigEgg2.java
+// Proper inheritance of an inner class
+
+class Egg2 {
+  protected class Yolk {
+    public Yolk() {
+      System.out.println(&quot;Egg2.Yolk()&quot;);
+    }
+    public void f() {
+      System.out.println(&quot;Egg2.Yolk.f()&quot;);
+    }
+  }
+  private Yolk y = new Yolk();
+  public Egg2() {
+    System.out.println(&quot;New Egg2()&quot;);
+  }
+  public void insertYolk(Yolk yy) { y = yy; }
+  public void g() { y.f(); }
+}
+
+public class BigEgg2 extends Egg2 {
+  public class Yolk extends Egg2.Yolk {
+    public Yolk() {
+      System.out.println(&quot;BigEgg2.Yolk()&quot;);
+    }
+    public void f() {
+      System.out.println(&quot;BigEgg2.Yolk.f()&quot;);
+    }
+  }
+  public BigEgg2() { insertYolk(new Yolk()); }
+  public static void main(String[] args) {
+    Egg2 e2 = new BigEgg2();
+    e2.g();
+  }
+} ///:~
+</code></pre></div><p>现在，<code>BigEgg2.Yolk</code>明确地扩展了<code>Egg2.Yolk</code>，而且覆盖了它的方法。方法<code>insertYolk()</code>允许<code>BigEgg2</code>将它自己的某个<code>Yolk</code>对象向上转换至<code>Egg2</code>的<code>y</code>引用。所以当<code>g()</code>调用<code>y.f()</code>的时候，就会使用<code>f()</code>被覆盖版本。输出结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>Egg2.Yolk()
+New Egg2()
+Egg2.Yolk()
+BigEgg2.Yolk()
+BigEgg2.Yolk.f()
+</code></pre></div><p>对<code>Egg2.Yolk()</code>的第二个调用是<code>BigEgg2.Yolk</code>构造器的基类构造器调用。调用
+<code>g()</code>的时候，可发现使用的是<code>f()</code>的被覆盖版本。</p> <h2 id="_7-6-8-内部类标识符"><a href="#_7-6-8-内部类标识符" class="header-anchor">#</a> 7.6.8 内部类标识符</h2> <p>由于每个类都会生成一个<code>.class</code>文件，用于容纳与如何创建这个类型的对象有关的所有信息（这种信息产生了一个名为<code>Class</code>对象的元类），所以大家或许会猜到内部类也必须生成相应的<code>.class</code>文件，用来容纳与它们的<code>Class</code>对象有关的信息。这些文件或类的名字遵守一种严格的形式：先是封装类的名字，再跟随一个<code>$</code>，再跟随内部类的名字。例如，由<code>InheritInner.java</code>创建的<code>.class</code>文件包括：</p> <div class="language- extra-class"><pre class="language-text"><code>InheritInner.class
+WithInner$Inner.class
+WithInner.class
+</code></pre></div><p>如果内部类是匿名的，那么编译器会简单地生成数字，把它们作为内部类标识符使用。若内部类嵌套于其他内部类中，则它们的名字简单地追加在一个<code>$</code>以及外部类标识符的后面。</p> <p>这种生成内部名称的方法除了非常简单和直观以外，也非常“健壮”，可适应大多数场合的要求（注释③）。由于它是Java的标准命名机制，所以产生的文件会自动具备“与平台无关”的能力（注意Java编译器会根据情况改变内部类，使其在不同的平台中能正常工作）。</p> <p>③：但在另一方面，由于<code>$</code>也是Unix外壳的一个元字符，所以有时会在列出<code>.class</code>文件时遇到麻烦。对一家以Unix为基础的公司——Sun——来说，采取这种方案显得有些奇怪。我的猜测是他们根本没有仔细考虑这方面的问题，而是认为我们会将全部注意力自然地放在源码文件上。</p> <h2 id="_7-6-9-为什么要用内部类-控制框架"><a href="#_7-6-9-为什么要用内部类-控制框架" class="header-anchor">#</a> 7.6.9 为什么要用内部类：控制框架</h2> <p>到目前为止，大家已接触了对内部类的运作进行描述的大量语法与概念。但这些并不能真正说明内部类存在的原因。为什么Sun要如此麻烦地在Java 1.1里添加这样的一种基本语言特性呢？答案就在于我们在这里要学习的“控制框架”。</p> <p>一个“应用程序框架”是指一个或一系列类，它们专门设计用来解决特定类型的问题。为应用应用程序框架，我们可从一个或多个类继承，并覆盖其中的部分方法。我们在覆盖方法中编写的代码用于定制由那些应用程序框架提供的常规方案，以便解决自己的实际问题。“控制框架”属于应用程序框架的一种特殊类型，受到对事件响应的需要的支配；主要用来响应事件的一个系统叫作“由事件驱动的系统”。在应用程序设计语言中，最重要的问题之一便是“图形用户界面”（GUI），它几乎完全是由事件驱动的。正如大家会在第13章学习的那样，Java 1.1 AWT属于一种控制框架，它通过内部类完美地解决了GUI的问题。</p> <p>为理解内部类如何简化控制框架的创建与使用，可认为一个控制框架的工作就是在事件“就绪”以后执行它们。尽管“就绪”的意思很多，但在目前这种情况下，我们却是以计算机时钟为基础。随后，请认识到针对控制框架需要控制的东西，框架内并未包含任何特定的信息。首先，它是一个特殊的接口，描述了所有控制事件。它可以是一个抽象类，而非一个实际的接口。由于默认行为是根据时间控制的，所以部分实现细节可能包括：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Event.java
+// The common methods for any control event
+package c07.controller;
+
+abstract public class Event {
+  private long evtTime;
+  public Event(long eventTime) {
+    evtTime = eventTime;
+  }
+  public boolean ready() {
+    return System.currentTimeMillis() &gt;= evtTime;
+  }
+  abstract public void action();
+  abstract public String description();
+} ///:~
+</code></pre></div><p>希望<code>Event</code>（事件）运行的时候，构造器即简单地捕获时间。同时<code>ready()</code>告诉我们何时该运行它。当然，<code>ready()</code>也可以在一个派生类中被覆盖，将事件建立在除时间以外的其他东西上。</p> <p><code>action()</code>是事件就绪后需要调用的方法，而<code>description()</code>提供了与事件有关的文字信息。</p> <p>下面这个文件包含了实际的控制框架，用于管理和触发事件。第一个类实际只是一个“助手”类，它的职责是容纳<code>Event</code>对象。可用任何适当的集合替换它。而且通过第8章的学习，大家会知道另一些集合可简化我们的工作，不需要我们编写这些额外的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Controller.java
+// Along with Event, the generic
+// framework for all control systems:
+package c07.controller;
+
+// This is just a way to hold Event objects.
+class EventSet {
+  private Event[] events = new Event[100];
+  private int index = 0;
+  private int next = 0;
+  public void add(Event e) {
+    if(index &gt;= events.length)
+      return; // (In real life, throw exception)
+    events[index++] = e;
+  }
+  public Event getNext() {
+    boolean looped = false;
+    int start = next;
+    do {
+      next = (next + 1) % events.length;
+      // See if it has looped to the beginning:
+      if(start == next) looped = true;
+      // If it loops past start, the list
+      // is empty:
+      if((next == (start + 1) % events.length)
+         &amp;&amp; looped)
+        return null;
+    } while(events[next] == null);
+    return events[next];
+  }
+  public void removeCurrent() {
+    events[next] = null;
+  }
+}
+
+public class Controller {
+  private EventSet es = new EventSet();
+  public void addEvent(Event c) { es.add(c); }
+  public void run() {
+    Event e;
+    while((e = es.getNext()) != null) {
+      if(e.ready()) {
+        e.action();
+        System.out.println(e.description());
+        es.removeCurrent();
+      }
+    }
+  }
+} ///:~
+</code></pre></div><p><code>EventSet</code>可容纳100个事件（若在这里使用来自第8章的一个“真实”集合，就不必担心它的最大尺寸，因为它会根据情况自动改变大小）。<code>index</code>（索引）在这里用于跟踪下一个可用的空间，而<code>next</code>（下一个）帮助我们寻找列表中的下一个事件，了解自己是否已经循环到头。在对<code>getNext()</code>的调用中，这一点是至关重要的，因为一旦运行，<code>Event</code>对象就会从列表中删去（使用<code>removeCurrent()</code>）。所以<code>getNext()</code>会在列表中向前移动时遇到“空洞”。</p> <p>注意<code>removeCurrent()</code>并不只是指示一些标志，指出对象不再使用。相反，它将引用设为<code>null</code>。这一点是非常重要的，因为假如垃圾收集器发现一个引用仍在使用，就不会清除对象。若认为自己的引用可能象现在这样被挂起，那么最好将其设为<code>null</code>，使垃圾收集器能够正常地清除它们。</p> <p><code>Controller</code>是进行实际工作的地方。它用一个<code>EventSet</code>容纳自己的<code>Event</code>对象，而且<code>addEvent()</code>允许我们向这个列表加入新事件。但最重要的方法是<code>run()</code>。该方法会在<code>EventSet</code>中遍历，搜索一个准备运行的<code>Event</code>对象——<code>ready()</code>。对于它发现<code>ready()</code>的每一个对象，都会调用<code>action()</code>方法，打印出<code>description()</code>，然后将事件从列表中删去。</p> <p>注意在迄今为止的所有设计中，我们仍然不能准确地知道一个“事件”要做什么。这正是整个设计的关键；它怎样“将发生变化的东西同没有变化的东西区分开”？或者用我的话来讲，“改变的意图”造成了各类<code>Event</code>对象的不同行动。我们通过创建不同的<code>Event</code>子类，从而表达出不同的行动。</p> <p>这里正是内部类大显身手的地方。它们允许我们做两件事情：</p> <p>(1) 在单独一个类里表达一个控制框架应用的全部实现细节，从而完整地封装与那个实现有关的所有东西。内部类用于表达多种不同类型的<code>action()</code>，它们用于解决实际的问题。除此以外，后续的例子使用了<code>private</code>内部类，所以实现细节会完全隐藏起来，可以安全地修改。</p> <p>(2) 内部类使我们具体的实现变得更加巧妙，因为能方便地访问外部类的任何成员。若不具备这种能力，代码看起来就可能没那么使人舒服，最后不得不寻找其他方法解决。</p> <p>现在要请大家思考控制框架的一种具体实现方式，它设计用来控制温室（<code>Greenhouse</code>）功能（注释④）。每个行动都是完全不同的：控制灯光、供水以及温度自动调节的开与关，控制响铃，以及重新启动系统。但控制框架的设计宗旨是将不同的代码方便地隔离开。对每种类型的行动，都要继承一个新的<code>Event</code>内部类，并在<code>action()</code>内编写相应的控制代码。</p> <p>④：由于某些特殊原因，这对我来说是一个经常需要解决的、非常有趣的问题；原来的例子在《C++ Inside &amp; Out》一书里也出现过，但Java提供了一种更令人舒适的解决方案。</p> <p>作为应用程序框架的一种典型行为，<code>GreenhouseControls</code>类是从<code>Controller</code>继承的：</p> <div class="language- extra-class"><pre class="language-text"><code>//: GreenhouseControls.java
+// This produces a specific application of the
+// control system, all in a single class. Inner
+// classes allow you to encapsulate different
+// functionality for each type of event.
+package c07.controller;
+
+public class GreenhouseControls
+    extends Controller {
+  private boolean light = false;
+  private boolean water = false;
+  private String thermostat = &quot;Day&quot;;
+  private class LightOn extends Event {
+    public LightOn(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Put hardware control code here to
+      // physically turn on the light.
+      light = true;
+    }
+    public String description() {
+      return &quot;Light is on&quot;;
+    }
+  }
+  private class LightOff extends Event {
+    public LightOff(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Put hardware control code here to
+      // physically turn off the light.
+      light = false;
+    }
+    public String description() {
+      return &quot;Light is off&quot;;
+    }
+  }
+  private class WaterOn extends Event {
+    public WaterOn(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Put hardware control code here
+      water = true;
+    }
+    public String description() {
+      return &quot;Greenhouse water is on&quot;;
+    }
+  }
+  private class WaterOff extends Event {
+    public WaterOff(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Put hardware control code here
+      water = false;
+    }
+    public String description() {
+      return &quot;Greenhouse water is off&quot;;
+    }
+  }
+  private class ThermostatNight extends Event {
+    public ThermostatNight(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Put hardware control code here
+      thermostat = &quot;Night&quot;;
+    }
+    public String description() {
+      return &quot;Thermostat on night setting&quot;;
+    }
+  }
+  private class ThermostatDay extends Event {
+    public ThermostatDay(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Put hardware control code here
+      thermostat = &quot;Day&quot;;
+    }
+    public String description() {
+      return &quot;Thermostat on day setting&quot;;
+    }
+  }
+  // An example of an action() that inserts a
+  // new one of itself into the event list:
+  private int rings;
+  private class Bell extends Event {
+    public Bell(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      // Ring bell every 2 seconds, rings times:
+      System.out.println(&quot;Bing!&quot;);
+      if(--rings &gt; 0)
+        addEvent(new Bell(
+          System.currentTimeMillis() + 2000));
+    }
+    public String description() {
+      return &quot;Ring bell&quot;;
+    }
+  }
+  private class Restart extends Event {
+    public Restart(long eventTime) {
+      super(eventTime);
+    }
+    public void action() {
+      long tm = System.currentTimeMillis();
+      // Instead of hard-wiring, you could parse
+      // configuration information from a text
+      // file here:
+      rings = 5;
+      addEvent(new ThermostatNight(tm));
+      addEvent(new LightOn(tm + 1000));
+      addEvent(new LightOff(tm + 2000));
+      addEvent(new WaterOn(tm + 3000));
+      addEvent(new WaterOff(tm + 8000));
+      addEvent(new Bell(tm + 9000));
+      addEvent(new ThermostatDay(tm + 10000));
+      // Can even add a Restart object!
+      addEvent(new Restart(tm + 20000));
+    }
+    public String description() {
+      return &quot;Restarting system&quot;;
+    }
+  }
+  public static void main(String[] args) {
+    GreenhouseControls gc =
+      new GreenhouseControls();
+    long tm = System.currentTimeMillis();
+    gc.addEvent(gc.new Restart(tm));
+    gc.run();
+  }
+} ///:~
+</code></pre></div><p>注意<code>light</code>（灯光）、<code>water</code>（供水）、<code>thermostat</code>（调温）以及<code>rings</code>都隶属于外部类<code>GreenhouseControls</code>，所以内部类可以毫无阻碍地访问那些字段。此外，大多数<code>action()</code>方法也涉及到某些形式的硬件控制，这通常都要求发出对非Java代码的调用。</p> <p>大多数<code>Event</code>类看起来都是相似的，但<code>Bell</code>（铃）和<code>Restart</code>（重启）属于特殊情况。<code>Bell</code>会发出响声，若尚未响铃足够的次数，它会在事件列表里添加一个新的<code>Bell</code>对象，所以以后会再度响铃。请注意内部类看起来为什么总是类似于多重继承：<code>Bell</code>拥有<code>Event</code>的所有方法，而且也拥有外部类<code>GreenhouseControls</code>的所有方法。</p> <p><code>Restart</code>负责对系统进行初始化，所以会添加所有必要的事件。当然，一种更灵活的做法是避免进行“硬编码”，而是从一个文件里读入它们（第10章的一个练习会要求大家修改这个例子，从而达到这个目标）。由于<code>Restart()</code>仅仅是另一个<code>Event</code>对象，所以也可以在<code>Restart.action()</code>里添加一个<code>Restart</code>对象，使系统能够定期重启。在<code>main()</code>中，我们需要做的全部事情就是创建一个<code>GreenhouseControls</code>对象，并添加一个<code>Restart</code>对象，令其工作起来。</p> <p>这个例子应该使大家对内部类的价值有一个更加深刻的认识，特别是在一个控制框架里使用它们的时候。此外，在第13章的后半部分，大家还会看到如何巧妙地利用内部类描述一个图形用户界面的行为。完成那里的学习后，对内部类的认识将上升到一个前所未有的新高度。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/thinking-in-java-zh/7.5.html" class="prev">
+        7.5 接口
+      </a></span> <span class="next"><a href="/thinking-in-java-zh/7.7.html">
+        7.7 构造器和多态性
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/thinking-in-java-zh/assets/js/app.fa9256b7.js" defer></script><script src="/thinking-in-java-zh/assets/js/2.908605f2.js" defer></script><script src="/thinking-in-java-zh/assets/js/156.28542a9d.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10.9 对象序列化 | Java 编程思想</title>
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css" as="style"><link rel="preload" href="/thinking-in-java-zh/assets/js/app.fa9256b7.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/2.908605f2.js" as="script"><link rel="preload" href="/thinking-in-java-zh/assets/js/33.3bc564dc.js" as="script"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/10.bf0f8be8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/100.8d6b6f0a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/101.42353165.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/102.b35fd164.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/103.34c9ec8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/104.63e41eda.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/105.a8196ba3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/106.3c787cca.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/107.5fd47e23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/108.81d2c2cd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/109.5345df07.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/11.decefde0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/110.9a402e3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/111.80737508.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/112.ff092004.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/113.d88e257d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/114.de29474b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/115.9c8d96e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/116.a9fe9af6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/117.0788e070.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/118.fefdab4e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/119.400faa62.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/12.a09f7f64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/120.d0ad5c24.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/121.b7379e1b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/122.352bd6de.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/123.7291c3a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/124.431ed770.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/125.306c4c7c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/126.9b3ff272.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/127.5d35566d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/128.c7458e50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/129.abf0b62b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/13.74ebe0f1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/130.ca484630.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/131.3b65be65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/132.8cc44765.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/133.39cab05a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/134.e1bc010e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/135.848b8e8e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/136.e38c13cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/137.e6be7ef1.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/138.c921af48.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/139.605a3ad8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/14.9a71923b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/140.7047d727.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/141.eee98409.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/142.b1b6affe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/143.8e53cafe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/144.e78d4c16.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/145.a6924d98.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/146.6afa9e38.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/147.81a0fa1f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/148.9b9deb8c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/149.27e9a5ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/15.c40fedbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/150.d5cb64f7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/151.58f4c6e0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/152.877f491f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/153.2a0f7bc8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/154.0600529e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/155.60aac4f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/156.28542a9d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/157.71f374f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/158.f97abefc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/159.678b2841.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/16.e021272d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/160.50d096d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/161.65ef5e27.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/162.9945598d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/163.fbdc28a7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/164.b9de90b9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/165.f04b9c4d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/166.492b521e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/167.44fc78f4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/168.9ead6145.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/169.ecb10302.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/17.6a5a39db.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/170.c5cf73cf.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/171.1e4044b2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/172.bdf06080.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/173.b9993d87.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/174.7e9fc4ea.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/175.a1371c92.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/176.06a2686c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/177.3fd0af17.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/178.e20d739c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/179.0c4bab32.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/18.2a0fe016.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/180.09aa6003.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/181.f723e5b0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/182.5121b3e4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/183.ed3590f5.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/184.715b33ae.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/185.2fc87a63.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/186.1092562b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/187.2a099e97.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/188.5ba09f11.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/19.d85e5c9e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/20.0c5db47c.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/21.e0626c88.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/22.71c5879a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/23.7b68c569.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/24.e4a060c9.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/25.b3969598.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/26.5944fa66.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/27.b54d648d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/28.b3bd9b90.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/29.85fb52b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/3.7e7b25d0.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/30.e68d5f52.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/31.8a9dda64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/32.e86d5c44.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/34.c9e1ae64.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/35.b994b5bd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/36.8ccf0963.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/37.ecf3eb69.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/38.ab79219e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/39.04161d2f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/4.b7d0708f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/40.ea7690ff.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/41.1343bb93.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/42.3f7fe11a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/43.efcf4c2a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/44.d9ec22df.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/45.151cd823.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/46.2e7d0d19.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/47.2132be00.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/48.8f934c34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/49.debd52f8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/5.9e2f4ca7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/50.32165d5a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/51.d8ba02fd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/52.ed339d2d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/53.8e4ba4c8.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/54.60bf4f03.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/55.152bdcd2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/56.b7f52a23.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/57.9be7e60b.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/58.2ee15f50.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/59.b8c3cade.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/6.c7b54f12.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/60.2658363d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/61.691159a3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/62.9d9c6c65.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/63.07a1ba1a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/64.750c0918.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/65.1e1fa59d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/66.64b896e2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/67.0d9cdf7e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/68.40bd0a61.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/69.8233b339.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/7.37fa1201.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/70.25de6d15.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/71.f2848d8f.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/72.e156c27a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/73.725fabfd.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/74.3341aaba.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/75.c1f15dbb.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/76.e61dbcfe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/77.a3bae194.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/78.658cd2a6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/79.3f4258dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/8.cb3738e7.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/80.28670e73.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/81.2acef4dc.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/82.cc58e6b3.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/83.b9d7c5fe.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/84.d20935f6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/85.2647d331.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/86.387d330d.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/87.4a744b41.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/88.04a81a34.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/89.7e4d6e77.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/9.a197fc43.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/90.d390efe2.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/91.985ecc95.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/92.9c6399c6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/93.5c771e45.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/94.b6bfece6.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/95.7ffcbc3a.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/96.c8dee444.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/97.a6814ee4.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/98.ca141a6e.js"><link rel="prefetch" href="/thinking-in-java-zh/assets/js/99.7bd02f80.js">
+    <link rel="stylesheet" href="/thinking-in-java-zh/assets/css/0.styles.2494fd18.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNFKK7VGLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JNFKK7VGLS');
+    </script>
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/thinking-in-java-zh/" class="home-link router-link-active"><!----> <span class="site-name">Java 编程思想</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/thinking-in-java-zh/0.1.html" class="sidebar-link">写在前面的话</a></li><li><a href="/thinking-in-java-zh/0.2.html" class="sidebar-link">引言</a></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/1" class="sidebar-heading clickable"><span>第1章 对象入门</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/1.1.html" class="sidebar-link">1.1 抽象的进步</a></li><li><a href="/thinking-in-java-zh/1.2.html" class="sidebar-link">1.2 对象的接口</a></li><li><a href="/thinking-in-java-zh/1.3.html" class="sidebar-link">1.3 实现方案的隐藏</a></li><li><a href="/thinking-in-java-zh/1.4.html" class="sidebar-link">1.4 方案的重复使用</a></li><li><a href="/thinking-in-java-zh/1.5.html" class="sidebar-link">1.5 继承：重新使用接口</a></li><li><a href="/thinking-in-java-zh/1.6.html" class="sidebar-link">1.6 多态对象的互换使用</a></li><li><a href="/thinking-in-java-zh/1.7.html" class="sidebar-link">1.7 对象的创建和存在时间</a></li><li><a href="/thinking-in-java-zh/1.8.html" class="sidebar-link">1.8 异常控制：解决错误</a></li><li><a href="/thinking-in-java-zh/1.9.html" class="sidebar-link">1.9 多线程</a></li><li><a href="/thinking-in-java-zh/1.10.html" class="sidebar-link">1.10 永久性</a></li><li><a href="/thinking-in-java-zh/1.11.html" class="sidebar-link">1.11 Java和因特网</a></li><li><a href="/thinking-in-java-zh/1.12.html" class="sidebar-link">1.12 分析和设计</a></li><li><a href="/thinking-in-java-zh/1.13.html" class="sidebar-link">1.13 Java还是C++</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/2" class="sidebar-heading clickable"><span>第2章 一切都是对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/2.1.html" class="sidebar-link">2.1 用引用操纵对象</a></li><li><a href="/thinking-in-java-zh/2.2.html" class="sidebar-link">2.2 所有对象都必须创建</a></li><li><a href="/thinking-in-java-zh/2.3.html" class="sidebar-link">2.3 绝对不要清除对象</a></li><li><a href="/thinking-in-java-zh/2.4.html" class="sidebar-link">2.4 新建数据类型：类</a></li><li><a href="/thinking-in-java-zh/2.5.html" class="sidebar-link">2.5 方法、参数和返回值</a></li><li><a href="/thinking-in-java-zh/2.6.html" class="sidebar-link">2.6 构建Java程序</a></li><li><a href="/thinking-in-java-zh/2.7.html" class="sidebar-link">2.7 我们的第一个Java程序</a></li><li><a href="/thinking-in-java-zh/2.8.html" class="sidebar-link">2.8 注释和嵌入文档</a></li><li><a href="/thinking-in-java-zh/2.9.html" class="sidebar-link">2.9 编码样式</a></li><li><a href="/thinking-in-java-zh/2.10.html" class="sidebar-link">2.10 总结</a></li><li><a href="/thinking-in-java-zh/2.11.html" class="sidebar-link">2.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/3" class="sidebar-heading clickable"><span>第3章 控制程序流程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/3.1.html" class="sidebar-link">3.1 使用Java运算符</a></li><li><a href="/thinking-in-java-zh/3.2.html" class="sidebar-link">3.2 执行控制</a></li><li><a href="/thinking-in-java-zh/3.3.html" class="sidebar-link">3.3 总结</a></li><li><a href="/thinking-in-java-zh/3.4.html" class="sidebar-link">3.4 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/4" class="sidebar-heading clickable"><span>第4章 初始化和清除</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/4.1.html" class="sidebar-link">4.1 用构造器自动初始化</a></li><li><a href="/thinking-in-java-zh/4.2.html" class="sidebar-link">4.2 方法重载</a></li><li><a href="/thinking-in-java-zh/4.3.html" class="sidebar-link">4.3 清除：收尾和垃圾收集</a></li><li><a href="/thinking-in-java-zh/4.4.html" class="sidebar-link">4.4 成员初始化</a></li><li><a href="/thinking-in-java-zh/4.5.html" class="sidebar-link">4.5 数组初始化</a></li><li><a href="/thinking-in-java-zh/4.6.html" class="sidebar-link">4.6 总结</a></li><li><a href="/thinking-in-java-zh/4.7.html" class="sidebar-link">4.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/5" class="sidebar-heading clickable"><span>第5章 隐藏实现过程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/5.1.html" class="sidebar-link">5.1 包：库单元</a></li><li><a href="/thinking-in-java-zh/5.2.html" class="sidebar-link">5.2 Java访问指示符</a></li><li><a href="/thinking-in-java-zh/5.3.html" class="sidebar-link">5.3 接口与实现</a></li><li><a href="/thinking-in-java-zh/5.4.html" class="sidebar-link">5.4 类访问</a></li><li><a href="/thinking-in-java-zh/5.5.html" class="sidebar-link">5.5 总结</a></li><li><a href="/thinking-in-java-zh/5.6.html" class="sidebar-link">5.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/6" class="sidebar-heading clickable"><span>第6章 类复用</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/6.1.html" class="sidebar-link">6.1 組合的语法</a></li><li><a href="/thinking-in-java-zh/6.2.html" class="sidebar-link">6.2 继承的语法</a></li><li><a href="/thinking-in-java-zh/6.3.html" class="sidebar-link">6.3 组合与继承的结合</a></li><li><a href="/thinking-in-java-zh/6.4.html" class="sidebar-link">6.4 到底选择组合还是继承</a></li><li><a href="/thinking-in-java-zh/6.5.html" class="sidebar-link">6.5 protected</a></li><li><a href="/thinking-in-java-zh/6.6.html" class="sidebar-link">6.6 累积开发</a></li><li><a href="/thinking-in-java-zh/6.7.html" class="sidebar-link">6.7 向上转换</a></li><li><a href="/thinking-in-java-zh/6.8.html" class="sidebar-link">6.8 final关键字</a></li><li><a href="/thinking-in-java-zh/6.9.html" class="sidebar-link">6.9 初始化和类装载</a></li><li><a href="/thinking-in-java-zh/6.10.html" class="sidebar-link">6.10 总结</a></li><li><a href="/thinking-in-java-zh/6.11.html" class="sidebar-link">6.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/7" class="sidebar-heading clickable"><span>第7章 多态性</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/7.1.html" class="sidebar-link">7.1 向上转换</a></li><li><a href="/thinking-in-java-zh/7.2.html" class="sidebar-link">7.2 深入理解</a></li><li><a href="/thinking-in-java-zh/7.3.html" class="sidebar-link">7.3 覆盖与重载</a></li><li><a href="/thinking-in-java-zh/7.4.html" class="sidebar-link">7.4 抽象类和方法</a></li><li><a href="/thinking-in-java-zh/7.5.html" class="sidebar-link">7.5 接口</a></li><li><a href="/thinking-in-java-zh/7.6.html" class="sidebar-link">7.6 内部类</a></li><li><a href="/thinking-in-java-zh/7.7.html" class="sidebar-link">7.7 构造器和多态性</a></li><li><a href="/thinking-in-java-zh/7.8.html" class="sidebar-link">7.8 通过继承进行设计</a></li><li><a href="/thinking-in-java-zh/7.9.html" class="sidebar-link">7.9 总结</a></li><li><a href="/thinking-in-java-zh/7.10.html" class="sidebar-link">7.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/8" class="sidebar-heading clickable"><span>第8章 对象的容纳</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/8.1.html" class="sidebar-link">8.1 数组</a></li><li><a href="/thinking-in-java-zh/8.2.html" class="sidebar-link">8.2 集合</a></li><li><a href="/thinking-in-java-zh/8.3.html" class="sidebar-link">8.3 枚举器（迭代器）</a></li><li><a href="/thinking-in-java-zh/8.4.html" class="sidebar-link">8.4 集合的类型</a></li><li><a href="/thinking-in-java-zh/8.5.html" class="sidebar-link">8.5 排序</a></li><li><a href="/thinking-in-java-zh/8.6.html" class="sidebar-link">8.6 通用集合库</a></li><li><a href="/thinking-in-java-zh/8.7.html" class="sidebar-link">8.7 新集合</a></li><li><a href="/thinking-in-java-zh/8.8.html" class="sidebar-link">8.8 总结</a></li><li><a href="/thinking-in-java-zh/8.9.html" class="sidebar-link">8.9 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/9" class="sidebar-heading clickable"><span>第9章 异常差错控制</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/9.1.html" class="sidebar-link">9.1 基本异常</a></li><li><a href="/thinking-in-java-zh/9.2.html" class="sidebar-link">9.2 异常的捕获</a></li><li><a href="/thinking-in-java-zh/9.3.html" class="sidebar-link">9.3 标准Java异常</a></li><li><a href="/thinking-in-java-zh/9.4.html" class="sidebar-link">9.4 创建自己的异常</a></li><li><a href="/thinking-in-java-zh/9.5.html" class="sidebar-link">9.5 异常的限制</a></li><li><a href="/thinking-in-java-zh/9.6.html" class="sidebar-link">9.6 用finally清除</a></li><li><a href="/thinking-in-java-zh/9.7.html" class="sidebar-link">9.7 构造器</a></li><li><a href="/thinking-in-java-zh/9.8.html" class="sidebar-link">9.8 异常匹配</a></li><li><a href="/thinking-in-java-zh/9.9.html" class="sidebar-link">9.9 总结</a></li><li><a href="/thinking-in-java-zh/9.10.html" class="sidebar-link">9.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/10" class="sidebar-heading clickable open"><span>第10章 Java IO系统</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/10.1.html" class="sidebar-link">10.1 输入和输出</a></li><li><a href="/thinking-in-java-zh/10.2.html" class="sidebar-link">10.2 增添属性和有用的接口</a></li><li><a href="/thinking-in-java-zh/10.3.html" class="sidebar-link">10.3 本身的缺陷：RandomAccessFile</a></li><li><a href="/thinking-in-java-zh/10.4.html" class="sidebar-link">10.4 File类</a></li><li><a href="/thinking-in-java-zh/10.5.html" class="sidebar-link">10.5 IO流的典型应用</a></li><li><a href="/thinking-in-java-zh/10.6.html" class="sidebar-link">10.6 StreamTokenizer</a></li><li><a href="/thinking-in-java-zh/10.7.html" class="sidebar-link">10.7 Java 1.1的IO流</a></li><li><a href="/thinking-in-java-zh/10.8.html" class="sidebar-link">10.8 压缩</a></li><li><a href="/thinking-in-java-zh/10.9.html" aria-current="page" class="active sidebar-link">10.9 对象序列化</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/10.9.html#_10-9-1-寻找类" class="sidebar-link">10.9.1 寻找类</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/10.9.html#_10-9-2-序列化的控制" class="sidebar-link">10.9.2 序列化的控制</a></li><li class="sidebar-sub-header"><a href="/thinking-in-java-zh/10.9.html#_10-9-3-利用-持久性" class="sidebar-link">10.9.3 利用“持久性”</a></li></ul></li><li><a href="/thinking-in-java-zh/10.10.html" class="sidebar-link">10.10 总结</a></li><li><a href="/thinking-in-java-zh/10.11.html" class="sidebar-link">10.11 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/11" class="sidebar-heading clickable"><span>第11章 运行期类型识别</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/11.1.html" class="sidebar-link">11.1 对RTTI的需要</a></li><li><a href="/thinking-in-java-zh/11.2.html" class="sidebar-link">11.2 RTTI语法</a></li><li><a href="/thinking-in-java-zh/11.3.html" class="sidebar-link">11.3 反射：运行期类信息</a></li><li><a href="/thinking-in-java-zh/11.4.html" class="sidebar-link">11.4 总结</a></li><li><a href="/thinking-in-java-zh/11.5.html" class="sidebar-link">11.5 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/12" class="sidebar-heading clickable"><span>第12章 传递和返回对象</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/12.1.html" class="sidebar-link">12.1 传递引用</a></li><li><a href="/thinking-in-java-zh/12.2.html" class="sidebar-link">12.2 制作本地副本</a></li><li><a href="/thinking-in-java-zh/12.3.html" class="sidebar-link">12.3 克隆的控制</a></li><li><a href="/thinking-in-java-zh/12.4.html" class="sidebar-link">12.4 只读类</a></li><li><a href="/thinking-in-java-zh/12.5.html" class="sidebar-link">12.5 总结</a></li><li><a href="/thinking-in-java-zh/12.6.html" class="sidebar-link">12.6 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/13" class="sidebar-heading clickable"><span>第13章 创建窗口和程序片</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/13.1.html" class="sidebar-link">13.1 为何要用AWT？</a></li><li><a href="/thinking-in-java-zh/13.2.html" class="sidebar-link">13.2 基本程序片</a></li><li><a href="/thinking-in-java-zh/13.3.html" class="sidebar-link">13.3 制作按钮</a></li><li><a href="/thinking-in-java-zh/13.4.html" class="sidebar-link">13.4 捕获事件</a></li><li><a href="/thinking-in-java-zh/13.5.html" class="sidebar-link">13.5 文本字段</a></li><li><a href="/thinking-in-java-zh/13.6.html" class="sidebar-link">13.6 文本区域</a></li><li><a href="/thinking-in-java-zh/13.7.html" class="sidebar-link">13.7 标签</a></li><li><a href="/thinking-in-java-zh/13.8.html" class="sidebar-link">13.8 复选框</a></li><li><a href="/thinking-in-java-zh/13.9.html" class="sidebar-link">13.9 单选钮</a></li><li><a href="/thinking-in-java-zh/13.10.html" class="sidebar-link">13.10 下拉列表</a></li><li><a href="/thinking-in-java-zh/13.11.html" class="sidebar-link">13.11 列表框</a></li><li><a href="/thinking-in-java-zh/13.12.html" class="sidebar-link">13.12 布局的控制</a></li><li><a href="/thinking-in-java-zh/13.13.html" class="sidebar-link">13.13 action的替代品</a></li><li><a href="/thinking-in-java-zh/13.14.html" class="sidebar-link">13.14 程序片的局限</a></li><li><a href="/thinking-in-java-zh/13.15.html" class="sidebar-link">13.15 视窗化应用</a></li><li><a href="/thinking-in-java-zh/13.16.html" class="sidebar-link">13.16 新型AWT</a></li><li><a href="/thinking-in-java-zh/13.17.html" class="sidebar-link">13.17 Java 1.1用户接口API</a></li><li><a href="/thinking-in-java-zh/13.18.html" class="sidebar-link">13.18 可视编程和Beans</a></li><li><a href="/thinking-in-java-zh/13.19.html" class="sidebar-link">13.19 Swing入门（注释⑦）</a></li><li><a href="/thinking-in-java-zh/13.20.html" class="sidebar-link">13.20 总结</a></li><li><a href="/thinking-in-java-zh/13.21.html" class="sidebar-link">13.21 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/14" class="sidebar-heading clickable"><span>第14章 多线程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/14.1.html" class="sidebar-link">14.1 反应灵敏的用户界面</a></li><li><a href="/thinking-in-java-zh/14.2.html" class="sidebar-link">14.2 共享有限的资源</a></li><li><a href="/thinking-in-java-zh/14.3.html" class="sidebar-link">14.3 堵塞</a></li><li><a href="/thinking-in-java-zh/14.4.html" class="sidebar-link">14.4 优先级</a></li><li><a href="/thinking-in-java-zh/14.5.html" class="sidebar-link">14.5 回顾runnable</a></li><li><a href="/thinking-in-java-zh/14.6.html" class="sidebar-link">14.6 总结</a></li><li><a href="/thinking-in-java-zh/14.7.html" class="sidebar-link">14.7 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/15" class="sidebar-heading clickable"><span>第15章 网络编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/15.1.html" class="sidebar-link">15.1 机器的标识</a></li><li><a href="/thinking-in-java-zh/15.2.html" class="sidebar-link">15.2 套接字</a></li><li><a href="/thinking-in-java-zh/15.3.html" class="sidebar-link">15.3 服务多个客户</a></li><li><a href="/thinking-in-java-zh/15.4.html" class="sidebar-link">15.4 数据报</a></li><li><a href="/thinking-in-java-zh/15.5.html" class="sidebar-link">15.5 一个Web应用</a></li><li><a href="/thinking-in-java-zh/15.6.html" class="sidebar-link">15.6 Java与CGI的沟通</a></li><li><a href="/thinking-in-java-zh/15.7.html" class="sidebar-link">15.7 用JDBC连接数据库</a></li><li><a href="/thinking-in-java-zh/15.8.html" class="sidebar-link">15.8 远程方法</a></li><li><a href="/thinking-in-java-zh/15.9.html" class="sidebar-link">15.9 总结</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/16" class="sidebar-heading clickable"><span>第16章 设计模式</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/16.1.html" class="sidebar-link">16.1 模式的概念</a></li><li><a href="/thinking-in-java-zh/16.2.html" class="sidebar-link">16.2 观察器模式</a></li><li><a href="/thinking-in-java-zh/16.3.html" class="sidebar-link">16.3 模拟垃圾回收站</a></li><li><a href="/thinking-in-java-zh/16.4.html" class="sidebar-link">16.4 改进设计</a></li><li><a href="/thinking-in-java-zh/16.5.html" class="sidebar-link">16.5 抽象的应用</a></li><li><a href="/thinking-in-java-zh/16.6.html" class="sidebar-link">16.6 多重分发</a></li><li><a href="/thinking-in-java-zh/16.7.html" class="sidebar-link">16.7 访问器模式</a></li><li><a href="/thinking-in-java-zh/16.8.html" class="sidebar-link">16.8 RTTI真的有害吗</a></li><li><a href="/thinking-in-java-zh/16.9.html" class="sidebar-link">16.9 总结</a></li><li><a href="/thinking-in-java-zh/16.10.html" class="sidebar-link">16.10 练习</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/thinking-in-java-zh/17" class="sidebar-heading clickable"><span>第17章 项目</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/thinking-in-java-zh/17.1.html" class="sidebar-link">17.1 文字处理</a></li><li><a href="/thinking-in-java-zh/17.2.html" class="sidebar-link">17.2 方法查找工具</a></li><li><a href="/thinking-in-java-zh/17.3.html" class="sidebar-link">17.3 复杂性理论</a></li><li><a href="/thinking-in-java-zh/17.4.html" class="sidebar-link">17.4 总结</a></li><li><a href="/thinking-in-java-zh/17.5.html" class="sidebar-link">17.5 练习</a></li></ul></section></li><li><a href="/thinking-in-java-zh/a.html" class="sidebar-link">附录A 使用非JAVA代码</a></li><li><a href="/thinking-in-java-zh/b.html" class="sidebar-link">附录B 对比C++和Java</a></li><li><a href="/thinking-in-java-zh/c.html" class="sidebar-link">附录C Java编程规则</a></li><li><a href="/thinking-in-java-zh/d.html" class="sidebar-link">附录D 性能</a></li><li><a href="/thinking-in-java-zh/e.html" class="sidebar-link">附录E 关于垃圾收集的一些话</a></li><li><a href="/thinking-in-java-zh/f.html" class="sidebar-link">附录F 推荐读物</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_10-9-对象序列化"><a href="#_10-9-对象序列化" class="header-anchor">#</a> 10.9 对象序列化</h1> <p>Java 1.1增添了一种有趣的特性，名为“对象序列化”（Object Serialization）。它面向那些实现了<code>Serializable</code>接口的对象，可将它们转换成一系列字节，并可在以后完全恢复回原来的样子。这一过程亦可通过网络进行。这意味着序列化机制能自动补偿操作系统间的差异。换句话说，可以先在Windows机器上创建一个对象，对其序列化，然后通过网络发给一台Unix机器，然后在那里准确无误地重新“装配”。不必关心数据在不同机器上如何表示，也不必关心字节的顺序或者其他任何细节。</p> <p>就其本身来说，对象的序列化是非常有趣的，因为利用它可以实现“有限持久化”。请记住“持久化”意味着对象的“生存时间”并不取决于程序是否正在执行——它存在或“生存”于程序的每一次调用之间。通过序列化一个对象，将其写入磁盘，以后在程序重新调用时重新恢复那个对象，就能圆满实现一种“持久”效果。之所以称其为“有限”，是因为不能用某种<code>persistent</code>（持久）关键字简单地地定义一个对象，并让系统自动照看其他所有细节问题（尽管将来可能成为现实）。相反，必须在自己的程序中明确地序列化和组装对象。</p> <p>语言里增加了对象序列化的概念后，可提供对两种主要特性的支持。Java 1.1的“远程方法调用”（RMI）使本来存在于其他机器的对象可以表现出好象就在本地机器上的行为。将消息发给远程对象时，需要通过对象序列化来传输参数和返回值。RMI将在第15章作具体讨论。</p> <p>对象的序列化也是Java Beans必需的，后者由Java 1.1引入。使用一个Bean时，它的状态信息通常在设计期间配置好。程序启动以后，这种状态信息必须保存下来，以便程序启动以后恢复；具体工作由对象序列化完成。</p> <p>对象的序列化处理非常简单，只需对象实现了<code>Serializable</code>接口即可（该接口仅是一个标记，没有方法）。在Java 1.1中，许多标准库类都发生了改变，以便能够序列化——其中包括用于基本数据类型的全部包装器、所有集合类以及其他许多东西。甚至<code>Class</code>对象也可以序列化（第11章讲述了具体实现过程）。</p> <p>为序列化一个对象，首先要创建某些<code>OutputStream</code>对象，然后将其封装到<code>ObjectOutputStream</code>对象内。此时，只需调用<code>writeObject()</code>即可完成对象的序列化，并将其发送给<code>OutputStream</code>。相反的过程是将一个<code>InputStream</code>封装到<code>ObjectInputStream</code>内，然后调用<code>readObject()</code>。和往常一样，我们最后获得的是指向一个向上转换<code>Object</code>的引用，所以必须向下转换，以便能够直接设置。</p> <p>对象序列化特别“聪明”的一个地方是它不仅保存了对象的“全景图”，而且能追踪对象内包含的所有引用并保存那些对象；接着又能对每个对象内包含的引用进行追踪；以此类推。我们有时将这种情况称为“对象网”，单个对象可与之建立连接。而且它还包含了对象的引用数组以及成员对象。若必须自行操纵一套对象序列化机制，那么在代码里追踪所有这些链接时可能会显得非常麻烦。在另一方面，由于Java对象的序列化似乎找不出什么缺点，所以请尽量不要自己动手，让它用优化的算法自动维护整个对象网。下面这个例子对序列化机制进行了测试。它建立了许多链接对象的一个<code>Worm</code>（蠕虫），每个对象都与<code>Worm</code>中的下一段链接，同时又与属于不同类（<code>Data</code>）的对象引用数组链接：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Worm.java
+// Demonstrates object serialization in Java 1.1
+import java.io.*;
+
+class Data implements Serializable {
+  private int i;
+  Data(int x) { i = x; }
+  public String toString() {
+    return Integer.toString(i);
+  }
+}
+
+public class Worm implements Serializable {
+  // Generate a random int value:
+  private static int r() {
+    return (int)(Math.random() * 10);
+  }
+  private Data[] d = {
+    new Data(r()), new Data(r()), new Data(r())
+  };
+  private Worm next;
+  private char c;
+  // Value of i == number of segments
+  Worm(int i, char x) {
+    System.out.println(&quot; Worm constructor: &quot; + i);
+    c = x;
+    if(--i &gt; 0)
+      next = new Worm(i, (char)(x + 1));
+  }
+  Worm() {
+    System.out.println(&quot;Default constructor&quot;);
+  }
+  public String toString() {
+    String s = &quot;:&quot; + c + &quot;(&quot;;
+    for(int i = 0; i &lt; d.length; i++)
+      s += d[i].toString();
+    s += &quot;)&quot;;
+    if(next != null)
+      s += next.toString();
+    return s;
+  }
+  public static void main(String[] args) {
+    Worm w = new Worm(6, 'a');
+    System.out.println(&quot;w = &quot; + w);
+    try {
+      ObjectOutputStream out =
+        new ObjectOutputStream(
+          new FileOutputStream(&quot;worm.out&quot;));
+      out.writeObject(&quot;Worm storage&quot;);
+      out.writeObject(w);
+      out.close(); // Also flushes output
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new FileInputStream(&quot;worm.out&quot;));
+      String s = (String)in.readObject();
+      Worm w2 = (Worm)in.readObject();
+      System.out.println(s + &quot;, w2 = &quot; + w2);
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+    try {
+      ByteArrayOutputStream bout =
+        new ByteArrayOutputStream();
+      ObjectOutputStream out =
+        new ObjectOutputStream(bout);
+      out.writeObject(&quot;Worm storage&quot;);
+      out.writeObject(w);
+      out.flush();
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new ByteArrayInputStream(
+            bout.toByteArray()));
+      String s = (String)in.readObject();
+      Worm w3 = (Worm)in.readObject();
+      System.out.println(s + &quot;, w3 = &quot; + w3);
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+} ///:~
+</code></pre></div><p>更有趣的是，<code>Worm</code>内的<code>Data</code>对象数组是用随机数字初始化的（这样便不用怀疑编译器保留了某种原始信息）。每个<code>Worm</code>段都用一个<code>Char</code>标记。这个<code>Char</code>是在重复生成链接的<code>Worm</code>列表时自动产生的。创建一个<code>Worm</code>时，需告诉构造器希望它有多长。为产生下一个引用（<code>next</code>），它总是用减去1的长度来调用<code>Worm</code>构造器。最后一个<code>next</code>引用则保持为<code>null</code>（空），表示已抵达<code>Worm</code>的尾部。</p> <p>上面的所有操作都是为了加深事情的复杂程度，加大对象序列化的难度。然而，真正的序列化过程却是非常简单的。一旦从另外某个流里创建了<code>ObjectOutputStream</code>，<code>writeObject()</code>就会序列化对象。注意也可以为一个<code>String</code>调用<code>writeObject()</code>。亦可使用与<code>DataOutputStream</code>相同的方法写入所有基本数据类型（它们有相同的接口）。</p> <p>有两个单独的<code>try</code>块看起来是类似的。第一个读写的是文件，而另一个读写的是一个<code>ByteArray</code>（字节数组）。可利用对任何<code>DataInputStream</code>或者<code>DataOutputStream</code>的序列化来读写特定的对象；正如在关于连网的那一章会讲到的那样，这些对象甚至包括网络。一次循环后的输出结果如下：</p> <div class="language- extra-class"><pre class="language-text"><code>Worm constructor: 6
+Worm constructor: 5
+Worm constructor: 4
+Worm constructor: 3
+Worm constructor: 2
+Worm constructor: 1
+w = :a(262):b(100):c(396):d(480):e(316):f(398)
+Worm storage, w2 = :a(262):b(100):c(396):d(480):e(316):f(398)
+Worm storage, w3 = :a(262):b(100):c(396):d(480):e(316):f(398)
+</code></pre></div><p>可以看出，装配回原状的对象确实包含了原来那个对象里包含的所有链接。</p> <p>注意在对一个<code>Serializable</code>（可序列化）对象进行重新装配的过程中，不会调用任何构造器（甚至默认构造器）。整个对象都是通过从<code>InputStream</code>中取得数据恢复的。</p> <p>作为Java 1.1特性的一种，我们注意到对象的序列化并不属于新的<code>Reader</code>和<code>Writer</code>层次结构的一部分，而是沿用老式的<code>InputStream</code>和<code>OutputStream</code>结构。所以在一些特殊的场合下，不得不混合使用两种类型的层次结构。</p> <h2 id="_10-9-1-寻找类"><a href="#_10-9-1-寻找类" class="header-anchor">#</a> 10.9.1 寻找类</h2> <p>读者或许会奇怪为什么需要一个对象从它的序列化状态中恢复。举个例子来说，假定我们序列化一个对象，并通过网络将其作为文件传送给另一台机器。此时，位于另一台机器的程序可以只用文件目录来重新构造这个对象吗？</p> <p>回答这个问题的最好方法就是做一个实验。下面这个文件位于本章的子目录下：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Alien.java
+// A serializable class
+import java.io.*;
+
+public class Alien implements Serializable {
+} ///:~
+
+</code></pre></div><p>用于创建和序列化一个<code>Alien</code>对象的文件位于相同的目录下：</p> <div class="language- extra-class"><pre class="language-text"><code>//: FreezeAlien.java
+// Create a serialized output file
+import java.io.*;
+
+public class FreezeAlien {
+  public static void main(String[] args)
+      throws Exception {
+    ObjectOutput out =
+      new ObjectOutputStream(
+        new FileOutputStream(&quot;file.x&quot;));
+    Alien zorcon = new Alien();
+    out.writeObject(zorcon);
+  }
+} ///:~
+</code></pre></div><p>该程序并不是捕获和控制异常，而是将异常简单、直接地传递到<code>main()</code>外部，这样便能在命令行报告它们。</p> <p>程序编译并运行后，将结果产生的<code>file.x</code>复制到名为<code>xfiles</code>的子目录，代码如下：</p> <div class="language- extra-class"><pre class="language-text"><code>//: ThawAlien.java
+// Try to recover a serialized file without the
+// class of object that's stored in that file.
+package c10.xfiles;
+import java.io.*;
+
+public class ThawAlien {
+  public static void main(String[] args)
+      throws Exception {
+    ObjectInputStream in =
+      new ObjectInputStream(
+        new FileInputStream(&quot;file.x&quot;));
+    Object mystery = in.readObject();
+    System.out.println(
+      mystery.getClass().toString());
+  }
+} ///:~
+
+</code></pre></div><p>该程序能打开文件，并成功读取<code>mystery</code>对象中的内容。然而，一旦尝试查找与对象有关的任何资料——这要求<code>Alien</code>的<code>Class</code>对象——Java虚拟机（JVM）便找不到<code>Alien.class</code>（除非它正好在类路径内，而本例理应相反）。这样就会得到一个名叫<code>ClassNotFoundException</code>的异常（同样地，若非能够校验<code>Alien</code>存在的证据，否则它等于消失）。</p> <p>恢复了一个序列化的对象后，如果想对其做更多的事情，必须保证JVM能在本地类路径或者因特网的其他什么地方找到相关的<code>.class</code>文件。</p> <h2 id="_10-9-2-序列化的控制"><a href="#_10-9-2-序列化的控制" class="header-anchor">#</a> 10.9.2 序列化的控制</h2> <p>正如大家看到的那样，默认的序列化机制并不难操纵。然而，假若有特殊要求又该怎么办呢？我们可能有特殊的安全问题，不希望对象的某一部分序列化；或者某一个子对象完全不必序列化，因为对象恢复以后，那一部分需要重新创建。</p> <p>此时，通过实现<code>Externalizable</code>接口，用它代替<code>Serializable</code>接口，便可控制序列化的具体过程。这个<code>Externalizable</code>接口扩展了<code>Serializable</code>，并增添了两个方法：<code>writeExternal()</code>和<code>readExternal()</code>。在序列化和重新装配的过程中，会自动调用这两个方法，以便我们执行一些特殊操作。</p> <p>下面这个例子展示了<code>Externalizable</code>接口方法的简单应用。注意<code>Blip1</code>和<code>Blip2</code>几乎完全一致，除了极微小的差别（自己研究一下代码，看看是否能发现）：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Blips.java
+// Simple use of Externalizable &amp; a pitfall
+import java.io.*;
+import java.util.*;
+
+class Blip1 implements Externalizable {
+  public Blip1() {
+    System.out.println(&quot;Blip1 Constructor&quot;);
+  }
+  public void writeExternal(ObjectOutput out)
+      throws IOException {
+    System.out.println(&quot;Blip1.writeExternal&quot;);
+  }
+  public void readExternal(ObjectInput in)
+     throws IOException, ClassNotFoundException {
+    System.out.println(&quot;Blip1.readExternal&quot;);
+  }
+}
+
+class Blip2 implements Externalizable {
+  Blip2() {
+    System.out.println(&quot;Blip2 Constructor&quot;);
+  }
+  public void writeExternal(ObjectOutput out)
+      throws IOException {
+    System.out.println(&quot;Blip2.writeExternal&quot;);
+  }
+  public void readExternal(ObjectInput in)
+     throws IOException, ClassNotFoundException {
+    System.out.println(&quot;Blip2.readExternal&quot;);
+  }
+}
+
+public class Blips {
+  public static void main(String[] args) {
+    System.out.println(&quot;Constructing objects:&quot;);
+    Blip1 b1 = new Blip1();
+    Blip2 b2 = new Blip2();
+    try {
+      ObjectOutputStream o =
+        new ObjectOutputStream(
+          new FileOutputStream(&quot;Blips.out&quot;));
+      System.out.println(&quot;Saving objects:&quot;);
+      o.writeObject(b1);
+      o.writeObject(b2);
+      o.close();
+      // Now get them back:
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new FileInputStream(&quot;Blips.out&quot;));
+      System.out.println(&quot;Recovering b1:&quot;);
+      b1 = (Blip1)in.readObject();
+      // OOPS! Throws an exception:
+//!   System.out.println(&quot;Recovering b2:&quot;);
+//!   b2 = (Blip2)in.readObject();
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+} ///:~
+</code></pre></div><p>该程序输出如下：</p> <div class="language- extra-class"><pre class="language-text"><code>Constructing objects:
+Blip1 Constructor
+Blip2 Constructor
+Saving objects:
+Blip1.writeExternal
+Blip2.writeExternal
+Recovering b1:
+Blip1 Constructor
+Blip1.readExternal
+</code></pre></div><p>未恢复<code>Blip2</code>对象的原因是那样做会导致一个异常。你找出了<code>Blip1</code>和<code>Blip2</code>之间的区别吗？<code>Blip1</code>的构造器是“公共的”（<code>public</code>），<code>Blip2</code>的构造器则不然，这样便会在恢复时造成异常。试试将<code>Blip2</code>的构造器属性变成<code>public</code>，然后删除<code>//!</code>注释标记，看看是否能得到正确的结果。</p> <p>恢复<code>b1</code>后，会调用<code>Blip1</code>默认构造器。这与恢复一个<code>Serializable</code>（可序列化）对象不同。在后者的情况下，对象完全以它保存下来的二进制位为基础恢复，不存在构造器调用。而对一个<code>Externalizable</code>对象，所有普通的默认构建行为都会发生（包括在字段定义时的初始化），而且会调用<code>readExternal()</code>。必须注意这一事实——特别注意所有默认的构建行为都会进行——否则很难在自己的<code>Externalizable</code>对象中产生正确的行为。</p> <p>下面这个例子揭示了保存和恢复一个<code>Externalizable</code>对象必须做的全部事情：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Blip3.java
+// Reconstructing an externalizable object
+import java.io.*;
+import java.util.*;
+
+class Blip3 implements Externalizable {
+  int i;
+  String s; // No initialization
+  public Blip3() {
+    System.out.println(&quot;Blip3 Constructor&quot;);
+    // s, i not initialized
+  }
+  public Blip3(String x, int a) {
+    System.out.println(&quot;Blip3(String x, int a)&quot;);
+    s = x;
+    i = a;
+    // s &amp; i initialized only in non-default
+    // constructor.
+  }
+  public String toString() { return s + i; }
+  public void writeExternal(ObjectOutput out)
+      throws IOException {
+    System.out.println(&quot;Blip3.writeExternal&quot;);
+    // You must do this:
+    out.writeObject(s); out.writeInt(i);
+  }
+  public void readExternal(ObjectInput in)
+     throws IOException, ClassNotFoundException {
+    System.out.println(&quot;Blip3.readExternal&quot;);
+    // You must do this:
+    s = (String)in.readObject();
+    i =in.readInt();
+  }
+  public static void main(String[] args) {
+    System.out.println(&quot;Constructing objects:&quot;);
+    Blip3 b3 = new Blip3(&quot;A String &quot;, 47);
+    System.out.println(b3.toString());
+    try {
+      ObjectOutputStream o =
+        new ObjectOutputStream(
+          new FileOutputStream(&quot;Blip3.out&quot;));
+      System.out.println(&quot;Saving object:&quot;);
+      o.writeObject(b3);
+      o.close();
+      // Now get it back:
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new FileInputStream(&quot;Blip3.out&quot;));
+      System.out.println(&quot;Recovering b3:&quot;);
+      b3 = (Blip3)in.readObject();
+      System.out.println(b3.toString());
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+} ///:~
+</code></pre></div><p>其中，字段<code>s</code>和<code>i</code>只在第二个构造器中初始化，不关默认构造器的事。这意味着假如不在<code>readExternal</code>中初始化<code>s</code>和<code>i</code>，它们就会成为<code>null</code>（因为在对象创建的第一步中已将对象的存储空间清除为1）。若注释掉跟随于<code>&quot;You must do this&quot;</code>后面的两行代码，并运行程序，就会发现当对象恢复以后，<code>s</code>是<code>null</code>，而<code>i</code>是零。</p> <p>若从一个<code>Externalizable</code>对象继承，通常需要调用<code>writeExternal()</code>和<code>readExternal()</code>的基类版本，以便正确地保存和恢复基类组件。</p> <p>所以为了让一切正常运作起来，千万不可仅在writeExternal()方法执行期间写入对象的重要数据（没有默认的行为可用来为一个<code>Externalizable</code>对象写入所有成员对象）的，而是必须在<code>readExternal()</code>方法中也恢复那些数据。初次操作时可能会有些不习惯，因为<code>Externalizable</code>对象的默认构建行为使其看起来似乎正在进行某种存储与恢复操作。但实情并非如此。</p> <p>(1) <code>transient</code>（临时）关键字</p> <p>控制序列化过程时，可能有一个特定的子对象不愿让Java的序列化机制自动保存与恢复。一般地，若那个子对象包含了不想序列化的敏感信息（如密码），就会面临这种情况。即使那种信息在对象中具有<code>private</code>（私有）属性，但一旦经序列化处理，人们就可以通过读取一个文件，或者拦截网络传输得到它。</p> <p>为防止对象的敏感部分被序列化，一个办法是将自己的类实现为<code>Externalizable</code>，就象前面展示的那样。这样一来，没有任何东西可以自动序列化，只能在<code>writeExternal()</code>明确序列化那些需要的部分。</p> <p>然而，若操作的是一个<code>Serializable</code>对象，所有序列化操作都会自动进行。为解决这个问题，可以用<code>transient</code>（临时）逐个字段地关闭序列化，它的意思是“不要麻烦你（指自动机制）保存或恢复它了——我会自己处理的”。</p> <p>例如，假设一个<code>Login</code>对象包含了与一个特定的登录会话有关的信息。校验登录的合法性时，一般都想将数据保存下来，但不包括密码。为做到这一点，最简单的办法是实现<code>Serializable</code>，并将<code>password</code>字段设为<code>transient</code>。下面是具体的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>//: Logon.java
+// Demonstrates the &quot;transient&quot; keyword
+import java.io.*;
+import java.util.*;
+
+class Logon implements Serializable {
+  private Date date = new Date();
+  private String username;
+  private transient String password;
+  Logon(String name, String pwd) {
+    username = name;
+    password = pwd;
+  }
+  public String toString() {
+    String pwd =
+      (password == null) ? &quot;(n/a)&quot; : password;
+    return &quot;logon info: \n   &quot; +
+      &quot;username: &quot; + username +
+      &quot;\n   date: &quot; + date.toString() +
+      &quot;\n   password: &quot; + pwd;
+  }
+  public static void main(String[] args) {
+    Logon a = new Logon(&quot;Hulk&quot;, &quot;myLittlePony&quot;);
+    System.out.println( &quot;logon a = &quot; + a);
+    try {
+      ObjectOutputStream o =
+        new ObjectOutputStream(
+          new FileOutputStream(&quot;Logon.out&quot;));
+      o.writeObject(a);
+      o.close();
+      // Delay:
+      int seconds = 5;
+      long t = System.currentTimeMillis()
+             + seconds * 1000;
+      while(System.currentTimeMillis() &lt; t)
+        ;
+      // Now get them back:
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new FileInputStream(&quot;Logon.out&quot;));
+      System.out.println(
+        &quot;Recovering object at &quot; + new Date());
+      a = (Logon)in.readObject();
+      System.out.println( &quot;logon a = &quot; + a);
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+} ///:~
+
+</code></pre></div><p>可以看到，其中的<code>date</code>和<code>username</code>字段保持原始状态（未设成<code>transient</code>），所以会自动序列化。然而，<code>password</code>被设为<code>transient</code>，所以不会自动保存到磁盘；另外，自动序列化机制也不会作恢复它的尝试。输出如下：</p> <div class="language- extra-class"><pre class="language-text"><code>logon a = logon info:
+   username: Hulk
+   date: Sun Mar 23 18:25:53 PST 1997
+   password: myLittlePony
+Recovering object at Sun Mar 23 18:25:59 PST 1997
+logon a = logon info:
+   username: Hulk
+   date: Sun Mar 23 18:25:53 PST 1997
+   password: (n/a)
+</code></pre></div><p>一旦对象恢复成原来的样子，<code>password</code>字段就会变成<code>null</code>。注意必须用<code>toString()</code>检查<code>password</code>是否为<code>null</code>，因为若用重载的<code>+</code>运算符来装配一个<code>String</code>对象，而且那个运算符遇到一个<code>null</code>引用，就会造成一个名为<code>NullPointerException</code>的异常（新版Java可能会提供避免这个问题的代码）。</p> <p>我们也发现<code>date</code>字段被保存到磁盘，并从磁盘恢复，没有重新生成。</p> <p>由于<code>Externalizable</code>对象默认时不保存它的任何字段，所以<code>transient</code>关键字只能伴随<code>Serializable</code>使用。</p> <p>(2) <code>Externalizable</code>的替代方法</p> <p>若不是特别在意要实现<code>Externalizable</code>接口，还有另一种方法可供选用。我们可以实现<code>Serializable</code>接口，并添加（注意是“添加”，而非“覆盖”或者“实现”）名为<code>writeObject()</code>和<code>readObject()</code>的方法。一旦对象被序列化或者重新装配，就会分别调用那两个方法。也就是说，只要提供了这两个方法，就会优先使用它们，而不考虑默认的序列化机制。
+这些方法必须含有下列准确的签名：</p> <div class="language- extra-class"><pre class="language-text"><code>private void
+  writeObject(ObjectOutputStream stream)
+    throws IOException;
+
+private void
+  readObject(ObjectInputStream stream)
+    throws IOException, ClassNotFoundException
+</code></pre></div><p>从设计的角度出发，情况变得有些扑朔迷离。首先，大家可能认为这些方法不属于基类或者<code>Serializable</code>接口的一部分，它们应该在自己的接口中得到定义。但请注意它们被定义成<code>private</code>，这意味着它们只能由这个类的其他成员调用。然而，我们实际并不从这个类的其他成员中调用它们，而是由<code>ObjectOutputStream</code>和<code>ObjectInputStream</code>的<code>writeObject()</code>及<code>readObject()</code>方法来调用我们对象的<code>writeObject()</code>和<code>readObject()</code>方法（注意我在这里用了很大的抑制力来避免使用相同的方法名——因为怕混淆）。大家可能奇怪<code>ObjectOutputStream</code>和<code>ObjectInputStream</code>如何有权访问我们的类的<code>private</code>方法——只能认为这是序列化机制玩的一个把戏。</p> <p>在任何情况下，接口中的定义的任何东西都会自动具有<code>public</code>属性，所以假若<code>writeObject()</code>和<code>readObject()</code>必须为<code>private</code>，那么它们不能成为接口（<code>interface</code>）的一部分。但由于我们准确地加上了签名，所以最终的效果实际与实现一个接口是相同的。</p> <p>看起来似乎我们调用<code>ObjectOutputStream.writeObject()</code>的时候，我们传递给它的<code>Serializable</code>对象似乎会被检查是否实现了自己的<code>writeObject()</code>。若答案是肯定的是，便会跳过常规的序列化过程，并调用<code>writeObject()</code>。<code>readObject()</code>也会遇到同样的情况。</p> <p>还存在另一个问题。在我们的<code>writeObject()</code>内部，可以调用<code>defaultWriteObject()</code>，从而决定采取默认的<code>writeObject()</code>行动。类似地，在<code>readObject()</code>内部，可以调用<code>defaultReadObject()</code>。下面这个简单的例子演示了如何对一个<code>Serializable</code>对象的存储与恢复进行控制：</p> <div class="language- extra-class"><pre class="language-text"><code>//: SerialCtl.java
+// Controlling serialization by adding your own
+// writeObject() and readObject() methods.
+import java.io.*;
+
+public class SerialCtl implements Serializable {
+  String a;
+  transient String b;
+  public SerialCtl(String aa, String bb) {
+    a = &quot;Not Transient: &quot; + aa;
+    b = &quot;Transient: &quot; + bb;
+  }
+  public String toString() {
+    return a + &quot;\n&quot; + b;
+  }
+  private void
+    writeObject(ObjectOutputStream stream)
+      throws IOException {
+    stream.defaultWriteObject();
+    stream.writeObject(b);
+  }
+  private void
+    readObject(ObjectInputStream stream)
+      throws IOException, ClassNotFoundException {
+    stream.defaultReadObject();
+    b = (String)stream.readObject();
+  }
+  public static void main(String[] args) {
+    SerialCtl sc =
+      new SerialCtl(&quot;Test1&quot;, &quot;Test2&quot;);
+    System.out.println(&quot;Before:\n&quot; + sc);
+    ByteArrayOutputStream buf =
+      new ByteArrayOutputStream();
+    try {
+      ObjectOutputStream o =
+        new ObjectOutputStream(buf);
+      o.writeObject(sc);
+      // Now get it back:
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new ByteArrayInputStream(
+            buf.toByteArray()));
+      SerialCtl sc2 = (SerialCtl)in.readObject();
+      System.out.println(&quot;After:\n&quot; + sc2);
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+} ///:~
+
+</code></pre></div><p>在这个例子中，一个<code>String</code>保持原始状态，其他设为<code>transient</code>（临时），以便证明非临时字段会被<code>defaultWriteObject()</code>方法自动保存，而<code>transient</code>字段必须在程序中明确保存和恢复。字段是在构造器内部初始化的，而不是在定义的时候，这证明了它们不会在重新装配的时候被某些自动化机制初始化。</p> <p>若准备通过默认机制写入对象的非<code>transient</code>部分，那么必须调用<code>defaultWriteObject()</code>，令其作为<code>writeObject()</code>中的第一个操作；并调用<code>defaultReadObject()</code>，令其作为<code>readObject()</code>的第一个操作。这些都是不常见的调用方法。举个例子来说，当我们为一个<code>ObjectOutputStream</code>调用<code>defaultWriteObject()</code>的时候，而且没有为其传递参数，就需要采取这种操作，使其知道对象的引用以及如何写入所有非<code>transient</code>的部分。这种做法非常不便。</p> <p><code>transient</code>对象的存储与恢复采用了我们更熟悉的代码。现在考虑一下会发生一些什么事情。在<code>main()</code>中会创建一个<code>SerialCtl</code>对象，随后会序列化到一个<code>ObjectOutputStream</code>里（注意这种情况下使用的是一个缓冲区，而非文件——与<code>ObjectOutputStream</code>完全一致）。正式的序列化操作是在下面这行代码里发生的：</p> <div class="language- extra-class"><pre class="language-text"><code>o.writeObject(sc);
+</code></pre></div><p>其中，<code>writeObject()</code>方法必须核查<code>sc</code>，判断它是否有自己的<code>writeObject()</code>方法（不是检查它的接口——它根本就没有，也不是检查类的类型，而是利用反射方法实际搜索方法）。若答案是肯定的，就使用那个方法。类似的情况也会在<code>readObject()</code>上发生。或许这是解决问题唯一实际的方法，但确实显得有些古怪。</p> <p>(3) 版本问题</p> <p>有时候可能想改变一个可序列化的类的版本（比如原始类的对象可能保存在数据库中）。尽管这种做法得到了支持，但一般只应在非常特殊的情况下才用它。此外，它要求操作者对背后的原理有一个比较深的认识，而我们在这里还不想达到这种深度。JDK 1.1的HTML文档对这一主题进行了非常全面的论述（可从Sun公司下载，但可能也成了Java开发包联机文档的一部分）。</p> <h2 id="_10-9-3-利用-持久性"><a href="#_10-9-3-利用-持久性" class="header-anchor">#</a> 10.9.3 利用“持久性”</h2> <p>一个比较诱人的想法是用序列化技术保存程序的一些状态信息，从而将程序方便地恢复到以前的状态。但在具体实现以前，有些问题是必须解决的。如果两个对象都有指向第三个对象的引用，该如何对这两个对象序列化呢？如果从两个对象序列化后的状态恢复它们，第三个对象的引用只会出现在一个对象身上吗？如果将这两个对象序列化成独立的文件，然后在代码的不同部分重新装配它们，又会得到什么结果呢？</p> <p>下面这个例子对上述问题进行了很好的说明：</p> <div class="language- extra-class"><pre class="language-text"><code>//: MyWorld.java
+import java.io.*;
+import java.util.*;
+
+class House implements Serializable {}
+
+class Animal implements Serializable {
+  String name;
+  House preferredHouse;
+  Animal(String nm, House h) {
+    name = nm;
+    preferredHouse = h;
+  }
+  public String toString() {
+    return name + &quot;[&quot; + super.toString() +
+      &quot;], &quot; + preferredHouse + &quot;\n&quot;;
+  }
+}
+
+public class MyWorld {
+  public static void main(String[] args) {
+    House house = new House();
+    Vector  animals = new Vector();
+    animals.addElement(
+      new Animal(&quot;Bosco the dog&quot;, house));
+    animals.addElement(
+      new Animal(&quot;Ralph the hamster&quot;, house));
+    animals.addElement(
+      new Animal(&quot;Fronk the cat&quot;, house));
+    System.out.println(&quot;animals: &quot; + animals);
+
+    try {
+      ByteArrayOutputStream buf1 =
+        new ByteArrayOutputStream();
+      ObjectOutputStream o1 =
+        new ObjectOutputStream(buf1);
+      o1.writeObject(animals);
+      o1.writeObject(animals); // Write a 2nd set
+      // Write to a different stream:
+      ByteArrayOutputStream buf2 =
+        new ByteArrayOutputStream();
+      ObjectOutputStream o2 =
+        new ObjectOutputStream(buf2);
+      o2.writeObject(animals);
+      // Now get them back:
+      ObjectInputStream in1 =
+        new ObjectInputStream(
+          new ByteArrayInputStream(
+            buf1.toByteArray()));
+      ObjectInputStream in2 =
+        new ObjectInputStream(
+          new ByteArrayInputStream(
+            buf2.toByteArray()));
+      Vector animals1 = (Vector)in1.readObject();
+      Vector animals2 = (Vector)in1.readObject();
+      Vector animals3 = (Vector)in2.readObject();
+      System.out.println(&quot;animals1: &quot; + animals1);
+      System.out.println(&quot;animals2: &quot; + animals2);
+      System.out.println(&quot;animals3: &quot; + animals3);
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+} ///:~
+</code></pre></div><p>这里一件有趣的事情是也许是能针对一个字节数组应用对象的序列化，从而实现对任何<code>Serializable</code>（可序列化）对象的一个“全面复制”（全面复制意味着复制的是整个对象网，而不仅是基本对象和它的引用）。复制问题将在第12章进行全面讲述。</p> <p><code>Animal</code>对象包含了类型为<code>House</code>的字段。在<code>main()</code>中，会创建这些<code>Animal</code>的一个<code>Vector</code>，并对其序列化两次，分别送入两个不同的数据流内。这些数据重新装配并打印出来后，可看到下面这样的结果（对象在每次运行时都会处在不同的内存位置，所以每次运行的结果有区别）：</p> <div class="language- extra-class"><pre class="language-text"><code>animals: [Bosco the dog[Animal@1cc76c], House@1cc769
+, Ralph the hamster[Animal@1cc76d], House@1cc769
+, Fronk the cat[Animal@1cc76e], House@1cc769
+]
+animals1: [Bosco the dog[Animal@1cca0c], House@1cca16
+, Ralph the hamster[Animal@1cca17], House@1cca16
+, Fronk the cat[Animal@1cca1b], House@1cca16
+]
+animals2: [Bosco the dog[Animal@1cca0c], House@1cca16
+, Ralph the hamster[Animal@1cca17], House@1cca16
+, Fronk the cat[Animal@1cca1b], House@1cca16
+]
+animals3: [Bosco the dog[Animal@1cca52], House@1cca5c
+, Ralph the hamster[Animal@1cca5d], House@1cca5c
+, Fronk the cat[Animal@1cca61], House@1cca5c
+]
+
+</code></pre></div><p>当然，我们希望装配好的对象有与原来不同的地址。但注意在<code>animals1</code>和<code>animals2</code>中出现了相同的地址，其中包括共享的、对<code>House</code>对象的引用。在另一方面，当<code>animals3</code>恢复以后，系统没有办法知道另一个流内的对象是第一个流内对象的化身，所以会产生一个完全不同的对象网。</p> <p>只要将所有东西都序列化到单独一个数据流里，就能恢复获得与以前写入时完全一样的对象网，不会不慎造成对象的重复。当然，在写第一个和最后一个对象的时间之间，可改变对象的状态，但那必须由我们明确采取操作——序列化时，对象会采用它们当时的任何状态（包括它们与其他对象的连接关系）写入。</p> <p>若想保存系统状态，最安全的做法是当作一种“微观”操作序列化。如果序列化了某些东西，再去做其他一些工作，再来序列化更多的东西，以此类推，那么最终将无法安全地保存系统状态。相反，应将构成系统状态的所有对象都置入单个集合内，并在一次操作里完成那个集合的写入。这样一来，同样只需一次方法调用，即可成功恢复之。</p> <p>下面这个例子是一套假想的计算机辅助设计（CAD）系统，对这一方法进行了很好的演示。此外，它还为我们引入了<code>static</code>字段的问题——如留意联机文档，就会发现<code>Class</code>是<code>Serializable</code>（可序列化）的，所以只需简单地序列化<code>Class</code>对象，就能实现<code>static</code>字段的保存。这无论如何都是一种明智的做法。</p> <div class="language- extra-class"><pre class="language-text"><code>//: CADState.java
+// Saving and restoring the state of a
+// pretend CAD system.
+import java.io.*;
+import java.util.*;
+
+abstract class Shape implements Serializable {
+  public static final int
+    RED = 1, BLUE = 2, GREEN = 3;
+  private int xPos, yPos, dimension;
+  private static Random r = new Random();
+  private static int counter = 0;
+  abstract public void setColor(int newColor);
+  abstract public int getColor();
+  public Shape(int xVal, int yVal, int dim) {
+    xPos = xVal;
+    yPos = yVal;
+    dimension = dim;
+  }
+  public String toString() {
+    return getClass().toString() +
+      &quot; color[&quot; + getColor() +
+      &quot;] xPos[&quot; + xPos +
+      &quot;] yPos[&quot; + yPos +
+      &quot;] dim[&quot; + dimension + &quot;]\n&quot;;
+  }
+  public static Shape randomFactory() {
+    int xVal = r.nextInt() % 100;
+    int yVal = r.nextInt() % 100;
+    int dim = r.nextInt() % 100;
+    switch(counter++ % 3) {
+      default:
+      case 0: return new Circle(xVal, yVal, dim);
+      case 1: return new Square(xVal, yVal, dim);
+      case 2: return new Line(xVal, yVal, dim);
+    }
+  }
+}
+
+class Circle extends Shape {
+  private static int color = RED;
+  public Circle(int xVal, int yVal, int dim) {
+    super(xVal, yVal, dim);
+  }
+  public void setColor(int newColor) {
+    color = newColor;
+  }
+  public int getColor() {
+    return color;
+  }
+}
+
+class Square extends Shape {
+  private static int color;
+  public Square(int xVal, int yVal, int dim) {
+    super(xVal, yVal, dim);
+    color = RED;
+  }
+  public void setColor(int newColor) {
+    color = newColor;
+  }
+  public int getColor() {
+    return color;
+  }
+}
+
+class Line extends Shape {
+  private static int color = RED;
+  public static void
+  serializeStaticState(ObjectOutputStream os)
+      throws IOException {
+    os.writeInt(color);
+  }
+  public static void
+  deserializeStaticState(ObjectInputStream os)
+      throws IOException {
+    color = os.readInt();
+  }
+  public Line(int xVal, int yVal, int dim) {
+    super(xVal, yVal, dim);
+  }
+  public void setColor(int newColor) {
+    color = newColor;
+  }
+  public int getColor() {
+    return color;
+  }
+}
+
+public class CADState {
+  public static void main(String[] args)
+      throws Exception {
+    Vector shapeTypes, shapes;
+    if(args.length == 0) {
+      shapeTypes = new Vector();
+      shapes = new Vector();
+      // Add handles to the class objects:
+      shapeTypes.addElement(Circle.class);
+      shapeTypes.addElement(Square.class);
+      shapeTypes.addElement(Line.class);
+      // Make some shapes:
+      for(int i = 0; i &lt; 10; i++)
+        shapes.addElement(Shape.randomFactory());
+      // Set all the static colors to GREEN:
+      for(int i = 0; i &lt; 10; i++)
+        ((Shape)shapes.elementAt(i))
+          .setColor(Shape.GREEN);
+      // Save the state vector:
+      ObjectOutputStream out =
+        new ObjectOutputStream(
+          new FileOutputStream(&quot;CADState.out&quot;));
+      out.writeObject(shapeTypes);
+      Line.serializeStaticState(out);
+      out.writeObject(shapes);
+    } else { // There's a command-line argument
+      ObjectInputStream in =
+        new ObjectInputStream(
+          new FileInputStream(args[0]));
+      // Read in the same order they were written:
+      shapeTypes = (Vector)in.readObject();
+      Line.deserializeStaticState(in);
+      shapes = (Vector)in.readObject();
+    }
+    // Display the shapes:
+    System.out.println(shapes);
+  }
+} ///:~
+</code></pre></div><p><code>Shape</code>（几何形状）类“实现了可序列化”（<code>implements Serializable</code>），所以从<code>Shape</code>继承的任何东西也都会自动“可序列化”。每个<code>Shape</code>都包含了数据，而且每个派生的<code>Shape</code>类都包含了一个特殊的<code>static</code>字段，用于决定所有那些类型的<code>Shape</code>的颜色（如将一个<code>static</code>字段置入基类，结果只会产生一个字段，因为<code>static</code>字段未在派生类中复制）。可对基类中的方法进行覆盖处理，以便为不同的类型设置颜色（<code>static</code>方法不会动态绑定，所以这些都是普通的方法）。每次调用<code>randomFactory()</code>方法时，它都会创建一个不同的<code>Shape</code>（<code>Shape</code>值采用随机值）。</p> <p><code>Circle</code>（圆）和<code>Square</code>（矩形）属于对<code>Shape</code>的直接扩展；唯一的差别是<code>Circle</code>在定义时会初始化颜色，而<code>Square</code>在构造器中初始化。<code>Line</code>（直线）的问题将留到以后讨论。</p> <p>在<code>main()</code>中，一个<code>Vector</code>用于容纳<code>Class</code>对象，而另一个用于容纳形状。若不提供相应的命令行参数，就会创建<code>shapeTypes Vector</code>，并添加<code>Class</code>对象。然后创建<code>shapes Vector</code>，并添加<code>Shape</code>对象。接下来，所有<code>static color</code>值都会设成<code>GREEN</code>，而且所有东西都会序列化到文件<code>CADState.out</code>。</p> <p>若提供了一个命令行参数（假设<code>CADState.out</code>），便会打开那个文件，并用它恢复程序的状态。无论在哪种情况下，结果产生的<code>Shape</code>的<code>Vector</code>都会打印出来。下面列出它某一次运行的结果：</p> <div class="language- extra-class"><pre class="language-text"><code>&gt;java CADState
+[class Circle color[3] xPos[-51] yPos[-99] dim[38]
+, class Square color[3] xPos[2] yPos[61] dim[-46]
+, class Line color[3] xPos[51] yPos[73] dim[64]
+, class Circle color[3] xPos[-70] yPos[1] dim[16]
+, class Square color[3] xPos[3] yPos[94] dim[-36]
+, class Line color[3] xPos[-84] yPos[-21] dim[-35]
+, class Circle color[3] xPos[-75] yPos[-43] dim[22]
+, class Square color[3] xPos[81] yPos[30] dim[-45]
+, class Line color[3] xPos[-29] yPos[92] dim[17]
+, class Circle color[3] xPos[17] yPos[90] dim[-76]
+]
+
+&gt;java CADState CADState.out
+[class Circle color[1] xPos[-51] yPos[-99] dim[38]
+, class Square color[0] xPos[2] yPos[61] dim[-46]
+, class Line color[3] xPos[51] yPos[73] dim[64]
+, class Circle color[1] xPos[-70] yPos[1] dim[16]
+, class Square color[0] xPos[3] yPos[94] dim[-36]
+, class Line color[3] xPos[-84] yPos[-21] dim[-35]
+, class Circle color[1] xPos[-75] yPos[-43] dim[22]
+, class Square color[0] xPos[81] yPos[30] dim[-45]
+, class Line color[3] xPos[-29] yPos[92] dim[17]
+, class Circle color[1] xPos[17] yPos[90] dim[-76]
+]
+
+</code></pre></div><p>从中可以看出，<code>xPos</code>，<code>yPos</code>以及<code>dim</code>的值都已成功保存和恢复出来。但在获取<code>static</code>信息时却出现了问题。所有“3”都已进入，但没有正常地出来。<code>Circle</code>有一个1值（定义为<code>RED</code>），而<code>Square</code>有一个0值（记住，它们是在构造器里初始化的）。看上去似乎<code>static</code>根本没有得到初始化！实情正是如此——尽管类<code>Class</code>是“可以序列化的”，但却不能按我们希望的工作。所以假如想序列化<code>static</code>值，必须亲自动手。</p> <p>这正是<code>Line</code>中的<code>serializeStaticState()</code>和<code>deserializeStaticState()</code>两个<code>static</code>方法的用途。可以看到，这两个方法都是作为存储和恢复进程的一部分明确调用的（注意写入序列化文件和从中读回的顺序不能改变）。所以为了使<code>CADState.java</code>正确运行起来，必须采用下述三种方法之一：</p> <p>(1) 为几何形状添加一个<code>serializeStaticState()</code>和<code>deserializeStaticState()</code>。</p> <p>(2) 删除<code>Vector shapeTypes</code>以及与之有关的所有代码</p> <p>(3) 在几何形状内添加对新序列化和撤消序列化静态方法的调用</p> <p>要注意的另一个问题是安全，因为序列化处理也会将<code>private</code>数据保存下来。若有需要保密的字段，应将其标记成<code>transient</code>。但在这之后，必须设计一种安全的信息保存方法。这样一来，一旦需要恢复，就可以重设那些<code>private</code>变量。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/thinking-in-java-zh/10.8.html" class="prev">
+        10.8 压缩
+      </a></span> <span class="next"><a href="/thinking-in-java-zh/10.10.html">
+        10.10 总结
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/thinking-in-java-zh/assets/js/app.fa9256b7.js" defer></script><script src="/thinking-in-java-zh/assets/js/2.908605f2.js" defer></script><script src="/thinking-in-java-zh/assets/js/33.3bc564dc.js" defer></script>
+  </body>
+</html>
